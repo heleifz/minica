@@ -1,0 +1,65 @@
+{
+  "name" : "test_net",
+  "description" : "template for a neural network",
+  "structure" : [
+    {
+      "type" : "variable",
+      "phase" : "test",
+      "name" : "x"
+    },
+    {
+      "type" : "variable",
+      "phase" : "train",
+      "name" : "x"
+    },
+    {
+      "type" : "variable",
+      "phase" : "train",
+      "name" : "label"
+    },
+    {
+      "type" : "full",
+      "name" : "full_1",
+      "description" : "full connected layer",
+      "param" : {
+        "input_size" : 200,
+        "output_size" : 50
+      },
+      "input" : ["x"],
+      "output" : ["full_1_out"]
+    },
+    {
+      "type" : "relu",
+      "name" : "relu_1",
+      "description" : "nonliear layer",
+      "input" : ["full_1_out"],
+      "output" : ["relu_1_out"]
+    },
+    {
+      "type" : "full",
+      "name" : "full_2",
+      "description" : "output_layer",
+      "param" : {
+        "input_size" : 50,
+        "output_size" : 2
+      },
+      "input" : ["relu_1_out", "full_test_out"],
+      "output" : ["full_2_out"]
+    },
+    {
+      "type" : "softmax",
+      "name" : "softmax",
+      "description" : "output_layer",
+      "input" : ["full_2_out"],
+      "output" : ["softmax_out"]
+    },
+    {
+      "type" : "cross_entropy",
+      "phase" : "train",
+      "name" : "cross_entropy_error",
+      "description" : "cross entropy error",
+      "input" : ["softmax_out", "label"],
+      "output" : ["loss"]
+    }
+  ]
+}

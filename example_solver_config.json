@@ -1,0 +1,12 @@
+{
+  "name" : "test_net",
+  "description" : "template for a neural network",
+  "type" : "sgd",
+  "params" : {
+    "learning_rate" : 0.027,
+    "batch_size" : 5,
+    "snapshot_every_n_iterations" : 10,
+    "validate_every_n_iterations" : 10,
+    "print_log_every_n_iterations" : 10
+  }
+}
