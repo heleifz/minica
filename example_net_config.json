@@ -54,6 +54,22 @@
       "output" : ["softmax_out"]
     },
     {
+      "type" : "argmax",
+      "phase" : "test",
+      "name" : "predict_result",
+      "description" : "get predict result",
+      "input" : ["softmax_out"],
+      "output" : ["predict_result"]
+    },
+    {
+      "type" : "accuracy",
+      "phase" : "test",
+      "name" : "accuracy",
+      "description" : "compute accuracy",
+      "input" : ["predict_result", "label"],
+      "output" : ["accu"]
+    },
+    {
       "type" : "cross_entropy",
       "phase" : "train",
       "name" : "cross_entropy_error",

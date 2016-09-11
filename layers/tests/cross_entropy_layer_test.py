@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import unittest
-import layers.cross_entropy_layer
+import minicaffe.layers.cross_entropy_layer as cross_entropy_layer
 import numpy as np
-import tensor
+import minicaffe.tensor as tensor
 
 class CrossEntropyLayerTest(unittest.TestCase):
 
     def setUp(self):
-        self.layer = layers.cross_entropy_layer.CrossEntropyLayer(None)
+        self.layer = cross_entropy_layer.CrossEntropyLayer(None)
 
     def forward_test(self):
         input_test = np.array([0.1, 0.2, 0.7, 0.5, 0.2, 0.3], dtype='float').reshape((2,3))

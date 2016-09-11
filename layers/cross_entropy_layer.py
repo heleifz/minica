@@ -2,11 +2,10 @@
 """
 """
 
-import layer
 import numpy as np
-import tensor
+import minicaffe.tensor as tensor
 
-class CrossEntropyLayer(layer.Layer):
+class CrossEntropyLayer(object):
     """
     网络层接口
     """

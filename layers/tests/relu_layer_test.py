@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import unittest
-import layers.relu_layer
+import minicaffe.layers.relu_layer as relu_layer
 import numpy as np
-import tensor
+import minicaffe.tensor as tensor
 
 class ReluLayerTest(unittest.TestCase):
 
     def setUp(self):
-        self.layer = layers.relu_layer.ReluLayer(None)
+        self.layer = relu_layer.ReluLayer(None)
 
     def forward_test(self):
         input_test = np.array([1,2,3,4,-2,6,7,-1], dtype='float').reshape((2,2,2))

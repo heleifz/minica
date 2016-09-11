@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import unittest
-import layers.softmax_layer
+import minicaffe.layers.softmax_layer as softmax_layer
 import numpy as np
-import tensor
+import minicaffe.tensor as tensor
 
 class SoftmaxLayerTest(unittest.TestCase):
 
     def setUp(self):
-        self.layer = layers.softmax_layer.SoftmaxLayer(None)
+        self.layer = softmax_layer.SoftmaxLayer(None)
 
     def forward_test(self):
         input_test = np.array([1, 2, 3, 1, 1, 9], dtype='float').reshape((2,3))

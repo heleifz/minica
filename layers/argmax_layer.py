@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 """
 """
+
 import numpy as np
 import minicaffe.tensor as tensor
 
-class ReluLayer(object):
+class ArgmaxLayer(object):
     """
     网络层接口
     """
@@ -13,7 +14,7 @@ class ReluLayer(object):
         """
         初始化 layer
         """
-        # do nothing
+        # nothing
         pass
 
     def forward(self, prev_tensors, next_tensors):
@@ -21,28 +22,25 @@ class ReluLayer(object):
         前向传播操作
         """
         if len(prev_tensors) != 1:
-            raise Exception("Number of input must be 1 for FullLayer.")
+            raise Exception("Number of input must be 1 for ArgmaxLayer.")
         prev_data = prev_tensors[0].mutable_data()
         if len(prev_data.shape) == 1:
-            raise Exception("Number of dimension must >= 2")
-        next_data = prev_data.copy()
-        next_data[next_data < 0] = 0
+            prev_data = prev_data.reshape((1, -1))
+        size_of_first_dim = prev_data.shape[0]
+        reshaped = np.reshape(prev_data, (size_of_first_dim, -1))
+        result = np.argmax(reshaped, axis=1)
         next_tensor = tensor.Tensor()
-        next_tensor.set_data(next_data)
+        next_tensor.set_data(result)
         next_tensors.append(next_tensor)
 
     def backward(self, prev_tensors, next_tensors):
         """
         反向传播操作
         """
-        next_diff = next_tensors[0].mutable_diff()
+        # 无法反向传播
         prev_diff = prev_tensors[0].mutable_diff()
-        prev_data = prev_tensors[0].mutable_data()
-        mask = prev_data < 0
-        not_mask = np.logical_not(mask)
-        prev_diff[mask] = 0
-        prev_diff[not_mask] = next_diff[not_mask]
+        prev_diff.fill(0.0)
 
     def mutable_params(self):
-        # 该层无参数
+        # 无参数
         return []

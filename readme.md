@@ -1,3 +1,7 @@
+# Intro
+
+mini caffe 是用 numpy 实现的类似 caffe 的神经网络库
+
 # TODO
 
 1. test module : 读取测试文件，自动化测试网络层前向后向

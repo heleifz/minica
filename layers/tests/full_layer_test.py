@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import unittest
-import layers.full_layer
+import minicaffe.layers.full_layer as full_layer
 import numpy as np
-import tensor
+import minicaffe.tensor as tensor
 
 class FullLayerTest(unittest.TestCase):
 
@@ -11,7 +11,7 @@ class FullLayerTest(unittest.TestCase):
             "input_size" : 4,
             "output_size" : 2
         }
-        self.layer = layers.full_layer.FullLayer(self.param1)
+        self.layer = full_layer.FullLayer(self.param1)
 
     def forward_test(self):
         input_test = np.array([1,2,3,4,5,6,7,8], dtype='float').reshape((2,2,2))

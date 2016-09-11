@@ -3,7 +3,7 @@
 """
 
 import numpy as np
-import tensor
+import minicaffe.tensor as tensor
 
 class SoftmaxLayer(object):
     """
@@ -42,7 +42,7 @@ class SoftmaxLayer(object):
         """
         prev_diff = prev_tensors[0].mutable_diff()
         size_of_first_dim = prev_diff.shape[0]
-        reshaped_diff = np.reshape(prev_diff, (size_of_first_dim, -1))
+        reshaped_diff = prev_diff.reshape(size_of_first_dim, -1)
         next_data = next_tensors[0].mutable_data()
         next_diff = next_tensors[0].mutable_diff()
 
@@ -53,11 +53,10 @@ class SoftmaxLayer(object):
             # next_grad(row) * jacobian
             prev_one_row_diff = reshaped_diff[i].reshape((1, -1))
             next_one_row_diff = next_diff[i].reshape((1, -1))
-            next_one_row = next_data[i].reshape((1,-1))
+            next_one_row = next_data[i].reshape((1, -1))
             jacobian = np.dot(next_one_row.T, next_one_row)
-            dot_output = next_one_row * next_one_row
-            diag_matrix = np.diag(dot_output.reshape(-1))
-            jacobian = diag_matrix - dot_output
+            diag_matrix = np.diag(next_one_row.reshape(-1))
+            jacobian = diag_matrix - jacobian
             np.dot(next_one_row_diff, jacobian, prev_one_row_diff)
 
     def mutable_params(self):

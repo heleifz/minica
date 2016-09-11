@@ -21,22 +21,22 @@ class ArrayDataset(object):
                 label = label.reshape((label.size, ))
 
         self.label = label
-        if label is not None and self.data.shape[-1] != self.label.shape[-1]:
+        if label is not None and self.data.shape[0] != self.label.shape[0]:
             raise Exception("Shape of data and label don't match.")
-        self.idx = np.arange(self.data.shape[-1])
+        self.idx = np.arange(self.data.shape[0])
 
     def read(self, num=1):
         """
         从数据集中读取一条或多条数据
         """
-        if self.pos + num > self.data.shape[-1]:
+        if self.pos + num > self.data.shape[0]:
             return None
         indices = self.idx[self.pos : self.pos + num]
         self.pos += num
         if self.label is not None:
-            return (self.data[...,indices], self.label[...,indices])
+            return (self.data[indices, ...], self.label[indices, ...])
         else:
-            return (self.data[...,indices], None)
+            return (self.data[indices, ...], None)
 
     def reset(self):
         """

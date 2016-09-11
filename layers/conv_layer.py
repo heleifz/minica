@@ -1,10 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-设计 Layer 层的接口，最重要的问题之一是谁来管理输入/输出 tensors
-
-由于 numpy 对 C-continuous 的支持较好，也就是说，first dim 的变化最慢
-所以整个框架也采用 c-continuous 的格式，输入数据也是 *行向量*
-
 """
 
 import logging
@@ -13,7 +8,7 @@ import minicaffe.tensor as tensor
 
 # logger = logging.Logger(__name__)
 
-class FullLayer(object):
+class ConvLayer(object):
     """
     网络层接口
     """
