@@ -9,6 +9,7 @@ import unittest
 import minicaffe.layers.full_layer as full_layer
 import minicaffe.layers.relu_layer as relu_layer
 import minicaffe.layers.softmax_layer as softmax_layer
+import minicaffe.layers.conv_layer as conv_layer
 import minicaffe.util.gradient_checker as gradient_checker
 import minicaffe.tensor as tensor
 import numpy as np
@@ -23,8 +24,13 @@ class TestLoader(unittest.TestCase):
         # })
         # layer = softmax_layer.SoftmaxLayer(None)
         # layer = relu_layer.ReluLayer(None)
+        layer = conv_layer.ConvLayer({
+            "filter_num" : 2,
+            "filter_size" : 3,
+            "has_bias" : 1
+        })
         input_tensors = []
         t = tensor.Tensor()
-        t.set_data(np.array([[1, -2, 3, 0.5, 1], [4, 7, 9, 0.1, -8]]))
+        t.set_data(np.random.random((3, 5, 5)))
         input_tensors.append(t)
         self.assertTrue(checker.check(layer, input_tensors))
