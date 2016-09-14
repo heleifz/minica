@@ -23,15 +23,18 @@ class FullLayer(object):
         初始化 layer
         """
         # logger.info("Initializing FullLayer.")
-        self.input_size = int(params['input_size'])
         self.output_size = int(params['output_size'])
         # TODO: 其它初始化策略
-        data = np.random.random((self.input_size, self.output_size))
+        # 不初始化 W, 根据第一次遇到的数据来确定 input_size
         self.W = tensor.Tensor()
-        self.W.set_data(data)
         data = np.random.random((1, 1))
         self.b = tensor.Tensor()
         self.b.set_data(data)
+
+    def init_weights(self, input_size, output_size):
+        W = np.random.random((input_size, output_size))
+        self.input_size = input_size
+        self.W.set_data(W)
 
     def forward(self, prev_tensors, next_tensors):
         """
@@ -44,7 +47,10 @@ class FullLayer(object):
         if len(prev_data.shape) == 1:
             raise Exception("Number of dimension must >= 2")
         size_of_first_dim = prev_data.shape[0]
-        reshaped_input = np.reshape(prev_data, (size_of_first_dim, self.input_size))
+        reshaped_input = np.reshape(prev_data, (size_of_first_dim, -1))
+        if self.W.mutable_data() is None:
+            # 根据输入数据惰性初始化 input_size 以及 W 的尺寸
+            self.init_weights(reshaped_input.shape[1], self.output_size)
         # y = Wx + b
         output_data = np.dot(reshaped_input, self.W.mutable_data()) + \
             self.b.mutable_data()

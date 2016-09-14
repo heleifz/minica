@@ -155,7 +155,7 @@ class Net(object):
                     self.node_table[p][name] = GraphNode('variable', name)
             else:
                 # 创建 layer 对象，layer 文件命名规则: 层名 + _layer
-                module_name = 'layers.' + layer_type + '_layer'
+                module_name = 'minicaffe.layers.' + layer_type + '_layer'
                 class_name = ''.join([part.title()
                              for part in layer_type.split('_')]) + "Layer"
                 module = importlib.import_module(module_name)
@@ -223,7 +223,7 @@ class Net(object):
         返回 dict: tensor_name : value
         """
         result = dict()
-        for inp in self.input[phase]:
+        for inp in self.variables[phase]:
             result[inp] = input_tensors[inp]
         # 按照拓扑图来计算前向传播
         for layer_name in self.order[phase]:

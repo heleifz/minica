@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
+import minicaffe.tensor as tensor
 
 class ArrayDataset(object):
 
@@ -33,10 +34,14 @@ class ArrayDataset(object):
             return None
         indices = self.idx[self.pos : self.pos + num]
         self.pos += num
+        tensor_data = tensor.Tensor()
+        tensor_data.set_data(self.data[indices, ...])
         if self.label is not None:
-            return (self.data[indices, ...], self.label[indices, ...])
+            tensor_label = tensor.Tensor()
+            tensor_label.set_data(self.label[indices, ...])
+            return (tensor_data, tensor_label)
         else:
-            return (self.data[indices, ...], None)
+            return (tensor_data, None)
 
     def reset(self):
         """

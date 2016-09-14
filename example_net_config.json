@@ -22,7 +22,6 @@
       "name" : "full_1",
       "description" : "full connected layer",
       "param" : {
-        "input_size" : 200,
         "output_size" : 50
       },
       "input" : ["x"],
@@ -36,21 +35,10 @@
       "output" : ["relu_1_out"]
     },
     {
-      "type" : "full",
-      "name" : "full_2",
-      "description" : "output_layer",
-      "param" : {
-        "input_size" : 50,
-        "output_size" : 2
-      },
-      "input" : ["relu_1_out", "full_test_out"],
-      "output" : ["full_2_out"]
-    },
-    {
       "type" : "softmax",
       "name" : "softmax",
       "description" : "output_layer",
-      "input" : ["full_2_out"],
+      "input" : ["relu_1_out"],
       "output" : ["softmax_out"]
     },
     {
@@ -60,14 +48,6 @@
       "description" : "get predict result",
       "input" : ["softmax_out"],
       "output" : ["predict_result"]
-    },
-    {
-      "type" : "accuracy",
-      "phase" : "test",
-      "name" : "accuracy",
-      "description" : "compute accuracy",
-      "input" : ["predict_result", "label"],
-      "output" : ["accu"]
     },
     {
       "type" : "cross_entropy",
