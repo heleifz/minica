@@ -30,7 +30,7 @@ class TestLoader(unittest.TestCase):
         #     "has_bias" : 1
         # })
         layer = pooling_layer.PoolingLayer({
-            "type" : "max",
+            "type" : "mean",
             "window_size" : [4, 5],
             "stride" : [2, 2]
         })

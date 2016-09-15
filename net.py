@@ -243,19 +243,19 @@ class Net(object):
                 result[output_node_names[idx]] = output_tensors[idx]
         return result
 
-    def backward(forward_result, phase):
+    def backward(self, forward_result, phase):
         """
         General Back-propagation
         整个网路的反向传播
         输入 forward 的结果
         """
-        # 将输出 tensor 的 diff 全部设成 1, 作为 backprop 的边界情况
-        for output in self.outputs[phase]:
-            forward_result[output].mutable_diff().fill(1.0)
-
         # 用一个 dict 累加梯度，如果运算网络的一个 tensor 被多个分支使用
         # 那么，相对于这个 tensor 的梯度是累加的
         gradient_accumulator = dict()
+        # 将输出 tensor 的 diff 全部设成 1, 作为 backprop 的边界情况
+        for output in self.outputs[phase]:
+            forward_result[output].mutable_diff().fill(1.0)
+            gradient_accumulator[output] = forward_result[output].mutable_diff()
 
         # 逆拓扑顺序
         for layer_name in self.order[phase][::-1]:
@@ -272,7 +272,7 @@ class Net(object):
             for n in output_node_names:
                 current_output = forward_result[n]
                 current_output.set_diff(gradient_accumulator[n])
-                output_tensors.append(output_tensors)
+                output_tensors.append(current_output)
 
             input_node_names = layer_node.mutable_prev_node_names()
             input_tensors = []
@@ -281,10 +281,8 @@ class Net(object):
                 current_input.mutable_diff().fill(0.0)
                 input_tensors.append(current_input)
 
-            input_tensors = [forward_result[n] for n in input_node_names]
-
             # 调用 layer 的 backward 接口完成计算
-            layer_object.backward(input_tensors, layer_output)
+            layer_object.backward(input_tensors, output_tensors)
 
             # 累加梯度
             for idx, n in enumerate(input_node_names):
