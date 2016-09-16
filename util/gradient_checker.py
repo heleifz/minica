@@ -63,6 +63,8 @@ class GradientChecker(object):
                 pos_loss = self.compute_fake_loss(current_out)
                 data.flat[i] -= self.step_size
                 numeric_grad = (pos_loss - neg_loss) / 2.0 / self.step_size
+                print diff.flat[i]
+                print numeric_grad
                 if np.abs(diff.flat[i] - numeric_grad) > self.compare_threshold:
                     return False
         return True

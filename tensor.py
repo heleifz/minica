@@ -8,13 +8,17 @@ class Tensor(object):
     Tensor 对象是网络中所有数据的抽象
     """
 
-    def __init__(self):
+    def __init__(self, data=None):
         """
         使用形状初始化 Tensor
         shape 是一个 tuple
         """
-        self._data = None
-        self._diff = None
+        if data is None:
+            self._data = None
+            self._diff = None
+        else:
+            self._data = data
+            self._diff = np.zeros_like(self._data)
 
     def apply_diff(self, multiplier):
         """
@@ -24,8 +28,12 @@ class Tensor(object):
         self._diff.fill(0.0)
 
     def set_data(self, data):
-        self._data = data
-        self._diff = np.zeros_like(self._data)
+        if self._data is not None and self._data.shape == data.shape:
+            self._data = data
+            self._diff.fill(0.0)
+        else:
+            self._data = data
+            self._diff = np.zeros_like(self._data)
 
     def set_diff(self, diff):
         if diff.shape != self._data.shape:

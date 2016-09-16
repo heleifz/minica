@@ -35,7 +35,7 @@ class CrossEntropyLayer(object):
         # 获取 label 对应列的概率值
         probs = reshaped_predictions[np.arange(size_of_first_dim), reshaped_labels]
         log_probs = np.log(probs)
-        loss = np.array(-np.sum(log_probs))
+        loss = np.array([-np.sum(log_probs) / size_of_first_dim])
 
         next_tensor = tensor.Tensor()
         next_tensor.set_data(loss)
@@ -58,7 +58,8 @@ class CrossEntropyLayer(object):
         # 获取 label 对应列的概率值
         probs = reshaped_predictions[np.arange(size_of_first_dim), reshaped_labels]
         reshaped_diff[np.arange(size_of_first_dim), reshaped_labels] = \
-            -1.0 / reshaped_predictions[np.arange(size_of_first_dim), reshaped_labels]
+            -1.0 / reshaped_predictions[np.arange(size_of_first_dim), reshaped_labels] * \
+            next_tensors[0].mutable_diff() / size_of_first_dim
 
         # 不传播到 label (diff 设为 0)
         label_diff = prev_tensors[1].mutable_diff()
