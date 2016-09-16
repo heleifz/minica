@@ -29,14 +29,9 @@ class SoftmaxLayer(object):
         size_of_first_dim = prev_data.shape[0]
         # 变换成行向量
         reshaped_input = np.reshape(prev_data, (size_of_first_dim, -1))
-        print "reshaped"
-        print reshaped_input
         exp_prev = np.exp(reshaped_input)
         sum_exp = exp_prev.sum(axis=1, keepdims=True)
-        print exp_prev
-        print sum_exp
         next_data = exp_prev / sum_exp
-        print next_data
         next_tensor = tensor.Tensor()
         next_tensor.set_data(next_data)
         next_tensors.append(next_tensor)

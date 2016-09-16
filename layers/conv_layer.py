@@ -28,7 +28,7 @@ class ConvLayer(object):
         self.has_bias = int(params['has_bias'])
 
         data = np.random.random((self.filter_num,
-                                 self.filter_size, self.filter_size))
+                                 self.filter_size, self.filter_size)) / 5.0
         self.filters = tensor.Tensor()
         self.filters.set_data(data)
         if self.has_bias:

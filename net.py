@@ -170,12 +170,12 @@ class Net(object):
                 if 'phase' in layer_config:
                     name = name + "|" + layer_config['phase']
                 self.layer_table[name] = layer
-                self.params[p].extend(layer_params)
 
                 # 连接前驱和后继节点
                 inputs = layer_config['input']
                 outputs = layer_config['output']
                 for p in phases:
+                    self.params[p].extend(layer_params)
                     layer_node = GraphNode('layer', name,
                         {'layer' : layer, 'config' : layer_config})
                     self.node_table[p][name] = layer_node
