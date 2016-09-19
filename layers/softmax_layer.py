@@ -29,6 +29,7 @@ class SoftmaxLayer(object):
         size_of_first_dim = prev_data.shape[0]
         # 变换成行向量
         reshaped_input = np.reshape(prev_data, (size_of_first_dim, -1))
+        reshaped_input -= reshaped_input.max(axis=1, keepdims=True)
         exp_prev = np.exp(reshaped_input)
         sum_exp = exp_prev.sum(axis=1, keepdims=True)
         next_data = exp_prev / sum_exp

@@ -32,9 +32,8 @@ class FullLayer(object):
         self.b.set_data(data)
 
     def init_weights(self, input_size, output_size):
-        upper_bound = 6.0 / np.sqrt(input_size + output_size)
-        W = np.random.random((input_size, output_size)) * 2.0 * upper_bound
-        W -= upper_bound
+        var = 2.0 / float(input_size)
+        W = np.random.normal(0, np.sqrt(var), (input_size, output_size))
         self.input_size = input_size
         self.W.set_data(W)
 

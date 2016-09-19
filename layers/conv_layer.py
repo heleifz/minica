@@ -27,8 +27,9 @@ class ConvLayer(object):
         # 是否有 bias term
         self.has_bias = int(params['has_bias'])
 
-        data = np.random.random((self.filter_num,
-                                 self.filter_size, self.filter_size)) / 5.0
+        var = 2.0 / (self.filter_size ** 2)
+        data = np.random.normal(0, np.sqrt(var), (self.filter_num,
+                                 self.filter_size, self.filter_size))
         self.filters = tensor.Tensor()
         self.filters.set_data(data)
         if self.has_bias:
@@ -67,6 +68,8 @@ class ConvLayer(object):
         # 先分配一个连续的内存空间
         filter_data = self.filters.mutable_data()
         result = []
+        # print "log from conv, filter min max:"
+        # print filter_data.min(), filter_data.max()
         # 遍历每张图片
         for idx in xrange(prev_data.shape[0]):
             # 对于每个滤波器

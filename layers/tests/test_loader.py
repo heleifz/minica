@@ -12,7 +12,8 @@ import minicaffe.layers.softmax_layer as softmax_layer
 import minicaffe.layers.conv_layer as conv_layer
 import minicaffe.layers.pooling_layer as pooling_layer
 import minicaffe.layers.cross_entropy_layer as cross_entropy_layer
-import minicaffe.layers.mean_squred_error_layer as mean_squred_error_layer
+import minicaffe.layers.softmax_cross_entropy_layer as softmax_cross_entropy_layer
+import minicaffe.layers.mean_squared_error_layer as mean_squared_error_layer
 import minicaffe.util.gradient_checker as gradient_checker
 import minicaffe.tensor as tensor
 import numpy as np
@@ -26,8 +27,8 @@ class TestLoader(unittest.TestCase):
         # })
         # layer = softmax_layer.SoftmaxLayer(None)
         # layer = relu_layer.ReluLayer(None)
-        # layer = conv_layer.ConvLayer({
-        #     "filter_num" : 2,
+        # layer = conv_layer.convlayer({
+        #     "filter_num" : 10,
         #     "filter_size" : 3,
         #     "has_bias" : 1
         # })
@@ -37,13 +38,13 @@ class TestLoader(unittest.TestCase):
         #     "stride" : [2, 2]
         # })
         # layer = cross_entropy_layer.CrossEntropyLayer(None)
-        layer = mean_squred_error_layer.MeanSquaredErrorLayer(None)
+        layer = softmax_cross_entropy_layer.SoftmaxCrossEntropyLayer(None)
+        # layer = mean_squred_error_layer.MeanSquaredErrorLayer(None)
         input_tensors = []
         t = tensor.Tensor()
-        t.set_data(np.random.random((10, 10)))
+        t.set_data(np.random.random((5, 6)))
         input_tensors.append(t)
         t = tensor.Tensor()
-        t.set_data(np.random.random((10, 10)))
+        t.set_data(np.random.randint(0, 6, (5, 1)))
         input_tensors.append(t)
-
         self.assertTrue(checker.check(layer, input_tensors, input_check_mask=(1, 0)))

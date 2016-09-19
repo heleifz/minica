@@ -113,6 +113,12 @@ class Net(object):
         """
         return self.params
 
+    def mutable_learning_rate_multiplier(self):
+        """
+        
+        """
+        return self.learning_rate_multiplier
+
     def rebuild(self, config):
         """
         输入网络配置，构建网络
@@ -120,6 +126,7 @@ class Net(object):
         """
         parsed = json.loads(config)
 
+        self.iter = 0
         self.name = parsed['name'] if 'name' in parsed else 'default'
         self.description = parsed['description'] if 'description' in parsed else ''
 
@@ -137,6 +144,7 @@ class Net(object):
 
         # 整个网络的可优化参数
         self.params = defaultdict(list)
+        self.learning_rate_multiplier = defaultdict(list)
 
         structure = parsed['structure']
         # 创建所有 graph node 和 layer 对象, 填充 layer_table 和 node_table
@@ -171,11 +179,21 @@ class Net(object):
                     name = name + "|" + layer_config['phase']
                 self.layer_table[name] = layer
 
+                if "learning_rate_multiplier" not in layer_config:
+                    learning_rate_multiplier = [1] * len(layer_params)
+                else:
+                    learning_rate_multiplier = \
+                        layer_config['learning_rate_multiplier']
+
+                # TODO check learning rate multiplier len
+
                 # 连接前驱和后继节点
                 inputs = layer_config['input']
                 outputs = layer_config['output']
                 for p in phases:
                     self.params[p].extend(layer_params)
+                    self.learning_rate_multiplier[p].\
+                        extend(learning_rate_multiplier)
                     layer_node = GraphNode('layer', name,
                         {'layer' : layer, 'config' : layer_config})
                     self.node_table[p][name] = layer_node

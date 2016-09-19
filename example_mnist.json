@@ -14,78 +14,63 @@
       "type" : "conv",
       "name" : "conv1",
       "param" : {
-        "filter_size" : 3,
-        "filter_num" : 5,
+        "filter_size" : 5,
+        "filter_num" : 20,
         "has_bias" : 1
       },
+      "learning_rate_multiplier" : [2, 1],
       "input" : ["x"],
       "output" : ["conv1_out"]
-    },
-    {
-      "type" : "relu",
-      "name" : "relu1",
-      "param" : {
-      },
-      "input" : ["conv1_out"],
-      "output" : ["relu1_out"]
     },
     {
       "type" : "pooling",
       "name" : "pooling1",
       "param" : {
         "type" : "max",
-        "window_size" : [3,3],
-        "stride" : [3,3]
+        "window_size" : [2,2],
+        "stride" : [2,2]
       },
-      "input" : ["relu1_out"],
+      "input" : ["conv1_out"],
       "output" : ["pooling1_out"]
     },
     {
       "type" : "conv",
       "name" : "conv2",
       "param" : {
-        "filter_size" : 3,
-        "filter_num" : 8,
+        "filter_size" : 5,
+        "filter_num" : 50,
         "has_bias" : 0
       },
       "input" : ["pooling1_out"],
       "output" : ["conv2_out"]
     },
     {
-      "type" : "relu",
-      "name" : "relu2",
-      "param" : {
-      },
-      "input" : ["conv2_out"],
-      "output" : ["relu2_out"]
-    },
-    {
       "type" : "pooling",
       "name" : "pooling2",
       "param" : {
         "type" : "max",
-        "window_size" : [3,3],
-        "stride" : [3,3]
+        "window_size" : [2,2],
+        "stride" : [2,2]
       },
-      "input" : ["relu2_out"],
+      "input" : ["conv2_out"],
       "output" : ["pooling2_out"]
     },
     {
       "type" : "full",
       "name" : "full1",
       "param" : {
-        "output_size" : 50
+        "output_size" : 500
       },
       "input" : ["pooling2_out"],
       "output" : ["full1_out"]
     },
     {
       "type" : "relu",
-      "name" : "relu3",
+      "name" : "relu1",
       "param" : {
       },
       "input" : ["full1_out"],
-      "output" : ["relu3_out"]
+      "output" : ["relu1_out"]
     },
     {
       "type" : "full",
@@ -93,13 +78,14 @@
       "param" : {
         "output_size" : 10
       },
-      "input" : ["relu3_out"],
+      "input" : ["relu1_out"],
       "output" : ["result"]
     },
     {
       "type" : "softmax",
       "name" : "softmax",
       "description" : "output_layer",
+      "phase" : "test",
       "input" : ["result"],
       "output" : ["softmax_out"]
     },
@@ -120,11 +106,11 @@
       "output" : ["accu_out"]
     },
     {
-      "type" : "cross_entropy",
+      "type" : "softmax_cross_entropy",
       "phase" : "train",
       "name" : "cross_entropy_error",
       "description" : "cross entropy error",
-      "input" : ["softmax_out", "label"],
+      "input" : ["result", "label"],
       "output" : ["loss"]
     }
   ]
