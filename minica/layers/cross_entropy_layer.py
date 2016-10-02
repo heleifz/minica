@@ -35,10 +35,9 @@ class CrossEntropyLayer(object):
         # 获取 label 对应列的概率值
         probs = reshaped_predictions[np.arange(size_of_first_dim), reshaped_labels]
         log_probs = np.log(probs)
-        loss = np.array([-np.sum(log_probs) / size_of_first_dim])
+        loss = np.array([-np.sum(log_probs) / size_of_first_dim], dtype='float32')
 
-        next_tensor = tensor.Tensor()
-        next_tensor.set_data(loss)
+        next_tensor = tensor.Tensor(loss)
         next_tensors.append(next_tensor)
 
     def backward(self, prev_tensors, next_tensors):

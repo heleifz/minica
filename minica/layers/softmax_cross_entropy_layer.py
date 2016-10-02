@@ -41,10 +41,9 @@ class SoftmaxCrossEntropyLayer(object):
         log_softmax = reshaped_predictions - log_sum_exp
         log_probs = log_softmax[np.arange(size_of_first_dim), reshaped_labels]
         self.last_log_softmax = log_softmax
-        loss = np.array([-np.sum(log_probs) / size_of_first_dim])
+        loss = np.array([-np.sum(log_probs) / size_of_first_dim], dtype='float32')
 
-        next_tensor = tensor.Tensor()
-        next_tensor.set_data(loss)
+        next_tensor = tensor.Tensor(loss)
         next_tensors.append(next_tensor)
 
     def backward(self, prev_tensors, next_tensors):

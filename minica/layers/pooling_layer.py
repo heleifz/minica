@@ -6,7 +6,7 @@ import logging
 import numpy as np
 import scipy.ndimage
 import minica.tensor as tensor
-import optimize.pooling_func
+import minica.optimize.pooling_func as pooling_func
 
 # logger = logging.Logger(__name__)
 
@@ -58,7 +58,7 @@ class PoolingLayer(object):
         result = np.zeros((prev_data.shape[0],
                            prev_data.shape[1],
                            output_height,
-                           output_width), dtype=float)
+                           output_width), dtype='float32')
 
         if self.max_pooling_buf is None or \
            self.max_pooling_buf.shape[0] != prev_data.shape[0] or \

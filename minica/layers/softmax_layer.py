@@ -33,8 +33,7 @@ class SoftmaxLayer(object):
         exp_prev = np.exp(reshaped_input)
         sum_exp = exp_prev.sum(axis=1, keepdims=True)
         next_data = exp_prev / sum_exp
-        next_tensor = tensor.Tensor()
-        next_tensor.set_data(next_data)
+        next_tensor = tensor.Tensor(next_data)
         next_tensors.append(next_tensor)
 
     def backward(self, prev_tensors, next_tensors):

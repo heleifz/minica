@@ -17,8 +17,10 @@ class Tensor(object):
             self._data = None
             self._diff = None
         else:
+            if data.dtype != 'float32':
+                data = data.astype('float32')
             self._data = data
-            self._diff = np.zeros_like(self._data)
+            self._diff = np.zeros_like(self._data, dtype='float32')
 
     def apply_diff(self, multiplier):
         """
@@ -29,11 +31,15 @@ class Tensor(object):
 
     def set_data(self, data):
         if self._data is not None and self._data.shape == data.shape:
+            if data.dtype != 'float32':
+                data = data.astype('float32')
             self._data = data
             self._diff.fill(0.0)
         else:
+            if data.dtype != 'float32':
+                data = data.astype('float32')
             self._data = data
-            self._diff = np.zeros_like(self._data)
+            self._diff = np.zeros_like(self._data, dtype='float32')
 
     def set_diff(self, diff):
         if diff.shape != self._data.shape:

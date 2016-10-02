@@ -8,7 +8,7 @@
     "validate_interval" : 500,
     "print_log_interval" : 10,
     "epoch" : 30,
-    "batch_size" : 100,
+    "batch_size" : 64,
     "regularize_policy" : "L2",
     "weight_decay" : "0.0005",
     "validate_batch_size" : 10000,

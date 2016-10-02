@@ -33,11 +33,10 @@ class MeanSquaredErrorLayer(object):
         reshaped_predictions = prev_predictions.reshape(size_of_first_dim, -1)
         reshaped_labels = prev_labels.reshape(size_of_first_dim, -1)
         # 计算 squared error
-        loss  = np.array([np.sum((reshaped_predictions - reshaped_labels) ** 2) 
-                / float(size_of_first_dim) / 2])
+        loss  = np.array([np.sum((reshaped_predictions - reshaped_labels) ** 2)
+                / float(size_of_first_dim) / 2], dtype='float32')
 
-        next_tensor = tensor.Tensor()
-        next_tensor.set_data(loss)
+        next_tensor = tensor.Tensor(loss)
         next_tensors.append(next_tensor)
 
     def backward(self, prev_tensors, next_tensors):

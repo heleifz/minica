@@ -115,7 +115,7 @@ class Net(object):
 
     def mutable_learning_rate_multiplier(self):
         """
-        
+
         """
         return self.learning_rate_multiplier
 
@@ -152,6 +152,10 @@ class Net(object):
         for layer_config in structure:
             layer_type = layer_config['type']
             name = layer_config['name']
+            if "propagate_mask_for_input" in layer_config:
+                propagate_mask_for_input = layer_config['propagate_mask_for_input']
+            else:
+                propagate_mask_for_input = None
             phases = all_phases
             if 'phase' in layer_config:
                 phases = [layer_config['phase']]
@@ -168,11 +172,12 @@ class Net(object):
                              for part in layer_type.split('_')]) + "Layer"
                 module = importlib.import_module(module_name)
 
-                param = None
+                param = {}
                 if 'param' in layer_config:
                     param = layer_config['param']
 
                 # 初始化 layer
+                param['propagate_mask_for_input'] = propagate_mask_for_input
                 layer = module.__dict__[class_name](param)
                 layer_params = layer.mutable_params()
                 if 'phase' in layer_config:

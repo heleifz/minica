@@ -19,6 +19,7 @@
         "has_bias" : 1
       },
       "learning_rate_multiplier" : [2, 1],
+      "propagate_mask_for_input" : [false],
       "input" : ["x"],
       "output" : ["conv1_out"]
     },

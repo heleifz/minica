@@ -33,7 +33,7 @@ class AccuracyLayer(object):
         accu = match_result / float(prev_predictions.size)
 
         next_tensor = tensor.Tensor()
-        next_tensor.set_data(np.array([accu]))
+        next_tensor.set_data(np.array([accu], dtype='float32'))
         next_tensors.append(next_tensor)
 
     def backward(self, prev_tensors, next_tensors):

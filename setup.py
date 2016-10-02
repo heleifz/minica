@@ -3,8 +3,6 @@
 from setuptools import setup, find_packages
 from Cython.Build import cythonize
 
-print find_packages()
-
 setup(
     name = "minica",
     version = "0.0.1",

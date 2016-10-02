@@ -6,7 +6,7 @@
 import logging
 import numpy as np
 import minica.tensor as tensor
-import minica.optimize.conv_func
+import minica.optimize.conv_func as conv_func
 
 # logger = logging.Logger(__name__)
 
@@ -25,13 +25,15 @@ class ConvLayer(object):
         self.filter_num = int(params['filter_num'])
         # 是否有 bias term
         self.has_bias = int(params['has_bias'])
+        if 'propagate_mask_for_input' in params:
+            self.propagate_mask_for_input = params['propagate_mask_for_input']
+        else:
+            self.propagate_mask_for_input = None
 
         self.filters = tensor.Tensor()
         # self.filters.set_data(data)
         if self.has_bias:
-            data = np.random.random((1, 1))
-            self.b = tensor.Tensor()
-            self.b.set_data(data)
+            self.b = tensor.Tensor(np.random.random((1, 1)).astype('float32'))
 
     def init_weights(self, channel_num, height, width):
         """
@@ -40,16 +42,29 @@ class ConvLayer(object):
         var = 2.0 / ((self.filter_size ** 2) * channel_num * 100)
         data = np.random.normal(0, np.sqrt(var),
                                  (self.filter_num, channel_num,
-                                  self.filter_size, self.filter_size))
+                                  self.filter_size, self.filter_size)).astype('float32')
         self.filters.set_data(data)
 
         # 计算卷积时需要用到的 buffer（用于 padding 和矩阵乘法）
         self.forward_buf = np.zeros((channel_num * self.filter_size * self.filter_size,
-                                     (height - self.filter_size + 1) * (width - self.filter_size + 1)))
-        self.backward_pad_buf = np.zeros((self.filter_num, height + self.filter_size - 1, width + self.filter_size - 1))
-        self.backward_conv_buf1 = np.zeros(((self.filter_size ** 2) * self.filter_num, height * width))
+                                     (height - self.filter_size + 1) * (width - self.filter_size + 1)),
+                                     dtype='float32')
+        self.forward_ind = np.zeros((self.forward_buf.size), dtype='int32')
+        conv_func.im2col_indices(channel_num, height, width, self.forward_ind,
+                                 self.filter_size, self.filter_size)
+
+        self.backward_kernel_buf = np.zeros((channel_num, self.filter_num, self.filter_size,
+                                             self.filter_size), dtype='float32')
+        self.backward_pad_buf = np.zeros((self.filter_num, height + self.filter_size - 1,
+                                          width + self.filter_size - 1), dtype='float32')
+        self.backward_conv_buf1 = np.zeros(((self.filter_size ** 2) * self.filter_num, height * width),
+                                            dtype='float32')
+        self.backward_ind1 = np.zeros((self.backward_conv_buf1.size), dtype='int32')
+        conv_func.im2col_indices(self.filter_num, height + self.filter_size - 1,
+                                 width + self.filter_size - 1, self.backward_ind1,
+                                 self.filter_size, self.filter_size)
         self.backward_conv_buf2 = np.zeros(((height - self.filter_size + 1) * (width - self.filter_size + 1),
-                                             (self.filter_size ** 2) * channel_num))
+                                             (self.filter_size ** 2) * channel_num), dtype='float32')
 
 
     def forward(self, prev_tensors, next_tensors):
@@ -80,14 +95,14 @@ class ConvLayer(object):
             self.init_weights(prev_data.shape[1], prev_data.shape[2], prev_data.shape[3])
         result = np.zeros((prev_data.shape[0], self.filter_num,
                            prev_data.shape[2] - self.filter_size + 1,
-                           prev_data.shape[3] - self.filter_size + 1))
+                           prev_data.shape[3] - self.filter_size + 1), dtype='float32')
         conv_func.conv_batch(prev_data, result,
-                             self.filters.mutable_data(), self.forward_buf)
+                             self.filters.mutable_data(),
+                             self.forward_buf, self.forward_ind)
         if self.has_bias:
             result += self.b.mutable_data()
 
-        output_tensor = tensor.Tensor()
-        output_tensor.set_data(result)
+        output_tensor = tensor.Tensor(result)
         next_tensors.append(output_tensor)
 
     def backward(self, prev_tensors, next_tensors):
@@ -112,8 +127,12 @@ class ConvLayer(object):
                                            prev_data.shape[1], prev_data.shape[2]))
         filter_data = self.filters.mutable_data()
 
-        conv_func.backward_for_conv_batch(prev_diff, next_diff, filter_data,
-                                          self.backward_pad_buf, self.backward_conv_buf1)
+        if self.propagate_mask_for_input is None or \
+           self.propagate_mask_for_input[0]:
+            conv_func.backward_for_conv_batch(prev_diff, next_diff, filter_data,
+                                              self.backward_pad_buf, self.backward_conv_buf1,
+                                              self.backward_kernel_buf, self.backward_ind1)
+
         conv_func.backward_kernel_for_conv_batch(prev_data, next_diff,
                                                  self.filters.mutable_diff(),
                                                  self.backward_conv_buf2)

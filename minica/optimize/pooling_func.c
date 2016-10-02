@@ -1158,7 +1158,7 @@ static int __Pyx_ValidateAndInit_memviewslice(
                 PyObject *original_obj);
 
 /* ObjectToMemviewSlice.proto */
-static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_double(PyObject *);
+static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(PyObject *);
 
 /* ObjectToMemviewSlice.proto */
 static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_int(PyObject *);
@@ -1248,7 +1248,7 @@ static void __pyx_memoryview_refcount_objects_in_slice_with_gil(char *, Py_ssize
 static void __pyx_memoryview_refcount_objects_in_slice(char *, Py_ssize_t *, Py_ssize_t *, int, int); /*proto*/
 static void __pyx_memoryview_slice_assign_scalar(__Pyx_memviewslice *, int, size_t, void *, int); /*proto*/
 static void __pyx_memoryview__slice_assign_scalar(char *, Py_ssize_t *, Py_ssize_t *, int, size_t, void *); /*proto*/
-static __Pyx_TypeInfo __Pyx_TypeInfo_double = { "double", NULL, sizeof(double), { 0 }, 0, 'R', 0, 0 };
+static __Pyx_TypeInfo __Pyx_TypeInfo_float = { "float", NULL, sizeof(float), { 0 }, 0, 'R', 0, 0 };
 static __Pyx_TypeInfo __Pyx_TypeInfo_int = { "int", NULL, sizeof(int), { 0 }, 0, IS_UNSIGNED(int) ? 'U' : 'I', IS_UNSIGNED(int), 0 };
 #define __Pyx_MODULE_NAME "minica.optimize.pooling_func"
 int __pyx_module_is_main_minica__optimize__pooling_func = 0;
@@ -1458,9 +1458,8 @@ static PyObject *__pyx_tuple__16;
 static PyObject *__pyx_tuple__17;
 static PyObject *__pyx_tuple__18;
 
-/* "minica/optimize/pooling_func.pyx":2
- * 
- * cpdef int max_pooling_batch(double [:,:,:,:] src, double [:,:,:,:] dst, int [:,:,:,:] max_ind,             # <<<<<<<<<<<<<<
+/* "minica/optimize/pooling_func.pyx":1
+ * cpdef int max_pooling_batch(float [:,:,:,:] src, float [:,:,:,:] dst, int [:,:,:,:] max_ind,             # <<<<<<<<<<<<<<
  *                             int win_h, int win_w, int stride_h, int stride_w):
  *     cdef:
  */
@@ -1473,20 +1472,21 @@ static int __pyx_f_6minica_8optimize_12pooling_func_max_pooling_batch(__Pyx_memv
   int __pyx_v_w_src;
   CYTHON_UNUSED int __pyx_v_h_dst;
   CYTHON_UNUSED int __pyx_v_w_dst;
-  int __pyx_v_i;
-  int __pyx_v_j;
+  CYTHON_UNUSED int __pyx_v_i;
+  CYTHON_UNUSED int __pyx_v_j;
   int __pyx_v_k;
   int __pyx_v_l;
   CYTHON_UNUSED int __pyx_v_m;
   int __pyx_v_n;
   int __pyx_v_dst_ind;
   int __pyx_v_src_ind;
-  double *__pyx_v_src_ptr;
-  double *__pyx_v_dst_ptr;
+  int __pyx_v_src_ind_actual;
+  float *__pyx_v_src_ptr;
+  float *__pyx_v_dst_ptr;
   int *__pyx_v_ind_ptr;
-  double __pyx_v_max_val;
+  float __pyx_v_max_val;
   int __pyx_v_current_max_ind;
-  double __pyx_v_tmp;
+  float __pyx_v_tmp;
   int __pyx_v_max_h;
   int __pyx_v_max_w;
   int __pyx_r;
@@ -1519,7 +1519,7 @@ static int __pyx_f_6minica_8optimize_12pooling_func_max_pooling_batch(__Pyx_memv
   int __pyx_t_26;
   __Pyx_RefNannySetupContext("max_pooling_batch", 0);
 
-  /* "minica/optimize/pooling_func.pyx":5
+  /* "minica/optimize/pooling_func.pyx":4
  *                             int win_h, int win_w, int stride_h, int stride_w):
  *     cdef:
  *         int num = src.shape[0]             # <<<<<<<<<<<<<<
@@ -1528,7 +1528,7 @@ static int __pyx_f_6minica_8optimize_12pooling_func_max_pooling_batch(__Pyx_memv
  */
   __pyx_v_num = (__pyx_v_src.shape[0]);
 
-  /* "minica/optimize/pooling_func.pyx":6
+  /* "minica/optimize/pooling_func.pyx":5
  *     cdef:
  *         int num = src.shape[0]
  *         int ch = src.shape[1]             # <<<<<<<<<<<<<<
@@ -1537,7 +1537,7 @@ static int __pyx_f_6minica_8optimize_12pooling_func_max_pooling_batch(__Pyx_memv
  */
   __pyx_v_ch = (__pyx_v_src.shape[1]);
 
-  /* "minica/optimize/pooling_func.pyx":7
+  /* "minica/optimize/pooling_func.pyx":6
  *         int num = src.shape[0]
  *         int ch = src.shape[1]
  *         int h_src = src.shape[2]             # <<<<<<<<<<<<<<
@@ -1546,7 +1546,7 @@ static int __pyx_f_6minica_8optimize_12pooling_func_max_pooling_batch(__Pyx_memv
  */
   __pyx_v_h_src = (__pyx_v_src.shape[2]);
 
-  /* "minica/optimize/pooling_func.pyx":8
+  /* "minica/optimize/pooling_func.pyx":7
  *         int ch = src.shape[1]
  *         int h_src = src.shape[2]
  *         int w_src = src.shape[3]             # <<<<<<<<<<<<<<
@@ -1555,7 +1555,7 @@ static int __pyx_f_6minica_8optimize_12pooling_func_max_pooling_batch(__Pyx_memv
  */
   __pyx_v_w_src = (__pyx_v_src.shape[3]);
 
-  /* "minica/optimize/pooling_func.pyx":9
+  /* "minica/optimize/pooling_func.pyx":8
  *         int h_src = src.shape[2]
  *         int w_src = src.shape[3]
  *         int h_dst = dst.shape[2]             # <<<<<<<<<<<<<<
@@ -1564,7 +1564,7 @@ static int __pyx_f_6minica_8optimize_12pooling_func_max_pooling_batch(__Pyx_memv
  */
   __pyx_v_h_dst = (__pyx_v_dst.shape[2]);
 
-  /* "minica/optimize/pooling_func.pyx":10
+  /* "minica/optimize/pooling_func.pyx":9
  *         int w_src = src.shape[3]
  *         int h_dst = dst.shape[2]
  *         int w_dst = dst.shape[3]             # <<<<<<<<<<<<<<
@@ -1573,21 +1573,30 @@ static int __pyx_f_6minica_8optimize_12pooling_func_max_pooling_batch(__Pyx_memv
  */
   __pyx_v_w_dst = (__pyx_v_dst.shape[3]);
 
-  /* "minica/optimize/pooling_func.pyx":12
+  /* "minica/optimize/pooling_func.pyx":11
  *         int w_dst = dst.shape[3]
  *         int i, j, k, l, m, n
  *         int dst_ind = 0, src_ind = 0             # <<<<<<<<<<<<<<
- *         double *src_ptr = &src[0][0][0][0]
- *         double *dst_ptr = &dst[0][0][0][0]
+ *         int src_ind_actual = 0
+ *         float *src_ptr = &src[0][0][0][0]
  */
   __pyx_v_dst_ind = 0;
   __pyx_v_src_ind = 0;
 
-  /* "minica/optimize/pooling_func.pyx":13
+  /* "minica/optimize/pooling_func.pyx":12
  *         int i, j, k, l, m, n
  *         int dst_ind = 0, src_ind = 0
- *         double *src_ptr = &src[0][0][0][0]             # <<<<<<<<<<<<<<
- *         double *dst_ptr = &dst[0][0][0][0]
+ *         int src_ind_actual = 0             # <<<<<<<<<<<<<<
+ *         float *src_ptr = &src[0][0][0][0]
+ *         float *dst_ptr = &dst[0][0][0][0]
+ */
+  __pyx_v_src_ind_actual = 0;
+
+  /* "minica/optimize/pooling_func.pyx":13
+ *         int dst_ind = 0, src_ind = 0
+ *         int src_ind_actual = 0
+ *         float *src_ptr = &src[0][0][0][0]             # <<<<<<<<<<<<<<
+ *         float *dst_ptr = &dst[0][0][0][0]
  *         int *ind_ptr = &max_ind[0][0][0][0]
  */
   __pyx_t_1.data = __pyx_v_src.data;
@@ -1674,15 +1683,15 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
     __Pyx_RaiseBufferIndexError(__pyx_t_5);
     __PYX_ERR(0, 13, __pyx_L1_error)
   }
-  __pyx_v_src_ptr = (&(*((double *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_4 * __pyx_t_3.strides[0]) ))));
+  __pyx_v_src_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_4 * __pyx_t_3.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_3, 1);
 
   /* "minica/optimize/pooling_func.pyx":14
- *         int dst_ind = 0, src_ind = 0
- *         double *src_ptr = &src[0][0][0][0]
- *         double *dst_ptr = &dst[0][0][0][0]             # <<<<<<<<<<<<<<
+ *         int src_ind_actual = 0
+ *         float *src_ptr = &src[0][0][0][0]
+ *         float *dst_ptr = &dst[0][0][0][0]             # <<<<<<<<<<<<<<
  *         int *ind_ptr = &max_ind[0][0][0][0]
- *         double max_val
+ *         float max_val
  */
   __pyx_t_1.data = __pyx_v_dst.data;
   __pyx_t_1.memview = __pyx_v_dst.memview;
@@ -1768,14 +1777,14 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
     __Pyx_RaiseBufferIndexError(__pyx_t_5);
     __PYX_ERR(0, 14, __pyx_L1_error)
   }
-  __pyx_v_dst_ptr = (&(*((double *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_6 * __pyx_t_3.strides[0]) ))));
+  __pyx_v_dst_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_6 * __pyx_t_3.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_3, 1);
 
   /* "minica/optimize/pooling_func.pyx":15
- *         double *src_ptr = &src[0][0][0][0]
- *         double *dst_ptr = &dst[0][0][0][0]
+ *         float *src_ptr = &src[0][0][0][0]
+ *         float *dst_ptr = &dst[0][0][0][0]
  *         int *ind_ptr = &max_ind[0][0][0][0]             # <<<<<<<<<<<<<<
- *         double max_val
+ *         float max_val
  *         int current_max_ind
  */
   __pyx_t_7.data = __pyx_v_max_ind.data;
@@ -1867,7 +1876,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_8, 1);
 
   /* "minica/optimize/pooling_func.pyx":19
  *         int current_max_ind
- *         double tmp
+ *         float tmp
  *         int max_h = h_src - win_h + 1             # <<<<<<<<<<<<<<
  *         int max_w = w_src - win_w + 1
  * 
@@ -1875,16 +1884,16 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_8, 1);
   __pyx_v_max_h = ((__pyx_v_h_src - __pyx_v_win_h) + 1);
 
   /* "minica/optimize/pooling_func.pyx":20
- *         double tmp
+ *         float tmp
  *         int max_h = h_src - win_h + 1
  *         int max_w = w_src - win_w + 1             # <<<<<<<<<<<<<<
  * 
- * 
+ *     for i in range(num):
  */
   __pyx_v_max_w = ((__pyx_v_w_src - __pyx_v_win_w) + 1);
 
-  /* "minica/optimize/pooling_func.pyx":23
- * 
+  /* "minica/optimize/pooling_func.pyx":22
+ *         int max_w = w_src - win_w + 1
  * 
  *     for i in range(num):             # <<<<<<<<<<<<<<
  *         for j in range(ch):
@@ -1894,7 +1903,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_8, 1);
   for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_5; __pyx_t_11+=1) {
     __pyx_v_i = __pyx_t_11;
 
-    /* "minica/optimize/pooling_func.pyx":24
+    /* "minica/optimize/pooling_func.pyx":23
  * 
  *     for i in range(num):
  *         for j in range(ch):             # <<<<<<<<<<<<<<
@@ -1905,18 +1914,18 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_8, 1);
     for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
       __pyx_v_j = __pyx_t_13;
 
-      /* "minica/optimize/pooling_func.pyx":25
+      /* "minica/optimize/pooling_func.pyx":24
  *     for i in range(num):
  *         for j in range(ch):
  *             for k in range(0, max_h, stride_h):             # <<<<<<<<<<<<<<
  *                 for l in range(0, max_w, stride_w):
- *                     src_ind = i * ch * h_src * w_src + j * h_src * w_src + k * w_src + l
+ *                     src_ind_actual = src_ind + k * w_src + l
  */
-      __pyx_t_14 = __Pyx_PyInt_From_int(__pyx_v_max_h); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 25, __pyx_L1_error)
+      __pyx_t_14 = __Pyx_PyInt_From_int(__pyx_v_max_h); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 24, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_14);
-      __pyx_t_15 = __Pyx_PyInt_From_int(__pyx_v_stride_h); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 25, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyInt_From_int(__pyx_v_stride_h); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 24, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_15);
-      __pyx_t_16 = PyTuple_New(3); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 25, __pyx_L1_error)
+      __pyx_t_16 = PyTuple_New(3); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 24, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_16);
       __Pyx_INCREF(__pyx_int_0);
       __Pyx_GIVEREF(__pyx_int_0);
@@ -1927,16 +1936,16 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_8, 1);
       PyTuple_SET_ITEM(__pyx_t_16, 2, __pyx_t_15);
       __pyx_t_14 = 0;
       __pyx_t_15 = 0;
-      __pyx_t_15 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_16, NULL); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 25, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_16, NULL); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 24, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_15);
       __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
       if (likely(PyList_CheckExact(__pyx_t_15)) || PyTuple_CheckExact(__pyx_t_15)) {
         __pyx_t_16 = __pyx_t_15; __Pyx_INCREF(__pyx_t_16); __pyx_t_17 = 0;
         __pyx_t_18 = NULL;
       } else {
-        __pyx_t_17 = -1; __pyx_t_16 = PyObject_GetIter(__pyx_t_15); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 25, __pyx_L1_error)
+        __pyx_t_17 = -1; __pyx_t_16 = PyObject_GetIter(__pyx_t_15); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 24, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_16);
-        __pyx_t_18 = Py_TYPE(__pyx_t_16)->tp_iternext; if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 25, __pyx_L1_error)
+        __pyx_t_18 = Py_TYPE(__pyx_t_16)->tp_iternext; if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 24, __pyx_L1_error)
       }
       __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
       for (;;) {
@@ -1944,17 +1953,17 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_8, 1);
           if (likely(PyList_CheckExact(__pyx_t_16))) {
             if (__pyx_t_17 >= PyList_GET_SIZE(__pyx_t_16)) break;
             #if CYTHON_COMPILING_IN_CPYTHON
-            __pyx_t_15 = PyList_GET_ITEM(__pyx_t_16, __pyx_t_17); __Pyx_INCREF(__pyx_t_15); __pyx_t_17++; if (unlikely(0 < 0)) __PYX_ERR(0, 25, __pyx_L1_error)
+            __pyx_t_15 = PyList_GET_ITEM(__pyx_t_16, __pyx_t_17); __Pyx_INCREF(__pyx_t_15); __pyx_t_17++; if (unlikely(0 < 0)) __PYX_ERR(0, 24, __pyx_L1_error)
             #else
-            __pyx_t_15 = PySequence_ITEM(__pyx_t_16, __pyx_t_17); __pyx_t_17++; if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 25, __pyx_L1_error)
+            __pyx_t_15 = PySequence_ITEM(__pyx_t_16, __pyx_t_17); __pyx_t_17++; if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 24, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_15);
             #endif
           } else {
             if (__pyx_t_17 >= PyTuple_GET_SIZE(__pyx_t_16)) break;
             #if CYTHON_COMPILING_IN_CPYTHON
-            __pyx_t_15 = PyTuple_GET_ITEM(__pyx_t_16, __pyx_t_17); __Pyx_INCREF(__pyx_t_15); __pyx_t_17++; if (unlikely(0 < 0)) __PYX_ERR(0, 25, __pyx_L1_error)
+            __pyx_t_15 = PyTuple_GET_ITEM(__pyx_t_16, __pyx_t_17); __Pyx_INCREF(__pyx_t_15); __pyx_t_17++; if (unlikely(0 < 0)) __PYX_ERR(0, 24, __pyx_L1_error)
             #else
-            __pyx_t_15 = PySequence_ITEM(__pyx_t_16, __pyx_t_17); __pyx_t_17++; if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 25, __pyx_L1_error)
+            __pyx_t_15 = PySequence_ITEM(__pyx_t_16, __pyx_t_17); __pyx_t_17++; if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 24, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_15);
             #endif
           }
@@ -1964,28 +1973,28 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_8, 1);
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
               if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else __PYX_ERR(0, 25, __pyx_L1_error)
+              else __PYX_ERR(0, 24, __pyx_L1_error)
             }
             break;
           }
           __Pyx_GOTREF(__pyx_t_15);
         }
-        __pyx_t_19 = __Pyx_PyInt_As_int(__pyx_t_15); if (unlikely((__pyx_t_19 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 25, __pyx_L1_error)
+        __pyx_t_19 = __Pyx_PyInt_As_int(__pyx_t_15); if (unlikely((__pyx_t_19 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 24, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
         __pyx_v_k = __pyx_t_19;
 
-        /* "minica/optimize/pooling_func.pyx":26
+        /* "minica/optimize/pooling_func.pyx":25
  *         for j in range(ch):
  *             for k in range(0, max_h, stride_h):
  *                 for l in range(0, max_w, stride_w):             # <<<<<<<<<<<<<<
- *                     src_ind = i * ch * h_src * w_src + j * h_src * w_src + k * w_src + l
- *                     max_val = -1e20
+ *                     src_ind_actual = src_ind + k * w_src + l
+ *                     max_val = -1e8
  */
-        __pyx_t_15 = __Pyx_PyInt_From_int(__pyx_v_max_w); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 26, __pyx_L1_error)
+        __pyx_t_15 = __Pyx_PyInt_From_int(__pyx_v_max_w); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 25, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_15);
-        __pyx_t_14 = __Pyx_PyInt_From_int(__pyx_v_stride_w); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 26, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyInt_From_int(__pyx_v_stride_w); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 25, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
-        __pyx_t_20 = PyTuple_New(3); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 26, __pyx_L1_error)
+        __pyx_t_20 = PyTuple_New(3); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 25, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_20);
         __Pyx_INCREF(__pyx_int_0);
         __Pyx_GIVEREF(__pyx_int_0);
@@ -1996,16 +2005,16 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_8, 1);
         PyTuple_SET_ITEM(__pyx_t_20, 2, __pyx_t_14);
         __pyx_t_15 = 0;
         __pyx_t_14 = 0;
-        __pyx_t_14 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_20, NULL); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 26, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyObject_Call(__pyx_builtin_range, __pyx_t_20, NULL); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 25, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
         if (likely(PyList_CheckExact(__pyx_t_14)) || PyTuple_CheckExact(__pyx_t_14)) {
           __pyx_t_20 = __pyx_t_14; __Pyx_INCREF(__pyx_t_20); __pyx_t_21 = 0;
           __pyx_t_22 = NULL;
         } else {
-          __pyx_t_21 = -1; __pyx_t_20 = PyObject_GetIter(__pyx_t_14); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 26, __pyx_L1_error)
+          __pyx_t_21 = -1; __pyx_t_20 = PyObject_GetIter(__pyx_t_14); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 25, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_20);
-          __pyx_t_22 = Py_TYPE(__pyx_t_20)->tp_iternext; if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 26, __pyx_L1_error)
+          __pyx_t_22 = Py_TYPE(__pyx_t_20)->tp_iternext; if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 25, __pyx_L1_error)
         }
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
         for (;;) {
@@ -2013,17 +2022,17 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_8, 1);
             if (likely(PyList_CheckExact(__pyx_t_20))) {
               if (__pyx_t_21 >= PyList_GET_SIZE(__pyx_t_20)) break;
               #if CYTHON_COMPILING_IN_CPYTHON
-              __pyx_t_14 = PyList_GET_ITEM(__pyx_t_20, __pyx_t_21); __Pyx_INCREF(__pyx_t_14); __pyx_t_21++; if (unlikely(0 < 0)) __PYX_ERR(0, 26, __pyx_L1_error)
+              __pyx_t_14 = PyList_GET_ITEM(__pyx_t_20, __pyx_t_21); __Pyx_INCREF(__pyx_t_14); __pyx_t_21++; if (unlikely(0 < 0)) __PYX_ERR(0, 25, __pyx_L1_error)
               #else
-              __pyx_t_14 = PySequence_ITEM(__pyx_t_20, __pyx_t_21); __pyx_t_21++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 26, __pyx_L1_error)
+              __pyx_t_14 = PySequence_ITEM(__pyx_t_20, __pyx_t_21); __pyx_t_21++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 25, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_14);
               #endif
             } else {
               if (__pyx_t_21 >= PyTuple_GET_SIZE(__pyx_t_20)) break;
               #if CYTHON_COMPILING_IN_CPYTHON
-              __pyx_t_14 = PyTuple_GET_ITEM(__pyx_t_20, __pyx_t_21); __Pyx_INCREF(__pyx_t_14); __pyx_t_21++; if (unlikely(0 < 0)) __PYX_ERR(0, 26, __pyx_L1_error)
+              __pyx_t_14 = PyTuple_GET_ITEM(__pyx_t_20, __pyx_t_21); __Pyx_INCREF(__pyx_t_14); __pyx_t_21++; if (unlikely(0 < 0)) __PYX_ERR(0, 25, __pyx_L1_error)
               #else
-              __pyx_t_14 = PySequence_ITEM(__pyx_t_20, __pyx_t_21); __pyx_t_21++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 26, __pyx_L1_error)
+              __pyx_t_14 = PySequence_ITEM(__pyx_t_20, __pyx_t_21); __pyx_t_21++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 25, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_14);
               #endif
             }
@@ -2033,175 +2042,183 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_8, 1);
               PyObject* exc_type = PyErr_Occurred();
               if (exc_type) {
                 if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                else __PYX_ERR(0, 26, __pyx_L1_error)
+                else __PYX_ERR(0, 25, __pyx_L1_error)
               }
               break;
             }
             __Pyx_GOTREF(__pyx_t_14);
           }
-          __pyx_t_19 = __Pyx_PyInt_As_int(__pyx_t_14); if (unlikely((__pyx_t_19 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 26, __pyx_L1_error)
+          __pyx_t_19 = __Pyx_PyInt_As_int(__pyx_t_14); if (unlikely((__pyx_t_19 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 25, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
           __pyx_v_l = __pyx_t_19;
 
-          /* "minica/optimize/pooling_func.pyx":27
+          /* "minica/optimize/pooling_func.pyx":26
  *             for k in range(0, max_h, stride_h):
  *                 for l in range(0, max_w, stride_w):
- *                     src_ind = i * ch * h_src * w_src + j * h_src * w_src + k * w_src + l             # <<<<<<<<<<<<<<
- *                     max_val = -1e20
+ *                     src_ind_actual = src_ind + k * w_src + l             # <<<<<<<<<<<<<<
+ *                     max_val = -1e8
  *                     for m in range(win_h):
  */
-          __pyx_v_src_ind = ((((((__pyx_v_i * __pyx_v_ch) * __pyx_v_h_src) * __pyx_v_w_src) + ((__pyx_v_j * __pyx_v_h_src) * __pyx_v_w_src)) + (__pyx_v_k * __pyx_v_w_src)) + __pyx_v_l);
+          __pyx_v_src_ind_actual = ((__pyx_v_src_ind + (__pyx_v_k * __pyx_v_w_src)) + __pyx_v_l);
+
+          /* "minica/optimize/pooling_func.pyx":27
+ *                 for l in range(0, max_w, stride_w):
+ *                     src_ind_actual = src_ind + k * w_src + l
+ *                     max_val = -1e8             # <<<<<<<<<<<<<<
+ *                     for m in range(win_h):
+ *                         for n in range(win_w):
+ */
+          __pyx_v_max_val = -1e8;
 
           /* "minica/optimize/pooling_func.pyx":28
- *                 for l in range(0, max_w, stride_w):
- *                     src_ind = i * ch * h_src * w_src + j * h_src * w_src + k * w_src + l
- *                     max_val = -1e20             # <<<<<<<<<<<<<<
- *                     for m in range(win_h):
- *                         for n in range(win_w):
- */
-          __pyx_v_max_val = -1e20;
-
-          /* "minica/optimize/pooling_func.pyx":29
- *                     src_ind = i * ch * h_src * w_src + j * h_src * w_src + k * w_src + l
- *                     max_val = -1e20
+ *                     src_ind_actual = src_ind + k * w_src + l
+ *                     max_val = -1e8
  *                     for m in range(win_h):             # <<<<<<<<<<<<<<
  *                         for n in range(win_w):
- *                             tmp = src_ptr[src_ind + n]
+ *                             tmp = src_ptr[src_ind_actual + n]
  */
           __pyx_t_19 = __pyx_v_win_h;
           for (__pyx_t_23 = 0; __pyx_t_23 < __pyx_t_19; __pyx_t_23+=1) {
             __pyx_v_m = __pyx_t_23;
 
-            /* "minica/optimize/pooling_func.pyx":30
- *                     max_val = -1e20
+            /* "minica/optimize/pooling_func.pyx":29
+ *                     max_val = -1e8
  *                     for m in range(win_h):
  *                         for n in range(win_w):             # <<<<<<<<<<<<<<
- *                             tmp = src_ptr[src_ind + n]
+ *                             tmp = src_ptr[src_ind_actual + n]
  *                             if tmp > max_val:
  */
             __pyx_t_24 = __pyx_v_win_w;
             for (__pyx_t_25 = 0; __pyx_t_25 < __pyx_t_24; __pyx_t_25+=1) {
               __pyx_v_n = __pyx_t_25;
 
-              /* "minica/optimize/pooling_func.pyx":31
+              /* "minica/optimize/pooling_func.pyx":30
  *                     for m in range(win_h):
  *                         for n in range(win_w):
- *                             tmp = src_ptr[src_ind + n]             # <<<<<<<<<<<<<<
+ *                             tmp = src_ptr[src_ind_actual + n]             # <<<<<<<<<<<<<<
  *                             if tmp > max_val:
  *                                 max_val = tmp
  */
-              __pyx_v_tmp = (__pyx_v_src_ptr[(__pyx_v_src_ind + __pyx_v_n)]);
+              __pyx_v_tmp = (__pyx_v_src_ptr[(__pyx_v_src_ind_actual + __pyx_v_n)]);
 
-              /* "minica/optimize/pooling_func.pyx":32
+              /* "minica/optimize/pooling_func.pyx":31
  *                         for n in range(win_w):
- *                             tmp = src_ptr[src_ind + n]
+ *                             tmp = src_ptr[src_ind_actual + n]
  *                             if tmp > max_val:             # <<<<<<<<<<<<<<
  *                                 max_val = tmp
- *                                 current_max_ind = src_ind + n
+ *                                 current_max_ind = src_ind_actual + n
  */
               __pyx_t_26 = ((__pyx_v_tmp > __pyx_v_max_val) != 0);
               if (__pyx_t_26) {
 
-                /* "minica/optimize/pooling_func.pyx":33
- *                             tmp = src_ptr[src_ind + n]
+                /* "minica/optimize/pooling_func.pyx":32
+ *                             tmp = src_ptr[src_ind_actual + n]
  *                             if tmp > max_val:
  *                                 max_val = tmp             # <<<<<<<<<<<<<<
- *                                 current_max_ind = src_ind + n
- *                         src_ind += w_src
+ *                                 current_max_ind = src_ind_actual + n
+ *                         src_ind_actual += w_src
  */
                 __pyx_v_max_val = __pyx_v_tmp;
 
-                /* "minica/optimize/pooling_func.pyx":34
+                /* "minica/optimize/pooling_func.pyx":33
  *                             if tmp > max_val:
  *                                 max_val = tmp
- *                                 current_max_ind = src_ind + n             # <<<<<<<<<<<<<<
- *                         src_ind += w_src
+ *                                 current_max_ind = src_ind_actual + n             # <<<<<<<<<<<<<<
+ *                         src_ind_actual += w_src
  *                     dst_ptr[dst_ind] = max_val
  */
-                __pyx_v_current_max_ind = (__pyx_v_src_ind + __pyx_v_n);
+                __pyx_v_current_max_ind = (__pyx_v_src_ind_actual + __pyx_v_n);
 
-                /* "minica/optimize/pooling_func.pyx":32
+                /* "minica/optimize/pooling_func.pyx":31
  *                         for n in range(win_w):
- *                             tmp = src_ptr[src_ind + n]
+ *                             tmp = src_ptr[src_ind_actual + n]
  *                             if tmp > max_val:             # <<<<<<<<<<<<<<
  *                                 max_val = tmp
- *                                 current_max_ind = src_ind + n
+ *                                 current_max_ind = src_ind_actual + n
  */
               }
             }
 
-            /* "minica/optimize/pooling_func.pyx":35
+            /* "minica/optimize/pooling_func.pyx":34
  *                                 max_val = tmp
- *                                 current_max_ind = src_ind + n
- *                         src_ind += w_src             # <<<<<<<<<<<<<<
+ *                                 current_max_ind = src_ind_actual + n
+ *                         src_ind_actual += w_src             # <<<<<<<<<<<<<<
  *                     dst_ptr[dst_ind] = max_val
  *                     ind_ptr[dst_ind] = current_max_ind
  */
-            __pyx_v_src_ind = (__pyx_v_src_ind + __pyx_v_w_src);
+            __pyx_v_src_ind_actual = (__pyx_v_src_ind_actual + __pyx_v_w_src);
           }
 
-          /* "minica/optimize/pooling_func.pyx":36
- *                                 current_max_ind = src_ind + n
- *                         src_ind += w_src
+          /* "minica/optimize/pooling_func.pyx":35
+ *                                 current_max_ind = src_ind_actual + n
+ *                         src_ind_actual += w_src
  *                     dst_ptr[dst_ind] = max_val             # <<<<<<<<<<<<<<
  *                     ind_ptr[dst_ind] = current_max_ind
  *                     dst_ind += 1
  */
           (__pyx_v_dst_ptr[__pyx_v_dst_ind]) = __pyx_v_max_val;
 
-          /* "minica/optimize/pooling_func.pyx":37
- *                         src_ind += w_src
+          /* "minica/optimize/pooling_func.pyx":36
+ *                         src_ind_actual += w_src
  *                     dst_ptr[dst_ind] = max_val
  *                     ind_ptr[dst_ind] = current_max_ind             # <<<<<<<<<<<<<<
  *                     dst_ind += 1
- *     return 0
+ *             src_ind += h_src * w_src
  */
           (__pyx_v_ind_ptr[__pyx_v_dst_ind]) = __pyx_v_current_max_ind;
 
-          /* "minica/optimize/pooling_func.pyx":38
+          /* "minica/optimize/pooling_func.pyx":37
  *                     dst_ptr[dst_ind] = max_val
  *                     ind_ptr[dst_ind] = current_max_ind
  *                     dst_ind += 1             # <<<<<<<<<<<<<<
+ *             src_ind += h_src * w_src
  *     return 0
- * 
  */
           __pyx_v_dst_ind = (__pyx_v_dst_ind + 1);
 
-          /* "minica/optimize/pooling_func.pyx":26
+          /* "minica/optimize/pooling_func.pyx":25
  *         for j in range(ch):
  *             for k in range(0, max_h, stride_h):
  *                 for l in range(0, max_w, stride_w):             # <<<<<<<<<<<<<<
- *                     src_ind = i * ch * h_src * w_src + j * h_src * w_src + k * w_src + l
- *                     max_val = -1e20
+ *                     src_ind_actual = src_ind + k * w_src + l
+ *                     max_val = -1e8
  */
         }
         __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
 
-        /* "minica/optimize/pooling_func.pyx":25
+        /* "minica/optimize/pooling_func.pyx":24
  *     for i in range(num):
  *         for j in range(ch):
  *             for k in range(0, max_h, stride_h):             # <<<<<<<<<<<<<<
  *                 for l in range(0, max_w, stride_w):
- *                     src_ind = i * ch * h_src * w_src + j * h_src * w_src + k * w_src + l
+ *                     src_ind_actual = src_ind + k * w_src + l
  */
       }
       __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
+
+      /* "minica/optimize/pooling_func.pyx":38
+ *                     ind_ptr[dst_ind] = current_max_ind
+ *                     dst_ind += 1
+ *             src_ind += h_src * w_src             # <<<<<<<<<<<<<<
+ *     return 0
+ * 
+ */
+      __pyx_v_src_ind = (__pyx_v_src_ind + (__pyx_v_h_src * __pyx_v_w_src));
     }
   }
 
   /* "minica/optimize/pooling_func.pyx":39
- *                     ind_ptr[dst_ind] = current_max_ind
  *                     dst_ind += 1
+ *             src_ind += h_src * w_src
  *     return 0             # <<<<<<<<<<<<<<
  * 
- * cpdef int backprop_for_max_pooling(double [:,:,:,:] src, double [:,:,:,:] dst, int [:,:,:,:] max_ind):
+ * cpdef int backprop_for_max_pooling(float [:,:,:,:] src, float [:,:,:,:] dst, int [:,:,:,:] max_ind):
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "minica/optimize/pooling_func.pyx":2
- * 
- * cpdef int max_pooling_batch(double [:,:,:,:] src, double [:,:,:,:] dst, int [:,:,:,:] max_ind,             # <<<<<<<<<<<<<<
+  /* "minica/optimize/pooling_func.pyx":1
+ * cpdef int max_pooling_batch(float [:,:,:,:] src, float [:,:,:,:] dst, int [:,:,:,:] max_ind,             # <<<<<<<<<<<<<<
  *                             int win_h, int win_w, int stride_h, int stride_w):
  *     cdef:
  */
@@ -2263,36 +2280,36 @@ static PyObject *__pyx_pw_6minica_8optimize_12pooling_func_1max_pooling_batch(Py
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_dst)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("max_pooling_batch", 1, 7, 7, 1); __PYX_ERR(0, 2, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("max_pooling_batch", 1, 7, 7, 1); __PYX_ERR(0, 1, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_max_ind)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("max_pooling_batch", 1, 7, 7, 2); __PYX_ERR(0, 2, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("max_pooling_batch", 1, 7, 7, 2); __PYX_ERR(0, 1, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_win_h)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("max_pooling_batch", 1, 7, 7, 3); __PYX_ERR(0, 2, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("max_pooling_batch", 1, 7, 7, 3); __PYX_ERR(0, 1, __pyx_L3_error)
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_win_w)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("max_pooling_batch", 1, 7, 7, 4); __PYX_ERR(0, 2, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("max_pooling_batch", 1, 7, 7, 4); __PYX_ERR(0, 1, __pyx_L3_error)
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_stride_h)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("max_pooling_batch", 1, 7, 7, 5); __PYX_ERR(0, 2, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("max_pooling_batch", 1, 7, 7, 5); __PYX_ERR(0, 1, __pyx_L3_error)
         }
         case  6:
         if (likely((values[6] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_stride_w)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("max_pooling_batch", 1, 7, 7, 6); __PYX_ERR(0, 2, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("max_pooling_batch", 1, 7, 7, 6); __PYX_ERR(0, 1, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "max_pooling_batch") < 0)) __PYX_ERR(0, 2, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "max_pooling_batch") < 0)) __PYX_ERR(0, 1, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 7) {
       goto __pyx_L5_argtuple_error;
@@ -2305,17 +2322,17 @@ static PyObject *__pyx_pw_6minica_8optimize_12pooling_func_1max_pooling_batch(Py
       values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
       values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
     }
-    __pyx_v_src = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_double(values[0]); if (unlikely(!__pyx_v_src.memview)) __PYX_ERR(0, 2, __pyx_L3_error)
-    __pyx_v_dst = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_double(values[1]); if (unlikely(!__pyx_v_dst.memview)) __PYX_ERR(0, 2, __pyx_L3_error)
-    __pyx_v_max_ind = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_int(values[2]); if (unlikely(!__pyx_v_max_ind.memview)) __PYX_ERR(0, 2, __pyx_L3_error)
-    __pyx_v_win_h = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_win_h == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 3, __pyx_L3_error)
-    __pyx_v_win_w = __Pyx_PyInt_As_int(values[4]); if (unlikely((__pyx_v_win_w == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 3, __pyx_L3_error)
-    __pyx_v_stride_h = __Pyx_PyInt_As_int(values[5]); if (unlikely((__pyx_v_stride_h == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 3, __pyx_L3_error)
-    __pyx_v_stride_w = __Pyx_PyInt_As_int(values[6]); if (unlikely((__pyx_v_stride_w == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 3, __pyx_L3_error)
+    __pyx_v_src = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[0]); if (unlikely(!__pyx_v_src.memview)) __PYX_ERR(0, 1, __pyx_L3_error)
+    __pyx_v_dst = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[1]); if (unlikely(!__pyx_v_dst.memview)) __PYX_ERR(0, 1, __pyx_L3_error)
+    __pyx_v_max_ind = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_int(values[2]); if (unlikely(!__pyx_v_max_ind.memview)) __PYX_ERR(0, 1, __pyx_L3_error)
+    __pyx_v_win_h = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_win_h == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 2, __pyx_L3_error)
+    __pyx_v_win_w = __Pyx_PyInt_As_int(values[4]); if (unlikely((__pyx_v_win_w == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 2, __pyx_L3_error)
+    __pyx_v_stride_h = __Pyx_PyInt_As_int(values[5]); if (unlikely((__pyx_v_stride_h == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 2, __pyx_L3_error)
+    __pyx_v_stride_w = __Pyx_PyInt_As_int(values[6]); if (unlikely((__pyx_v_stride_w == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 2, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("max_pooling_batch", 1, 7, 7, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 2, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("max_pooling_batch", 1, 7, 7, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 1, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("minica.optimize.pooling_func.max_pooling_batch", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2334,10 +2351,10 @@ static PyObject *__pyx_pf_6minica_8optimize_12pooling_func_max_pooling_batch(CYT
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("max_pooling_batch", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_src.memview)) { __Pyx_RaiseUnboundLocalError("src"); __PYX_ERR(0, 2, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_dst.memview)) { __Pyx_RaiseUnboundLocalError("dst"); __PYX_ERR(0, 2, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_max_ind.memview)) { __Pyx_RaiseUnboundLocalError("max_ind"); __PYX_ERR(0, 2, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_6minica_8optimize_12pooling_func_max_pooling_batch(__pyx_v_src, __pyx_v_dst, __pyx_v_max_ind, __pyx_v_win_h, __pyx_v_win_w, __pyx_v_stride_h, __pyx_v_stride_w, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (unlikely(!__pyx_v_src.memview)) { __Pyx_RaiseUnboundLocalError("src"); __PYX_ERR(0, 1, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_dst.memview)) { __Pyx_RaiseUnboundLocalError("dst"); __PYX_ERR(0, 1, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_max_ind.memview)) { __Pyx_RaiseUnboundLocalError("max_ind"); __PYX_ERR(0, 1, __pyx_L1_error) }
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_6minica_8optimize_12pooling_func_max_pooling_batch(__pyx_v_src, __pyx_v_dst, __pyx_v_max_ind, __pyx_v_win_h, __pyx_v_win_w, __pyx_v_stride_h, __pyx_v_stride_w, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2360,7 +2377,7 @@ static PyObject *__pyx_pf_6minica_8optimize_12pooling_func_max_pooling_batch(CYT
 /* "minica/optimize/pooling_func.pyx":41
  *     return 0
  * 
- * cpdef int backprop_for_max_pooling(double [:,:,:,:] src, double [:,:,:,:] dst, int [:,:,:,:] max_ind):             # <<<<<<<<<<<<<<
+ * cpdef int backprop_for_max_pooling(float [:,:,:,:] src, float [:,:,:,:] dst, int [:,:,:,:] max_ind):             # <<<<<<<<<<<<<<
  *     cdef:
  *         int num = src.shape[0]
  */
@@ -2374,8 +2391,8 @@ static int __pyx_f_6minica_8optimize_12pooling_func_backprop_for_max_pooling(__P
   int __pyx_v_h_dst;
   int __pyx_v_w_dst;
   int __pyx_v_i;
-  double *__pyx_v_src_ptr;
-  double *__pyx_v_dst_ptr;
+  float *__pyx_v_src_ptr;
+  float *__pyx_v_dst_ptr;
   int *__pyx_v_ind_ptr;
   int __pyx_v_total_dst;
   int __pyx_r;
@@ -2395,7 +2412,7 @@ static int __pyx_f_6minica_8optimize_12pooling_func_backprop_for_max_pooling(__P
   __Pyx_RefNannySetupContext("backprop_for_max_pooling", 0);
 
   /* "minica/optimize/pooling_func.pyx":43
- * cpdef int backprop_for_max_pooling(double [:,:,:,:] src, double [:,:,:,:] dst, int [:,:,:,:] max_ind):
+ * cpdef int backprop_for_max_pooling(float [:,:,:,:] src, float [:,:,:,:] dst, int [:,:,:,:] max_ind):
  *     cdef:
  *         int num = src.shape[0]             # <<<<<<<<<<<<<<
  *         int ch = src.shape[1]
@@ -2444,15 +2461,15 @@ static int __pyx_f_6minica_8optimize_12pooling_func_backprop_for_max_pooling(__P
  *         int h_dst = dst.shape[2]
  *         int w_dst = dst.shape[3]             # <<<<<<<<<<<<<<
  *         int i
- *         double *src_ptr = &src[0][0][0][0]
+ *         float *src_ptr = &src[0][0][0][0]
  */
   __pyx_v_w_dst = (__pyx_v_dst.shape[3]);
 
   /* "minica/optimize/pooling_func.pyx":50
  *         int w_dst = dst.shape[3]
  *         int i
- *         double *src_ptr = &src[0][0][0][0]             # <<<<<<<<<<<<<<
- *         double *dst_ptr = &dst[0][0][0][0]
+ *         float *src_ptr = &src[0][0][0][0]             # <<<<<<<<<<<<<<
+ *         float *dst_ptr = &dst[0][0][0][0]
  *         int *ind_ptr = &max_ind[0][0][0][0]
  */
   __pyx_t_1.data = __pyx_v_src.data;
@@ -2539,13 +2556,13 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
     __Pyx_RaiseBufferIndexError(__pyx_t_5);
     __PYX_ERR(0, 50, __pyx_L1_error)
   }
-  __pyx_v_src_ptr = (&(*((double *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_4 * __pyx_t_3.strides[0]) ))));
+  __pyx_v_src_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_4 * __pyx_t_3.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_3, 1);
 
   /* "minica/optimize/pooling_func.pyx":51
  *         int i
- *         double *src_ptr = &src[0][0][0][0]
- *         double *dst_ptr = &dst[0][0][0][0]             # <<<<<<<<<<<<<<
+ *         float *src_ptr = &src[0][0][0][0]
+ *         float *dst_ptr = &dst[0][0][0][0]             # <<<<<<<<<<<<<<
  *         int *ind_ptr = &max_ind[0][0][0][0]
  *         int total_dst = num * ch * h_dst * w_dst
  */
@@ -2633,12 +2650,12 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
     __Pyx_RaiseBufferIndexError(__pyx_t_5);
     __PYX_ERR(0, 51, __pyx_L1_error)
   }
-  __pyx_v_dst_ptr = (&(*((double *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_6 * __pyx_t_3.strides[0]) ))));
+  __pyx_v_dst_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_6 * __pyx_t_3.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_3, 1);
 
   /* "minica/optimize/pooling_func.pyx":52
- *         double *src_ptr = &src[0][0][0][0]
- *         double *dst_ptr = &dst[0][0][0][0]
+ *         float *src_ptr = &src[0][0][0][0]
+ *         float *dst_ptr = &dst[0][0][0][0]
  *         int *ind_ptr = &max_ind[0][0][0][0]             # <<<<<<<<<<<<<<
  *         int total_dst = num * ch * h_dst * w_dst
  * 
@@ -2731,7 +2748,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_8, 1);
   __PYX_XDEC_MEMVIEW(&__pyx_t_9, 1);
 
   /* "minica/optimize/pooling_func.pyx":53
- *         double *dst_ptr = &dst[0][0][0][0]
+ *         float *dst_ptr = &dst[0][0][0][0]
  *         int *ind_ptr = &max_ind[0][0][0][0]
  *         int total_dst = num * ch * h_dst * w_dst             # <<<<<<<<<<<<<<
  * 
@@ -2761,7 +2778,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_8, 1);
   /* "minica/optimize/pooling_func.pyx":41
  *     return 0
  * 
- * cpdef int backprop_for_max_pooling(double [:,:,:,:] src, double [:,:,:,:] dst, int [:,:,:,:] max_ind):             # <<<<<<<<<<<<<<
+ * cpdef int backprop_for_max_pooling(float [:,:,:,:] src, float [:,:,:,:] dst, int [:,:,:,:] max_ind):             # <<<<<<<<<<<<<<
  *     cdef:
  *         int num = src.shape[0]
  */
@@ -2831,8 +2848,8 @@ static PyObject *__pyx_pw_6minica_8optimize_12pooling_func_3backprop_for_max_poo
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_src = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_double(values[0]); if (unlikely(!__pyx_v_src.memview)) __PYX_ERR(0, 41, __pyx_L3_error)
-    __pyx_v_dst = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_double(values[1]); if (unlikely(!__pyx_v_dst.memview)) __PYX_ERR(0, 41, __pyx_L3_error)
+    __pyx_v_src = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[0]); if (unlikely(!__pyx_v_src.memview)) __PYX_ERR(0, 41, __pyx_L3_error)
+    __pyx_v_dst = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[1]); if (unlikely(!__pyx_v_dst.memview)) __PYX_ERR(0, 41, __pyx_L3_error)
     __pyx_v_max_ind = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_int(values[2]); if (unlikely(!__pyx_v_max_ind.memview)) __PYX_ERR(0, 41, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
@@ -15213,7 +15230,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 22, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(1, 131, __pyx_L1_error)
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(1, 146, __pyx_L1_error)
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(1, 149, __pyx_L1_error)
@@ -15438,10 +15455,10 @@ static int __Pyx_InitCachedConstants(void) {
 }
 
 static int __Pyx_InitGlobals(void) {
-  if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
-  __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 2, __pyx_L1_error)
-  __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 2, __pyx_L1_error)
-  __pyx_int_neg_1 = PyInt_FromLong(-1); if (unlikely(!__pyx_int_neg_1)) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
+  __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_neg_1 = PyInt_FromLong(-1); if (unlikely(!__pyx_int_neg_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -15468,24 +15485,24 @@ PyMODINIT_FUNC PyInit_pooling_func(void)
   }
   #endif
   __Pyx_RefNannySetupContext("PyMODINIT_FUNC PyInit_pooling_func(void)", 0);
-  if (__Pyx_check_binary_version() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
-  __pyx_empty_tuple = PyTuple_New(0); if (unlikely(!__pyx_empty_tuple)) __PYX_ERR(0, 2, __pyx_L1_error)
-  __pyx_empty_bytes = PyBytes_FromStringAndSize("", 0); if (unlikely(!__pyx_empty_bytes)) __PYX_ERR(0, 2, __pyx_L1_error)
-  __pyx_empty_unicode = PyUnicode_FromStringAndSize("", 0); if (unlikely(!__pyx_empty_unicode)) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (__Pyx_check_binary_version() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_empty_tuple = PyTuple_New(0); if (unlikely(!__pyx_empty_tuple)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_empty_bytes = PyBytes_FromStringAndSize("", 0); if (unlikely(!__pyx_empty_bytes)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_empty_unicode = PyUnicode_FromStringAndSize("", 0); if (unlikely(!__pyx_empty_unicode)) __PYX_ERR(0, 1, __pyx_L1_error)
   #ifdef __Pyx_CyFunction_USED
-  if (__pyx_CyFunction_init() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (__pyx_CyFunction_init() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
   #ifdef __Pyx_FusedFunction_USED
-  if (__pyx_FusedFunction_init() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (__pyx_FusedFunction_init() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
   #ifdef __Pyx_Coroutine_USED
-  if (__pyx_Coroutine_init() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (__pyx_Coroutine_init() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
   #ifdef __Pyx_Generator_USED
-  if (__pyx_Generator_init() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (__pyx_Generator_init() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
   #ifdef __Pyx_StopAsyncIteration_USED
-  if (__pyx_StopAsyncIteration_init() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (__pyx_StopAsyncIteration_init() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
   /*--- Library function declarations ---*/
   /*--- Threads initialization code ---*/
@@ -15500,34 +15517,34 @@ PyMODINIT_FUNC PyInit_pooling_func(void)
   #else
   __pyx_m = PyModule_Create(&__pyx_moduledef);
   #endif
-  if (unlikely(!__pyx_m)) __PYX_ERR(0, 2, __pyx_L1_error)
-  __pyx_d = PyModule_GetDict(__pyx_m); if (unlikely(!__pyx_d)) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (unlikely(!__pyx_m)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_d = PyModule_GetDict(__pyx_m); if (unlikely(!__pyx_d)) __PYX_ERR(0, 1, __pyx_L1_error)
   Py_INCREF(__pyx_d);
-  __pyx_b = PyImport_AddModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_b)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __pyx_b = PyImport_AddModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_b)) __PYX_ERR(0, 1, __pyx_L1_error)
   #if CYTHON_COMPILING_IN_PYPY
   Py_INCREF(__pyx_b);
   #endif
-  if (PyObject_SetAttrString(__pyx_m, "__builtins__", __pyx_b) < 0) __PYX_ERR(0, 2, __pyx_L1_error);
+  if (PyObject_SetAttrString(__pyx_m, "__builtins__", __pyx_b) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   /*--- Initialize various global constants etc. ---*/
-  if (__Pyx_InitGlobals() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (__Pyx_InitGlobals() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
-  if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
   if (__pyx_module_is_main_minica__optimize__pooling_func) {
-    if (PyObject_SetAttrString(__pyx_m, "__name__", __pyx_n_s_main) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+    if (PyObject_SetAttrString(__pyx_m, "__name__", __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
-    PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 2, __pyx_L1_error)
+    PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
     if (!PyDict_GetItemString(modules, "minica.optimize.pooling_func")) {
-      if (unlikely(PyDict_SetItemString(modules, "minica.optimize.pooling_func", __pyx_m) < 0)) __PYX_ERR(0, 2, __pyx_L1_error)
+      if (unlikely(PyDict_SetItemString(modules, "minica.optimize.pooling_func", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
   /*--- Builtin init code ---*/
-  if (__Pyx_InitCachedBuiltins() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (__Pyx_InitCachedBuiltins() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   /*--- Constants init code ---*/
-  if (__Pyx_InitCachedConstants() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (__Pyx_InitCachedConstants() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   /*--- Global init code ---*/
   generic = Py_None; Py_INCREF(Py_None);
   strided = Py_None; Py_INCREF(Py_None);
@@ -15572,18 +15589,17 @@ PyMODINIT_FUNC PyInit_pooling_func(void)
   /*--- Function import code ---*/
   /*--- Execution code ---*/
   #if defined(__Pyx_Generator_USED) || defined(__Pyx_Coroutine_USED)
-  if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "minica/optimize/pooling_func.pyx":2
- * 
- * cpdef int max_pooling_batch(double [:,:,:,:] src, double [:,:,:,:] dst, int [:,:,:,:] max_ind,             # <<<<<<<<<<<<<<
+  /* "minica/optimize/pooling_func.pyx":1
+ * cpdef int max_pooling_batch(float [:,:,:,:] src, float [:,:,:,:] dst, int [:,:,:,:] max_ind,             # <<<<<<<<<<<<<<
  *                             int win_h, int win_w, int stride_h, int stride_w):
  *     cdef:
  */
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_1) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_1) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "View.MemoryView":207
@@ -18036,7 +18052,7 @@ no_fail:
 }
 
 /* ObjectToMemviewSlice */
-        static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_double(PyObject *obj) {
+        static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(PyObject *obj) {
     __Pyx_memviewslice result = { 0, 0, { 0 }, { 0 }, { 0 } };
     __Pyx_BufFmt_StackElem stack[1];
     int axes_specs[] = { (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED), (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED), (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED), (__Pyx_MEMVIEW_DIRECT | __Pyx_MEMVIEW_STRIDED) };
@@ -18047,7 +18063,7 @@ no_fail:
     }
     retcode = __Pyx_ValidateAndInit_memviewslice(axes_specs, 0,
                                                  PyBUF_RECORDS, 4,
-                                                 &__Pyx_TypeInfo_double, stack,
+                                                 &__Pyx_TypeInfo_float, stack,
                                                  &result, obj);
     if (unlikely(retcode == -1))
         goto __pyx_fail;

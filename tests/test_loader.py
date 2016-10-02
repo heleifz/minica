@@ -42,7 +42,7 @@ class TestLoader(unittest.TestCase):
         # layer = mean_squred_error_layer.MeanSquaredErrorLayer(None)
         input_tensors = []
         t = tensor.Tensor()
-        t.set_data(np.random.random((5, 5, 5, 5)) * 1)
+        t.set_data(np.random.random((5, 5, 5, 5)).astype('float32') * 1)
         input_tensors.append(t)
         # t = tensor.Tensor()
         # t.set_data(np.random.randint(0, 6, (5, 1)))
