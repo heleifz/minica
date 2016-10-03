@@ -22,7 +22,7 @@ class GradientChecker(object):
             diff = t.mutable_diff()
             data_count = data.shape[0]
             total_loss += np.sum(data * data)
-            np.copyto(diff, data / float(data_count))
+            np.copyto(diff, data / np.array(data_count, dtype='float32'))
         return total_loss / 2.0 / float(data_count)
 
     def check(self, layer, input_tensors,
@@ -66,4 +66,5 @@ class GradientChecker(object):
                 numeric_grad = (pos_loss - neg_loss) / 2.0 / self.step_size
                 if np.abs(diff.flat[i] - numeric_grad) > self.compare_threshold:
                     return False
+
         return True

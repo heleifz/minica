@@ -63,10 +63,14 @@ class ConvLayer(object):
         conv_func.im2col_indices(self.filter_num, height + self.filter_size - 1,
                                  width + self.filter_size - 1, self.backward_ind1,
                                  self.filter_size, self.filter_size)
+
         self.backward_conv_buf2 = np.zeros(((height - self.filter_size + 1) * (width - self.filter_size + 1),
                                              (self.filter_size ** 2) * channel_num), dtype='float32')
-
-
+        self.backward_ind2 = np.zeros((self.backward_conv_buf2.size), dtype='int32')
+        conv_func.im2col_indices(channel_num, height, width, self.backward_ind2,
+                                 height - self.filter_size + 1,
+                                 width - self.filter_size + 1, 1)
+                                 
     def forward(self, prev_tensors, next_tensors):
         """
         前向传播操作
@@ -135,7 +139,7 @@ class ConvLayer(object):
 
         conv_func.backward_kernel_for_conv_batch(prev_data, next_diff,
                                                  self.filters.mutable_diff(),
-                                                 self.backward_conv_buf2)
+                                                 self.backward_conv_buf2, self.backward_ind2)
         # 计算 bias term 的梯度
         if self.has_bias:
             b_diff = self.b.mutable_diff()

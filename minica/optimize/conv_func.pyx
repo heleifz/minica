@@ -8,183 +8,63 @@ from cython cimport view
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cpdef int im2col_indices(int c, int h, int w, int [:] indices,
-                         int kernel_h, int kernel_w) nogil:
+                         int kernel_h, int kernel_w, int broadcast_filter=0) nogil:
     cdef:
-        int result_h = h - kernel_h + 1
-        int result_w = w - kernel_w + 1
+         int result_h = h - kernel_h + 1
+         int result_w = w - kernel_w + 1
 
-        int result_total = result_h * result_w
-        int filter_channel_total = kernel_h * kernel_w
+         int result_total = result_h * result_w
+         int filter_channel_total = kernel_h * kernel_w
 
     # copy row by row
     cdef:
-        int i, j, k, l, pos_dst, pos_src, ch, r_index
-    for ch in range(c):
-        for i in range(kernel_h):
-            for j in range(kernel_w):
-                # 确定要拷贝的 image range
-                # 确定目标的行
-                r_index = ch * filter_channel_total + i * kernel_w + j
-                pos_dst = r_index * result_total
-                pos_src = ch * w * h + i * w + j
-                for k in range(result_h):
-                    for l in range(result_w):
-                        indices[pos_dst] = pos_src
-                        pos_dst += 1
-                        pos_src += 1
-                    pos_src += kernel_w - 1
+         int i, j, k, l, pos_dst, pos_src, ch, r_index
+    if broadcast_filter == 0:
+       for ch in range(c):
+           for i in range(kernel_h):
+               for j in range(kernel_w):
+                   # 确定要拷贝的 image range
+                   # 确定目标的行
+                   r_index = ch * filter_channel_total + i * kernel_w + j
+                   pos_dst = r_index * result_total
+                   pos_src = ch * w * h + i * w + j
+                   for k in range(result_h):
+                       for l in range(result_w):
+                           indices[pos_dst] = pos_src
+                           pos_dst += 1
+                           pos_src += 1
+                       pos_src += kernel_w - 1
+    else:
+       for i in range(kernel_h):
+           for j in range(kernel_w):
+               # 确定要拷贝的 image range
+               # 确定目标的行
+               for ch in range(c):
+                   r_index =  i * kernel_w + j
+                   pos_dst = r_index * result_total * c + ch * result_total
+                   pos_src = ch * h * w + i * w + j
+                   for k in range(result_h):
+                       for l in range(result_w):
+                           indices[pos_dst] = pos_src
+                           pos_dst += 1
+                           pos_src += 1
+                       pos_src += kernel_w - 1
     return 0
 
 # 支持 3d array 的 im2col
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef int im2col2_core(float [:,:,:] src, float [:,:] dst, int [:] indices) nogil:
+cdef int im2col(float [:,:,:] src, float [:,:] dst, int [:] indices) nogil:
     cdef:
         float *src_ptr = &src[0][0][0]
         float *dst_ptr = &dst[0][0]
         int *indices_ptr = &indices[0]
         int l = indices.shape[0]
         int i
-        int pos
 
     for i in range(l):
         dst_ptr[i] = src_ptr[indices_ptr[i]]
 
-    return 0
-
-# 支持 3d array 的 im2col
-@cython.boundscheck(False)
-@cython.wraparound(False)
-cdef int im2col_core(float [:,:,:] src, float [:,:] dst,
-                     int kernel_h, int kernel_w) nogil:
-    cdef:
-        float *src_ptr = &src[0][0][0]
-        float *dst_ptr = &dst[0][0]
-
-        int c = src.shape[0]
-        int h = src.shape[1]
-        int w = src.shape[2]
-
-        int result_h = h - kernel_h + 1
-        int result_w = w - kernel_w + 1
-
-        int result_total = result_h * result_w
-        int filter_channel_total = kernel_h * kernel_w
-
-    if dst.shape[0] != filter_channel_total * c or \
-       dst.shape[1] != result_total:
-        # dst array has different shape
-        return -1
-
-    # copy row by row
-    cdef:
-        int i, j, ch, n, r_index, img_offset
-        float *current_row
-        float *src_submatrix = src_ptr
-    for ch in range(c):
-        for i in range(kernel_h):
-            for j in range(kernel_w):
-                # 确定要拷贝的 image range
-                # 确定目标的行
-                r_index = ch * filter_channel_total + i * kernel_w + j
-                current_row = dst_ptr + r_index * result_total
-                src_submatrix = src_ptr + ch * w * h + i * w + j
-                # 采用 slacpy 稍微加速拷贝 (~10%)
-                lapack.slacpy('A', &result_w, &result_h,
-                              src_submatrix, &h, current_row, &result_h)
-    return 0
-
-# 支持 3d array 的 im2col
-@cython.boundscheck(False)
-@cython.wraparound(False)
-cdef int im2col_with_pad_core(float [:,:,:] src, float [:,:] dst,
-                              int kernel_h, int kernel_w, int pad_h, int pad_w) nogil:
-    cdef:
-        float *src_ptr = &src[0][0][0]
-        float *dst_ptr = &dst[0][0]
-
-        int c = src.shape[0]
-        int h = src.shape[1]
-        int w = src.shape[2]
-
-        int result_h = h - kernel_h + 1 + 2 * pad_h
-        int result_w = w - kernel_w + 1 + 2 * pad_w
-
-        int result_total = result_h * result_w
-        int filter_channel_total = kernel_h * kernel_w
-
-    if dst.shape[0] != filter_channel_total * c or \
-       dst.shape[1] != result_total:
-        # dst array has different shape
-        return -1
-
-    # copy col by col
-    cdef:
-        int i, j, ch, k, l
-        int current_offset
-        float *current_dst = dst_ptr
-        float *current_src = src_ptr
-        int real_i, real_j
-
-    for i in range(result_h):
-        real_i = i - pad_h
-        for j in range(result_w):
-            real_j = j - pad_w
-            current_offset = 0
-            for ch in range(c):
-                for k in range(kernel_h):
-                    for l in range(kernel_w):
-                        if real_i + k < 0 or real_j + l < 0 or real_i + k >= h or real_j + l >=w:
-                            current_dst[current_offset] = 0
-                        else:
-                            current_dst[current_offset] = src_ptr[ch * w * h + (k + real_i) * w + (l + real_j)]
-                        current_offset += result_total
-            current_dst += 1
-    return 0
-
-
-@cython.boundscheck(False)
-@cython.wraparound(False)
-cdef int im2col_n_to_one_core(float [:,:,:] src, float [:,:] dst,
-                              int kernel_h, int kernel_w) nogil:
-    cdef:
-        float *src_ptr = &src[0][0][0]
-        float *dst_ptr = &dst[0][0]
-
-        int c = src.shape[0]
-        int h = src.shape[1]
-        int w = src.shape[2]
-
-        int result_h = h - kernel_h + 1
-        int result_w = w - kernel_w + 1
-
-        int result_total = result_h * result_w
-        int filter_channel_total = kernel_h * kernel_w
-
-    if dst.shape[0] != filter_channel_total or \
-       dst.shape[1] != result_total * c:
-        # dst array has different shape
-        return -1
-
-    # copy row by row
-    cdef:
-        int i, j, ch, n, r_index, img_offset
-        float *current_row
-        float *src_submatrix = src_ptr
-
-    for i in range(kernel_h):
-        for j in range(kernel_w):
-            # 确定要拷贝的 image range
-            # 确定目标的行
-            r_index = i * kernel_w + j
-            current_row = dst_ptr + r_index * result_total * c
-            src_submatrix = src_ptr + i * w + j
-            for ch in range(c):
-                # 采用 slacpy 稍微加速拷贝 (~10%)
-                lapack.slacpy('A', &result_w, &result_h,
-                              src_submatrix, &h, current_row, &result_h)
-                src_submatrix += w * h
-                current_row += result_w * result_h
     return 0
 
 @cython.boundscheck(False)
@@ -215,7 +95,7 @@ cpdef int conv_batch(float [:,:,:,:] src, float[:,:,:,:] dst,
 
     # 每个图片做一次乘法(其实一个乘法也行，但是内存膨胀比较厉害)
     for i in range(num):
-        if im2col2_core(src[i], buf, indices) != 0:
+        if im2col(src[i], buf, indices) != 0:
             return -1
         # 调用 blas 乘法 routine
         blas.sgemm("N", "N", &h_buf, &w_vec, &w_buf, &alpha,
@@ -247,7 +127,6 @@ cdef void copy_and_pad(float [:,:,:] src, float [:,:,:] dst, int pad_h, int pad_
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef void flip(float [:,:,:,:] kernel, float [:,:,:,:] kernel_t) nogil:
-    # 一个个 channel copy
     cdef:
         float *src_ptr = &kernel[0][0][0][0]
         float *dst_ptr = &kernel_t[0][0][0][0]
@@ -320,7 +199,7 @@ cpdef int backward_for_conv_batch(float [:,:,:,:] src, float[:,:,:,:] dst,
         for i in range(num):
 
             copy_and_pad(dst[i], pad_buf, kh_t - 1, kw_t - 1)
-            if im2col2_core(pad_buf, conv_buf, indices) != 0:
+            if im2col(pad_buf, conv_buf, indices) != 0:
                return -1
             # 调用 blas 乘法 routine
             blas.sgemm("N", "N", &h_buf, &w_vec, &w_buf, &alpha,
@@ -334,7 +213,8 @@ cpdef int backward_for_conv_batch(float [:,:,:,:] src, float[:,:,:,:] dst,
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cpdef int backward_kernel_for_conv_batch(float [:,:,:,:] src, float[:,:,:,:] dst,
-                                         float [:,:,:,:] kernel, float [:,:] buf) nogil:
+                                         float [:,:,:,:] kernel, float [:,:] buf,
+                                         int [:] indices) nogil:
     """
     对于 kernel 的反向传播
     """
@@ -373,7 +253,7 @@ cpdef int backward_kernel_for_conv_batch(float [:,:,:,:] src, float[:,:,:,:] dst
 
     for i in range(num):
 
-        if im2col_n_to_one_core(src[i], buf, h_dst, w_dst) != 0:
+        if im2col(src[i], buf, indices) != 0:
             return -1
 
         # 调用 blas 乘法 routine

@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages, extension
 from Cython.Build import cythonize
+
+optimize = extension.Extension('*', ["minica/optimize/*.pyx"])
 
 setup(
     name = "minica",
@@ -12,7 +14,7 @@ setup(
     license = "MIT",
     keywords = "neural net machine learning",
     install_requires = ['scipy >= 0.12', 'numpy'],
-    ext_modules = cythonize("minica/optimize/*.pyx"),
+    ext_modules = cythonize(optimize),
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",

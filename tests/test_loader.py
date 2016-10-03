@@ -27,22 +27,22 @@ class TestLoader(unittest.TestCase):
         # })
         # layer = softmax_layer.SoftmaxLayer(None)
         # layer = relu_layer.ReluLayer(None)
-        layer = conv_layer.ConvLayer({
-            "filter_num" : 3,
-            "filter_size" : 3,
-            "has_bias" : 1
-        })
-        # layer = pooling_layer.PoolingLayer({
-        #     "type" : "max",
-        #     "window_size" : [3, 3],
-        #     "stride" : [2, 2]
+        # layer = conv_layer.ConvLayer({
+        #     "filter_num" : 3,
+        #     "filter_size" : 3,
+        #     "has_bias" : 1
         # })
+        layer = pooling_layer.PoolingLayer({
+            "type" : "mean",
+            "window_size" : [3, 3],
+            "stride" : [2, 2]
+        })
         # layer = cross_entropy_layer.CrossEntropyLayer(None)
         # layer = softmax_cross_entropy_layer.SoftmaxCrossEntropyLayer(None)
         # layer = mean_squred_error_layer.MeanSquaredErrorLayer(None)
         input_tensors = []
         t = tensor.Tensor()
-        t.set_data(np.random.random((5, 5, 5, 5)).astype('float32') * 1)
+        t.set_data(np.random.random((3, 3, 5, 5)).astype('float32') * 1)
         input_tensors.append(t)
         # t = tensor.Tensor()
         # t.set_data(np.random.randint(0, 6, (5, 1)))

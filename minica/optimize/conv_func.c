@@ -751,6 +751,19 @@ typedef int __pyx_t_5scipy_6linalg_13cython_lapack_zselect1(__pyx_t_double_compl
  * cdef void cbdsqr(char *uplo, int *n, int *ncvt, int *nru, int *ncc, s *d, s *e, c *vt, int *ldvt, c *u, int *ldu, c *c, int *ldc, s *rwork, int *info) nogil
  */
 typedef int __pyx_t_5scipy_6linalg_13cython_lapack_zselect2(__pyx_t_double_complex *, __pyx_t_double_complex *);
+struct __pyx_opt_args_6minica_8optimize_9conv_func_im2col_indices;
+
+/* "minica/optimize/conv_func.pyx":10
+ * @cython.boundscheck(False)
+ * @cython.wraparound(False)
+ * cpdef int im2col_indices(int c, int h, int w, int [:] indices,             # <<<<<<<<<<<<<<
+ *                          int kernel_h, int kernel_w, int broadcast_filter=0) nogil:
+ *     cdef:
+ */
+struct __pyx_opt_args_6minica_8optimize_9conv_func_im2col_indices {
+  int __pyx_n;
+  int broadcast_filter;
+};
 
 /* "View.MemoryView":103
  * 
@@ -1497,14 +1510,13 @@ static PyObject *contiguous = 0;
 static PyObject *indirect_contiguous = 0;
 static int __pyx_memoryview_thread_locks_used;
 static PyThread_type_lock __pyx_memoryview_thread_locks[8];
-static int __pyx_f_6minica_8optimize_9conv_func_im2col_indices(int, int, int, __Pyx_memviewslice, int, int, int __pyx_skip_dispatch); /*proto*/
-static int __pyx_f_6minica_8optimize_9conv_func_im2col2_core(__Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice); /*proto*/
-static int __pyx_f_6minica_8optimize_9conv_func_im2col_n_to_one_core(__Pyx_memviewslice, __Pyx_memviewslice, int, int); /*proto*/
+static int __pyx_f_6minica_8optimize_9conv_func_im2col_indices(int, int, int, __Pyx_memviewslice, int, int, int __pyx_skip_dispatch, struct __pyx_opt_args_6minica_8optimize_9conv_func_im2col_indices *__pyx_optional_args); /*proto*/
+static int __pyx_f_6minica_8optimize_9conv_func_im2col(__Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice); /*proto*/
 static int __pyx_f_6minica_8optimize_9conv_func_conv_batch(__Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
 static void __pyx_f_6minica_8optimize_9conv_func_copy_and_pad(__Pyx_memviewslice, __Pyx_memviewslice, int, int); /*proto*/
 static void __pyx_f_6minica_8optimize_9conv_func_flip(__Pyx_memviewslice, __Pyx_memviewslice); /*proto*/
 static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
-static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(__Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
+static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(__Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, __Pyx_memviewslice, int __pyx_skip_dispatch); /*proto*/
 static struct __pyx_array_obj *__pyx_array_new(PyObject *, Py_ssize_t, char *, char *, char *); /*proto*/
 static void *__pyx_align_pointer(void *, size_t); /*proto*/
 static PyObject *__pyx_memoryview_new(PyObject *, int, int, __Pyx_TypeInfo *); /*proto*/
@@ -1603,6 +1615,7 @@ static const char __pyx_k_MemoryError[] = "MemoryError";
 static const char __pyx_k_pyx_getbuffer[] = "__pyx_getbuffer";
 static const char __pyx_k_allocate_buffer[] = "allocate_buffer";
 static const char __pyx_k_dtype_is_object[] = "dtype_is_object";
+static const char __pyx_k_broadcast_filter[] = "broadcast_filter";
 static const char __pyx_k_strided_and_direct[] = "<strided and direct>";
 static const char __pyx_k_strided_and_indirect[] = "<strided and indirect>";
 static const char __pyx_k_contiguous_and_direct[] = "<contiguous and direct>";
@@ -1643,6 +1656,7 @@ static PyObject *__pyx_kp_s_Unable_to_convert_item_to_object;
 static PyObject *__pyx_n_s_ValueError;
 static PyObject *__pyx_n_s_allocate_buffer;
 static PyObject *__pyx_n_s_base;
+static PyObject *__pyx_n_s_broadcast_filter;
 static PyObject *__pyx_n_s_buf;
 static PyObject *__pyx_n_s_c;
 static PyObject *__pyx_n_u_c;
@@ -1697,10 +1711,10 @@ static PyObject *__pyx_kp_s_unable_to_allocate_array_data;
 static PyObject *__pyx_kp_s_unable_to_allocate_shape_and_str;
 static PyObject *__pyx_n_s_unpack;
 static PyObject *__pyx_n_s_w;
-static PyObject *__pyx_pf_6minica_8optimize_9conv_func_im2col_indices(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_c, int __pyx_v_h, int __pyx_v_w, __Pyx_memviewslice __pyx_v_indices, int __pyx_v_kernel_h, int __pyx_v_kernel_w); /* proto */
+static PyObject *__pyx_pf_6minica_8optimize_9conv_func_im2col_indices(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_c, int __pyx_v_h, int __pyx_v_w, __Pyx_memviewslice __pyx_v_indices, int __pyx_v_kernel_h, int __pyx_v_kernel_w, int __pyx_v_broadcast_filter); /* proto */
 static PyObject *__pyx_pf_6minica_8optimize_9conv_func_2conv_batch(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_src, __Pyx_memviewslice __pyx_v_dst, __Pyx_memviewslice __pyx_v_kernel, __Pyx_memviewslice __pyx_v_buf, __Pyx_memviewslice __pyx_v_indices); /* proto */
 static PyObject *__pyx_pf_6minica_8optimize_9conv_func_4backward_for_conv_batch(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_src, __Pyx_memviewslice __pyx_v_dst, __Pyx_memviewslice __pyx_v_kernel, __Pyx_memviewslice __pyx_v_pad_buf, __Pyx_memviewslice __pyx_v_conv_buf, __Pyx_memviewslice __pyx_v_kernel_t, __Pyx_memviewslice __pyx_v_indices); /* proto */
-static PyObject *__pyx_pf_6minica_8optimize_9conv_func_6backward_kernel_for_conv_batch(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_src, __Pyx_memviewslice __pyx_v_dst, __Pyx_memviewslice __pyx_v_kernel, __Pyx_memviewslice __pyx_v_buf); /* proto */
+static PyObject *__pyx_pf_6minica_8optimize_9conv_func_6backward_kernel_for_conv_batch(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_src, __Pyx_memviewslice __pyx_v_dst, __Pyx_memviewslice __pyx_v_kernel, __Pyx_memviewslice __pyx_v_buf, __Pyx_memviewslice __pyx_v_indices); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(struct __pyx_array_obj *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_array___pyx_pf_15View_dot_MemoryView_5array_4__dealloc__(struct __pyx_array_obj *__pyx_v_self); /* proto */
@@ -1763,12 +1777,13 @@ static PyObject *__pyx_tuple__18;
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef int im2col_indices(int c, int h, int w, int [:] indices,             # <<<<<<<<<<<<<<
- *                          int kernel_h, int kernel_w) nogil:
+ *                          int kernel_h, int kernel_w, int broadcast_filter=0) nogil:
  *     cdef:
  */
 
 static PyObject *__pyx_pw_6minica_8optimize_9conv_func_1im2col_indices(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_f_6minica_8optimize_9conv_func_im2col_indices(int __pyx_v_c, int __pyx_v_h, int __pyx_v_w, __Pyx_memviewslice __pyx_v_indices, int __pyx_v_kernel_h, int __pyx_v_kernel_w, CYTHON_UNUSED int __pyx_skip_dispatch) {
+static int __pyx_f_6minica_8optimize_9conv_func_im2col_indices(int __pyx_v_c, int __pyx_v_h, int __pyx_v_w, __Pyx_memviewslice __pyx_v_indices, int __pyx_v_kernel_h, int __pyx_v_kernel_w, CYTHON_UNUSED int __pyx_skip_dispatch, struct __pyx_opt_args_6minica_8optimize_9conv_func_im2col_indices *__pyx_optional_args) {
+  int __pyx_v_broadcast_filter = ((int)0);
   int __pyx_v_result_h;
   int __pyx_v_result_w;
   int __pyx_v_result_total;
@@ -1792,39 +1807,46 @@ static int __pyx_f_6minica_8optimize_9conv_func_im2col_indices(int __pyx_v_c, in
   int __pyx_t_8;
   int __pyx_t_9;
   int __pyx_t_10;
-  Py_ssize_t __pyx_t_11;
+  int __pyx_t_11;
+  Py_ssize_t __pyx_t_12;
+  Py_ssize_t __pyx_t_13;
+  if (__pyx_optional_args) {
+    if (__pyx_optional_args->__pyx_n > 0) {
+      __pyx_v_broadcast_filter = __pyx_optional_args->broadcast_filter;
+    }
+  }
 
   /* "minica/optimize/conv_func.pyx":13
- *                          int kernel_h, int kernel_w) nogil:
+ *                          int kernel_h, int kernel_w, int broadcast_filter=0) nogil:
  *     cdef:
- *         int result_h = h - kernel_h + 1             # <<<<<<<<<<<<<<
- *         int result_w = w - kernel_w + 1
+ *          int result_h = h - kernel_h + 1             # <<<<<<<<<<<<<<
+ *          int result_w = w - kernel_w + 1
  * 
  */
   __pyx_v_result_h = ((__pyx_v_h - __pyx_v_kernel_h) + 1);
 
   /* "minica/optimize/conv_func.pyx":14
  *     cdef:
- *         int result_h = h - kernel_h + 1
- *         int result_w = w - kernel_w + 1             # <<<<<<<<<<<<<<
+ *          int result_h = h - kernel_h + 1
+ *          int result_w = w - kernel_w + 1             # <<<<<<<<<<<<<<
  * 
- *         int result_total = result_h * result_w
+ *          int result_total = result_h * result_w
  */
   __pyx_v_result_w = ((__pyx_v_w - __pyx_v_kernel_w) + 1);
 
   /* "minica/optimize/conv_func.pyx":16
- *         int result_w = w - kernel_w + 1
+ *          int result_w = w - kernel_w + 1
  * 
- *         int result_total = result_h * result_w             # <<<<<<<<<<<<<<
- *         int filter_channel_total = kernel_h * kernel_w
+ *          int result_total = result_h * result_w             # <<<<<<<<<<<<<<
+ *          int filter_channel_total = kernel_h * kernel_w
  * 
  */
   __pyx_v_result_total = (__pyx_v_result_h * __pyx_v_result_w);
 
   /* "minica/optimize/conv_func.pyx":17
  * 
- *         int result_total = result_h * result_w
- *         int filter_channel_total = kernel_h * kernel_w             # <<<<<<<<<<<<<<
+ *          int result_total = result_h * result_w
+ *          int filter_channel_total = kernel_h * kernel_w             # <<<<<<<<<<<<<<
  * 
  *     # copy row by row
  */
@@ -1832,131 +1854,278 @@ static int __pyx_f_6minica_8optimize_9conv_func_im2col_indices(int __pyx_v_c, in
 
   /* "minica/optimize/conv_func.pyx":22
  *     cdef:
- *         int i, j, k, l, pos_dst, pos_src, ch, r_index
- *     for ch in range(c):             # <<<<<<<<<<<<<<
- *         for i in range(kernel_h):
- *             for j in range(kernel_w):
+ *          int i, j, k, l, pos_dst, pos_src, ch, r_index
+ *     if broadcast_filter == 0:             # <<<<<<<<<<<<<<
+ *        for ch in range(c):
+ *            for i in range(kernel_h):
  */
-  __pyx_t_1 = __pyx_v_c;
-  for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
-    __pyx_v_ch = __pyx_t_2;
+  __pyx_t_1 = ((__pyx_v_broadcast_filter == 0) != 0);
+  if (__pyx_t_1) {
 
     /* "minica/optimize/conv_func.pyx":23
- *         int i, j, k, l, pos_dst, pos_src, ch, r_index
- *     for ch in range(c):
- *         for i in range(kernel_h):             # <<<<<<<<<<<<<<
- *             for j in range(kernel_w):
- *                 #  image range
+ *          int i, j, k, l, pos_dst, pos_src, ch, r_index
+ *     if broadcast_filter == 0:
+ *        for ch in range(c):             # <<<<<<<<<<<<<<
+ *            for i in range(kernel_h):
+ *                for j in range(kernel_w):
  */
-    __pyx_t_3 = __pyx_v_kernel_h;
-    for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
-      __pyx_v_i = __pyx_t_4;
+    __pyx_t_2 = __pyx_v_c;
+    for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
+      __pyx_v_ch = __pyx_t_3;
 
       /* "minica/optimize/conv_func.pyx":24
- *     for ch in range(c):
- *         for i in range(kernel_h):
- *             for j in range(kernel_w):             # <<<<<<<<<<<<<<
- *                 #  image range
- *                 #
+ *     if broadcast_filter == 0:
+ *        for ch in range(c):
+ *            for i in range(kernel_h):             # <<<<<<<<<<<<<<
+ *                for j in range(kernel_w):
+ *                    #  image range
  */
-      __pyx_t_5 = __pyx_v_kernel_w;
-      for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_5; __pyx_t_6+=1) {
-        __pyx_v_j = __pyx_t_6;
+      __pyx_t_4 = __pyx_v_kernel_h;
+      for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
+        __pyx_v_i = __pyx_t_5;
 
-        /* "minica/optimize/conv_func.pyx":27
- *                 #  image range
- *                 #
- *                 r_index = ch * filter_channel_total + i * kernel_w + j             # <<<<<<<<<<<<<<
- *                 pos_dst = r_index * result_total
- *                 pos_src = ch * w * h + i * w + j
+        /* "minica/optimize/conv_func.pyx":25
+ *        for ch in range(c):
+ *            for i in range(kernel_h):
+ *                for j in range(kernel_w):             # <<<<<<<<<<<<<<
+ *                    #  image range
+ *                    #
  */
-        __pyx_v_r_index = (((__pyx_v_ch * __pyx_v_filter_channel_total) + (__pyx_v_i * __pyx_v_kernel_w)) + __pyx_v_j);
+        __pyx_t_6 = __pyx_v_kernel_w;
+        for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
+          __pyx_v_j = __pyx_t_7;
 
-        /* "minica/optimize/conv_func.pyx":28
- *                 #
- *                 r_index = ch * filter_channel_total + i * kernel_w + j
- *                 pos_dst = r_index * result_total             # <<<<<<<<<<<<<<
- *                 pos_src = ch * w * h + i * w + j
- *                 for k in range(result_h):
+          /* "minica/optimize/conv_func.pyx":28
+ *                    #  image range
+ *                    #
+ *                    r_index = ch * filter_channel_total + i * kernel_w + j             # <<<<<<<<<<<<<<
+ *                    pos_dst = r_index * result_total
+ *                    pos_src = ch * w * h + i * w + j
  */
-        __pyx_v_pos_dst = (__pyx_v_r_index * __pyx_v_result_total);
+          __pyx_v_r_index = (((__pyx_v_ch * __pyx_v_filter_channel_total) + (__pyx_v_i * __pyx_v_kernel_w)) + __pyx_v_j);
 
-        /* "minica/optimize/conv_func.pyx":29
- *                 r_index = ch * filter_channel_total + i * kernel_w + j
- *                 pos_dst = r_index * result_total
- *                 pos_src = ch * w * h + i * w + j             # <<<<<<<<<<<<<<
- *                 for k in range(result_h):
- *                     for l in range(result_w):
+          /* "minica/optimize/conv_func.pyx":29
+ *                    #
+ *                    r_index = ch * filter_channel_total + i * kernel_w + j
+ *                    pos_dst = r_index * result_total             # <<<<<<<<<<<<<<
+ *                    pos_src = ch * w * h + i * w + j
+ *                    for k in range(result_h):
  */
-        __pyx_v_pos_src = ((((__pyx_v_ch * __pyx_v_w) * __pyx_v_h) + (__pyx_v_i * __pyx_v_w)) + __pyx_v_j);
+          __pyx_v_pos_dst = (__pyx_v_r_index * __pyx_v_result_total);
 
-        /* "minica/optimize/conv_func.pyx":30
- *                 pos_dst = r_index * result_total
- *                 pos_src = ch * w * h + i * w + j
- *                 for k in range(result_h):             # <<<<<<<<<<<<<<
- *                     for l in range(result_w):
- *                         indices[pos_dst] = pos_src
+          /* "minica/optimize/conv_func.pyx":30
+ *                    r_index = ch * filter_channel_total + i * kernel_w + j
+ *                    pos_dst = r_index * result_total
+ *                    pos_src = ch * w * h + i * w + j             # <<<<<<<<<<<<<<
+ *                    for k in range(result_h):
+ *                        for l in range(result_w):
  */
-        __pyx_t_7 = __pyx_v_result_h;
-        for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
-          __pyx_v_k = __pyx_t_8;
+          __pyx_v_pos_src = ((((__pyx_v_ch * __pyx_v_w) * __pyx_v_h) + (__pyx_v_i * __pyx_v_w)) + __pyx_v_j);
 
           /* "minica/optimize/conv_func.pyx":31
- *                 pos_src = ch * w * h + i * w + j
- *                 for k in range(result_h):
- *                     for l in range(result_w):             # <<<<<<<<<<<<<<
- *                         indices[pos_dst] = pos_src
- *                         pos_dst += 1
+ *                    pos_dst = r_index * result_total
+ *                    pos_src = ch * w * h + i * w + j
+ *                    for k in range(result_h):             # <<<<<<<<<<<<<<
+ *                        for l in range(result_w):
+ *                            indices[pos_dst] = pos_src
  */
-          __pyx_t_9 = __pyx_v_result_w;
-          for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
-            __pyx_v_l = __pyx_t_10;
+          __pyx_t_8 = __pyx_v_result_h;
+          for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
+            __pyx_v_k = __pyx_t_9;
 
             /* "minica/optimize/conv_func.pyx":32
- *                 for k in range(result_h):
- *                     for l in range(result_w):
- *                         indices[pos_dst] = pos_src             # <<<<<<<<<<<<<<
- *                         pos_dst += 1
- *                         pos_src += 1
+ *                    pos_src = ch * w * h + i * w + j
+ *                    for k in range(result_h):
+ *                        for l in range(result_w):             # <<<<<<<<<<<<<<
+ *                            indices[pos_dst] = pos_src
+ *                            pos_dst += 1
  */
-            __pyx_t_11 = __pyx_v_pos_dst;
-            *((int *) ( /* dim=0 */ (__pyx_v_indices.data + __pyx_t_11 * __pyx_v_indices.strides[0]) )) = __pyx_v_pos_src;
+            __pyx_t_10 = __pyx_v_result_w;
+            for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
+              __pyx_v_l = __pyx_t_11;
 
-            /* "minica/optimize/conv_func.pyx":33
- *                     for l in range(result_w):
- *                         indices[pos_dst] = pos_src
- *                         pos_dst += 1             # <<<<<<<<<<<<<<
- *                         pos_src += 1
- *                     pos_src += kernel_w - 1
+              /* "minica/optimize/conv_func.pyx":33
+ *                    for k in range(result_h):
+ *                        for l in range(result_w):
+ *                            indices[pos_dst] = pos_src             # <<<<<<<<<<<<<<
+ *                            pos_dst += 1
+ *                            pos_src += 1
  */
-            __pyx_v_pos_dst = (__pyx_v_pos_dst + 1);
+              __pyx_t_12 = __pyx_v_pos_dst;
+              *((int *) ( /* dim=0 */ (__pyx_v_indices.data + __pyx_t_12 * __pyx_v_indices.strides[0]) )) = __pyx_v_pos_src;
 
-            /* "minica/optimize/conv_func.pyx":34
- *                         indices[pos_dst] = pos_src
- *                         pos_dst += 1
- *                         pos_src += 1             # <<<<<<<<<<<<<<
- *                     pos_src += kernel_w - 1
+              /* "minica/optimize/conv_func.pyx":34
+ *                        for l in range(result_w):
+ *                            indices[pos_dst] = pos_src
+ *                            pos_dst += 1             # <<<<<<<<<<<<<<
+ *                            pos_src += 1
+ *                        pos_src += kernel_w - 1
+ */
+              __pyx_v_pos_dst = (__pyx_v_pos_dst + 1);
+
+              /* "minica/optimize/conv_func.pyx":35
+ *                            indices[pos_dst] = pos_src
+ *                            pos_dst += 1
+ *                            pos_src += 1             # <<<<<<<<<<<<<<
+ *                        pos_src += kernel_w - 1
+ *     else:
+ */
+              __pyx_v_pos_src = (__pyx_v_pos_src + 1);
+            }
+
+            /* "minica/optimize/conv_func.pyx":36
+ *                            pos_dst += 1
+ *                            pos_src += 1
+ *                        pos_src += kernel_w - 1             # <<<<<<<<<<<<<<
+ *     else:
+ *        for i in range(kernel_h):
+ */
+            __pyx_v_pos_src = (__pyx_v_pos_src + (__pyx_v_kernel_w - 1));
+          }
+        }
+      }
+    }
+
+    /* "minica/optimize/conv_func.pyx":22
+ *     cdef:
+ *          int i, j, k, l, pos_dst, pos_src, ch, r_index
+ *     if broadcast_filter == 0:             # <<<<<<<<<<<<<<
+ *        for ch in range(c):
+ *            for i in range(kernel_h):
+ */
+    goto __pyx_L3;
+  }
+
+  /* "minica/optimize/conv_func.pyx":38
+ *                        pos_src += kernel_w - 1
+ *     else:
+ *        for i in range(kernel_h):             # <<<<<<<<<<<<<<
+ *            for j in range(kernel_w):
+ *                #  image range
+ */
+  /*else*/ {
+    __pyx_t_2 = __pyx_v_kernel_h;
+    for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
+      __pyx_v_i = __pyx_t_3;
+
+      /* "minica/optimize/conv_func.pyx":39
+ *     else:
+ *        for i in range(kernel_h):
+ *            for j in range(kernel_w):             # <<<<<<<<<<<<<<
+ *                #  image range
+ *                #
+ */
+      __pyx_t_4 = __pyx_v_kernel_w;
+      for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
+        __pyx_v_j = __pyx_t_5;
+
+        /* "minica/optimize/conv_func.pyx":42
+ *                #  image range
+ *                #
+ *                for ch in range(c):             # <<<<<<<<<<<<<<
+ *                    r_index =  i * kernel_w + j
+ *                    pos_dst = r_index * result_total * c + ch * result_total
+ */
+        __pyx_t_6 = __pyx_v_c;
+        for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
+          __pyx_v_ch = __pyx_t_7;
+
+          /* "minica/optimize/conv_func.pyx":43
+ *                #
+ *                for ch in range(c):
+ *                    r_index =  i * kernel_w + j             # <<<<<<<<<<<<<<
+ *                    pos_dst = r_index * result_total * c + ch * result_total
+ *                    pos_src = ch * h * w + i * w + j
+ */
+          __pyx_v_r_index = ((__pyx_v_i * __pyx_v_kernel_w) + __pyx_v_j);
+
+          /* "minica/optimize/conv_func.pyx":44
+ *                for ch in range(c):
+ *                    r_index =  i * kernel_w + j
+ *                    pos_dst = r_index * result_total * c + ch * result_total             # <<<<<<<<<<<<<<
+ *                    pos_src = ch * h * w + i * w + j
+ *                    for k in range(result_h):
+ */
+          __pyx_v_pos_dst = (((__pyx_v_r_index * __pyx_v_result_total) * __pyx_v_c) + (__pyx_v_ch * __pyx_v_result_total));
+
+          /* "minica/optimize/conv_func.pyx":45
+ *                    r_index =  i * kernel_w + j
+ *                    pos_dst = r_index * result_total * c + ch * result_total
+ *                    pos_src = ch * h * w + i * w + j             # <<<<<<<<<<<<<<
+ *                    for k in range(result_h):
+ *                        for l in range(result_w):
+ */
+          __pyx_v_pos_src = ((((__pyx_v_ch * __pyx_v_h) * __pyx_v_w) + (__pyx_v_i * __pyx_v_w)) + __pyx_v_j);
+
+          /* "minica/optimize/conv_func.pyx":46
+ *                    pos_dst = r_index * result_total * c + ch * result_total
+ *                    pos_src = ch * h * w + i * w + j
+ *                    for k in range(result_h):             # <<<<<<<<<<<<<<
+ *                        for l in range(result_w):
+ *                            indices[pos_dst] = pos_src
+ */
+          __pyx_t_8 = __pyx_v_result_h;
+          for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
+            __pyx_v_k = __pyx_t_9;
+
+            /* "minica/optimize/conv_func.pyx":47
+ *                    pos_src = ch * h * w + i * w + j
+ *                    for k in range(result_h):
+ *                        for l in range(result_w):             # <<<<<<<<<<<<<<
+ *                            indices[pos_dst] = pos_src
+ *                            pos_dst += 1
+ */
+            __pyx_t_10 = __pyx_v_result_w;
+            for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
+              __pyx_v_l = __pyx_t_11;
+
+              /* "minica/optimize/conv_func.pyx":48
+ *                    for k in range(result_h):
+ *                        for l in range(result_w):
+ *                            indices[pos_dst] = pos_src             # <<<<<<<<<<<<<<
+ *                            pos_dst += 1
+ *                            pos_src += 1
+ */
+              __pyx_t_13 = __pyx_v_pos_dst;
+              *((int *) ( /* dim=0 */ (__pyx_v_indices.data + __pyx_t_13 * __pyx_v_indices.strides[0]) )) = __pyx_v_pos_src;
+
+              /* "minica/optimize/conv_func.pyx":49
+ *                        for l in range(result_w):
+ *                            indices[pos_dst] = pos_src
+ *                            pos_dst += 1             # <<<<<<<<<<<<<<
+ *                            pos_src += 1
+ *                        pos_src += kernel_w - 1
+ */
+              __pyx_v_pos_dst = (__pyx_v_pos_dst + 1);
+
+              /* "minica/optimize/conv_func.pyx":50
+ *                            indices[pos_dst] = pos_src
+ *                            pos_dst += 1
+ *                            pos_src += 1             # <<<<<<<<<<<<<<
+ *                        pos_src += kernel_w - 1
  *     return 0
  */
-            __pyx_v_pos_src = (__pyx_v_pos_src + 1);
-          }
+              __pyx_v_pos_src = (__pyx_v_pos_src + 1);
+            }
 
-          /* "minica/optimize/conv_func.pyx":35
- *                         pos_dst += 1
- *                         pos_src += 1
- *                     pos_src += kernel_w - 1             # <<<<<<<<<<<<<<
+            /* "minica/optimize/conv_func.pyx":51
+ *                            pos_dst += 1
+ *                            pos_src += 1
+ *                        pos_src += kernel_w - 1             # <<<<<<<<<<<<<<
  *     return 0
  * 
  */
-          __pyx_v_pos_src = (__pyx_v_pos_src + (__pyx_v_kernel_w - 1));
+            __pyx_v_pos_src = (__pyx_v_pos_src + (__pyx_v_kernel_w - 1));
+          }
         }
       }
     }
   }
+  __pyx_L3:;
 
-  /* "minica/optimize/conv_func.pyx":36
- *                         pos_src += 1
- *                     pos_src += kernel_w - 1
+  /* "minica/optimize/conv_func.pyx":52
+ *                            pos_src += 1
+ *                        pos_src += kernel_w - 1
  *     return 0             # <<<<<<<<<<<<<<
  * 
  * #  3d array  im2col
@@ -1968,7 +2137,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_im2col_indices(int __pyx_v_c, in
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef int im2col_indices(int c, int h, int w, int [:] indices,             # <<<<<<<<<<<<<<
- *                          int kernel_h, int kernel_w) nogil:
+ *                          int kernel_h, int kernel_w, int broadcast_filter=0) nogil:
  *     cdef:
  */
 
@@ -1986,16 +2155,18 @@ static PyObject *__pyx_pw_6minica_8optimize_9conv_func_1im2col_indices(PyObject 
   __Pyx_memviewslice __pyx_v_indices = { 0, 0, { 0 }, { 0 }, { 0 } };
   int __pyx_v_kernel_h;
   int __pyx_v_kernel_w;
+  int __pyx_v_broadcast_filter;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("im2col_indices (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_c,&__pyx_n_s_h,&__pyx_n_s_w,&__pyx_n_s_indices,&__pyx_n_s_kernel_h,&__pyx_n_s_kernel_w,0};
-    PyObject* values[6] = {0,0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_c,&__pyx_n_s_h,&__pyx_n_s_w,&__pyx_n_s_indices,&__pyx_n_s_kernel_h,&__pyx_n_s_kernel_w,&__pyx_n_s_broadcast_filter,0};
+    PyObject* values[7] = {0,0,0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
         case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
@@ -2013,41 +2184,49 @@ static PyObject *__pyx_pw_6minica_8optimize_9conv_func_1im2col_indices(PyObject 
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_h)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("im2col_indices", 1, 6, 6, 1); __PYX_ERR(0, 10, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("im2col_indices", 0, 6, 7, 1); __PYX_ERR(0, 10, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_w)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("im2col_indices", 1, 6, 6, 2); __PYX_ERR(0, 10, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("im2col_indices", 0, 6, 7, 2); __PYX_ERR(0, 10, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_indices)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("im2col_indices", 1, 6, 6, 3); __PYX_ERR(0, 10, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("im2col_indices", 0, 6, 7, 3); __PYX_ERR(0, 10, __pyx_L3_error)
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_kernel_h)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("im2col_indices", 1, 6, 6, 4); __PYX_ERR(0, 10, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("im2col_indices", 0, 6, 7, 4); __PYX_ERR(0, 10, __pyx_L3_error)
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_kernel_w)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("im2col_indices", 1, 6, 6, 5); __PYX_ERR(0, 10, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("im2col_indices", 0, 6, 7, 5); __PYX_ERR(0, 10, __pyx_L3_error)
+        }
+        case  6:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_broadcast_filter);
+          if (value) { values[6] = value; kw_args--; }
         }
       }
       if (unlikely(kw_args > 0)) {
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "im2col_indices") < 0)) __PYX_ERR(0, 10, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
-      goto __pyx_L5_argtuple_error;
     } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
-      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
-      values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
-      values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+      switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
+        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+        values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+        values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+        values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        break;
+        default: goto __pyx_L5_argtuple_error;
+      }
     }
     __pyx_v_c = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_c == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 10, __pyx_L3_error)
     __pyx_v_h = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_h == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 10, __pyx_L3_error)
@@ -2055,38 +2234,48 @@ static PyObject *__pyx_pw_6minica_8optimize_9conv_func_1im2col_indices(PyObject 
     __pyx_v_indices = __Pyx_PyObject_to_MemoryviewSlice_ds_int(values[3]); if (unlikely(!__pyx_v_indices.memview)) __PYX_ERR(0, 10, __pyx_L3_error)
     __pyx_v_kernel_h = __Pyx_PyInt_As_int(values[4]); if (unlikely((__pyx_v_kernel_h == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
     __pyx_v_kernel_w = __Pyx_PyInt_As_int(values[5]); if (unlikely((__pyx_v_kernel_w == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
+    if (values[6]) {
+      __pyx_v_broadcast_filter = __Pyx_PyInt_As_int(values[6]); if (unlikely((__pyx_v_broadcast_filter == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 11, __pyx_L3_error)
+    } else {
+      __pyx_v_broadcast_filter = ((int)0);
+    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("im2col_indices", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 10, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("im2col_indices", 0, 6, 7, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 10, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("minica.optimize.conv_func.im2col_indices", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6minica_8optimize_9conv_func_im2col_indices(__pyx_self, __pyx_v_c, __pyx_v_h, __pyx_v_w, __pyx_v_indices, __pyx_v_kernel_h, __pyx_v_kernel_w);
+  __pyx_r = __pyx_pf_6minica_8optimize_9conv_func_im2col_indices(__pyx_self, __pyx_v_c, __pyx_v_h, __pyx_v_w, __pyx_v_indices, __pyx_v_kernel_h, __pyx_v_kernel_w, __pyx_v_broadcast_filter);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6minica_8optimize_9conv_func_im2col_indices(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_c, int __pyx_v_h, int __pyx_v_w, __Pyx_memviewslice __pyx_v_indices, int __pyx_v_kernel_h, int __pyx_v_kernel_w) {
+static PyObject *__pyx_pf_6minica_8optimize_9conv_func_im2col_indices(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_c, int __pyx_v_h, int __pyx_v_w, __Pyx_memviewslice __pyx_v_indices, int __pyx_v_kernel_h, int __pyx_v_kernel_w, int __pyx_v_broadcast_filter) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
+  int __pyx_t_1;
+  struct __pyx_opt_args_6minica_8optimize_9conv_func_im2col_indices __pyx_t_2;
+  PyObject *__pyx_t_3 = NULL;
   __Pyx_RefNannySetupContext("im2col_indices", 0);
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(!__pyx_v_indices.memview)) { __Pyx_RaiseUnboundLocalError("indices"); __PYX_ERR(0, 10, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_6minica_8optimize_9conv_func_im2col_indices(__pyx_v_c, __pyx_v_h, __pyx_v_w, __pyx_v_indices, __pyx_v_kernel_h, __pyx_v_kernel_w, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 10, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __pyx_t_2.__pyx_n = 1;
+  __pyx_t_2.broadcast_filter = __pyx_v_broadcast_filter;
+  __pyx_t_1 = __pyx_f_6minica_8optimize_9conv_func_im2col_indices(__pyx_v_c, __pyx_v_h, __pyx_v_w, __pyx_v_indices, __pyx_v_kernel_h, __pyx_v_kernel_w, 0, &__pyx_t_2); 
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
   goto __pyx_L0;
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_AddTraceback("minica.optimize.conv_func.im2col_indices", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -2096,15 +2285,15 @@ static PyObject *__pyx_pf_6minica_8optimize_9conv_func_im2col_indices(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "minica/optimize/conv_func.pyx":41
+/* "minica/optimize/conv_func.pyx":57
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * cdef int im2col2_core(float [:,:,:] src, float [:,:] dst, int [:] indices) nogil:             # <<<<<<<<<<<<<<
+ * cdef int im2col(float [:,:,:] src, float [:,:] dst, int [:] indices) nogil:             # <<<<<<<<<<<<<<
  *     cdef:
  *         float *src_ptr = &src[0][0][0]
  */
 
-static int __pyx_f_6minica_8optimize_9conv_func_im2col2_core(__Pyx_memviewslice __pyx_v_src, __Pyx_memviewslice __pyx_v_dst, __Pyx_memviewslice __pyx_v_indices) {
+static int __pyx_f_6minica_8optimize_9conv_func_im2col(__Pyx_memviewslice __pyx_v_src, __Pyx_memviewslice __pyx_v_dst, __Pyx_memviewslice __pyx_v_indices) {
   float *__pyx_v_src_ptr;
   float *__pyx_v_dst_ptr;
   int *__pyx_v_indices_ptr;
@@ -2119,8 +2308,8 @@ static int __pyx_f_6minica_8optimize_9conv_func_im2col2_core(__Pyx_memviewslice 
   int __pyx_t_6;
   int __pyx_t_7;
 
-  /* "minica/optimize/conv_func.pyx":43
- * cdef int im2col2_core(float [:,:,:] src, float [:,:] dst, int [:] indices) nogil:
+  /* "minica/optimize/conv_func.pyx":59
+ * cdef int im2col(float [:,:,:] src, float [:,:] dst, int [:] indices) nogil:
  *     cdef:
  *         float *src_ptr = &src[0][0][0]             # <<<<<<<<<<<<<<
  *         float *dst_ptr = &dst[0][0]
@@ -2143,7 +2332,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_im2col2_core(__Pyx_memviewslice 
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 43, __pyx_L1_error)
+        __PYX_ERR(0, 59, __pyx_L1_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -2173,7 +2362,7 @@ __pyx_t_2.data = __pyx_t_1.data;
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 43, __pyx_L1_error)
+        __PYX_ERR(0, 59, __pyx_L1_error)
     }
         __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -2187,7 +2376,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
   __pyx_v_src_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_3 * __pyx_t_2.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
 
-  /* "minica/optimize/conv_func.pyx":44
+  /* "minica/optimize/conv_func.pyx":60
  *     cdef:
  *         float *src_ptr = &src[0][0][0]
  *         float *dst_ptr = &dst[0][0]             # <<<<<<<<<<<<<<
@@ -2211,7 +2400,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 44, __pyx_L1_error)
+        __PYX_ERR(0, 60, __pyx_L1_error)
     }
         __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -2224,7 +2413,7 @@ __pyx_t_4 = 0;
   __pyx_v_dst_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_4 * __pyx_t_2.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
 
-  /* "minica/optimize/conv_func.pyx":45
+  /* "minica/optimize/conv_func.pyx":61
  *         float *src_ptr = &src[0][0][0]
  *         float *dst_ptr = &dst[0][0]
  *         int *indices_ptr = &indices[0]             # <<<<<<<<<<<<<<
@@ -2234,17 +2423,17 @@ __pyx_t_4 = 0;
   __pyx_t_5 = 0;
   __pyx_v_indices_ptr = (&(*((int *) ( /* dim=0 */ (__pyx_v_indices.data + __pyx_t_5 * __pyx_v_indices.strides[0]) ))));
 
-  /* "minica/optimize/conv_func.pyx":46
+  /* "minica/optimize/conv_func.pyx":62
  *         float *dst_ptr = &dst[0][0]
  *         int *indices_ptr = &indices[0]
  *         int l = indices.shape[0]             # <<<<<<<<<<<<<<
  *         int i
- *         int pos
+ * 
  */
   __pyx_v_l = (__pyx_v_indices.shape[0]);
 
-  /* "minica/optimize/conv_func.pyx":50
- *         int pos
+  /* "minica/optimize/conv_func.pyx":65
+ *         int i
  * 
  *     for i in range(l):             # <<<<<<<<<<<<<<
  *         dst_ptr[i] = src_ptr[indices_ptr[i]]
@@ -2254,7 +2443,7 @@ __pyx_t_4 = 0;
   for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
     __pyx_v_i = __pyx_t_7;
 
-    /* "minica/optimize/conv_func.pyx":51
+    /* "minica/optimize/conv_func.pyx":66
  * 
  *     for i in range(l):
  *         dst_ptr[i] = src_ptr[indices_ptr[i]]             # <<<<<<<<<<<<<<
@@ -2264,20 +2453,20 @@ __pyx_t_4 = 0;
     (__pyx_v_dst_ptr[__pyx_v_i]) = (__pyx_v_src_ptr[(__pyx_v_indices_ptr[__pyx_v_i])]);
   }
 
-  /* "minica/optimize/conv_func.pyx":53
+  /* "minica/optimize/conv_func.pyx":68
  *         dst_ptr[i] = src_ptr[indices_ptr[i]]
  * 
  *     return 0             # <<<<<<<<<<<<<<
  * 
- * #  3d array  im2col
+ * @cython.boundscheck(False)
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "minica/optimize/conv_func.pyx":41
+  /* "minica/optimize/conv_func.pyx":57
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * cdef int im2col2_core(float [:,:,:] src, float [:,:] dst, int [:] indices) nogil:             # <<<<<<<<<<<<<<
+ * cdef int im2col(float [:,:,:] src, float [:,:] dst, int [:] indices) nogil:             # <<<<<<<<<<<<<<
  *     cdef:
  *         float *src_ptr = &src[0][0][0]
  */
@@ -2286,1246 +2475,13 @@ __pyx_t_4 = 0;
   __pyx_L1_error:;
   __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
   __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
-  __Pyx_WriteUnraisable("minica.optimize.conv_func.im2col2_core", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 1);
+  __Pyx_WriteUnraisable("minica.optimize.conv_func.im2col", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 1);
   __pyx_r = 0;
   __pyx_L0:;
   return __pyx_r;
 }
 
-/* "minica/optimize/conv_func.pyx":58
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * cdef int im2col_core(float [:,:,:] src, float [:,:] dst,             # <<<<<<<<<<<<<<
- *                      int kernel_h, int kernel_w) nogil:
- *     cdef:
- */
-
-static int __pyx_f_6minica_8optimize_9conv_func_im2col_core(__Pyx_memviewslice __pyx_v_src, __Pyx_memviewslice __pyx_v_dst, int __pyx_v_kernel_h, int __pyx_v_kernel_w) {
-  float *__pyx_v_src_ptr;
-  float *__pyx_v_dst_ptr;
-  int __pyx_v_c;
-  int __pyx_v_h;
-  int __pyx_v_w;
-  int __pyx_v_result_h;
-  int __pyx_v_result_w;
-  int __pyx_v_result_total;
-  int __pyx_v_filter_channel_total;
-  int __pyx_v_i;
-  int __pyx_v_j;
-  int __pyx_v_ch;
-  int __pyx_v_r_index;
-  float *__pyx_v_current_row;
-  float *__pyx_v_src_submatrix;
-  int __pyx_r;
-  __Pyx_memviewslice __pyx_t_1 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  __Pyx_memviewslice __pyx_t_2 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  Py_ssize_t __pyx_t_3;
-  Py_ssize_t __pyx_t_4;
-  int __pyx_t_5;
-  int __pyx_t_6;
-  int __pyx_t_7;
-  int __pyx_t_8;
-  int __pyx_t_9;
-  int __pyx_t_10;
-  int __pyx_t_11;
-  int __pyx_t_12;
-
-  /* "minica/optimize/conv_func.pyx":61
- *                      int kernel_h, int kernel_w) nogil:
- *     cdef:
- *         float *src_ptr = &src[0][0][0]             # <<<<<<<<<<<<<<
- *         float *dst_ptr = &dst[0][0]
- * 
- */
-  __pyx_t_1.data = __pyx_v_src.data;
-  __pyx_t_1.memview = __pyx_v_src.memview;
-  __PYX_INC_MEMVIEW(&__pyx_t_1, 0);
-  {
-    Py_ssize_t __pyx_tmp_idx = 0;
-    Py_ssize_t __pyx_tmp_shape = __pyx_v_src.shape[0];
-    Py_ssize_t __pyx_tmp_stride = __pyx_v_src.strides[0];
-    if (0 && (__pyx_tmp_idx < 0))
-        __pyx_tmp_idx += __pyx_tmp_shape;
-    if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
-            #ifdef WITH_THREAD
-            PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-            #endif
-        PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-            #ifdef WITH_THREAD
-            PyGILState_Release(__pyx_gilstate_save);
-            #endif
-        __PYX_ERR(0, 61, __pyx_L1_error)
-    }
-        __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
-}
-
-__pyx_t_1.shape[0] = __pyx_v_src.shape[1];
-__pyx_t_1.strides[0] = __pyx_v_src.strides[1];
-    __pyx_t_1.suboffsets[0] = -1;
-
-__pyx_t_1.shape[1] = __pyx_v_src.shape[2];
-__pyx_t_1.strides[1] = __pyx_v_src.strides[2];
-    __pyx_t_1.suboffsets[1] = -1;
-
-__pyx_t_2.data = __pyx_t_1.data;
-  __pyx_t_2.memview = __pyx_t_1.memview;
-  __PYX_INC_MEMVIEW(&__pyx_t_2, 0);
-  {
-    Py_ssize_t __pyx_tmp_idx = 0;
-    Py_ssize_t __pyx_tmp_shape = __pyx_t_1.shape[0];
-    Py_ssize_t __pyx_tmp_stride = __pyx_t_1.strides[0];
-    if (0 && (__pyx_tmp_idx < 0))
-        __pyx_tmp_idx += __pyx_tmp_shape;
-    if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
-            #ifdef WITH_THREAD
-            PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-            #endif
-        PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-            #ifdef WITH_THREAD
-            PyGILState_Release(__pyx_gilstate_save);
-            #endif
-        __PYX_ERR(0, 61, __pyx_L1_error)
-    }
-        __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
-}
-
-__pyx_t_2.shape[0] = __pyx_t_1.shape[1];
-__pyx_t_2.strides[0] = __pyx_t_1.strides[1];
-    __pyx_t_2.suboffsets[0] = -1;
-
-__PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
-  __pyx_t_3 = 0;
-  __pyx_v_src_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_3 * __pyx_t_2.strides[0]) ))));
-  __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
-
-  /* "minica/optimize/conv_func.pyx":62
- *     cdef:
- *         float *src_ptr = &src[0][0][0]
- *         float *dst_ptr = &dst[0][0]             # <<<<<<<<<<<<<<
- * 
- *         int c = src.shape[0]
- */
-  __pyx_t_2.data = __pyx_v_dst.data;
-  __pyx_t_2.memview = __pyx_v_dst.memview;
-  __PYX_INC_MEMVIEW(&__pyx_t_2, 0);
-  {
-    Py_ssize_t __pyx_tmp_idx = 0;
-    Py_ssize_t __pyx_tmp_shape = __pyx_v_dst.shape[0];
-    Py_ssize_t __pyx_tmp_stride = __pyx_v_dst.strides[0];
-    if (0 && (__pyx_tmp_idx < 0))
-        __pyx_tmp_idx += __pyx_tmp_shape;
-    if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
-            #ifdef WITH_THREAD
-            PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-            #endif
-        PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-            #ifdef WITH_THREAD
-            PyGILState_Release(__pyx_gilstate_save);
-            #endif
-        __PYX_ERR(0, 62, __pyx_L1_error)
-    }
-        __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
-}
-
-__pyx_t_2.shape[0] = __pyx_v_dst.shape[1];
-__pyx_t_2.strides[0] = __pyx_v_dst.strides[1];
-    __pyx_t_2.suboffsets[0] = -1;
-
-__pyx_t_4 = 0;
-  __pyx_v_dst_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_4 * __pyx_t_2.strides[0]) ))));
-  __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
-
-  /* "minica/optimize/conv_func.pyx":64
- *         float *dst_ptr = &dst[0][0]
- * 
- *         int c = src.shape[0]             # <<<<<<<<<<<<<<
- *         int h = src.shape[1]
- *         int w = src.shape[2]
- */
-  __pyx_v_c = (__pyx_v_src.shape[0]);
-
-  /* "minica/optimize/conv_func.pyx":65
- * 
- *         int c = src.shape[0]
- *         int h = src.shape[1]             # <<<<<<<<<<<<<<
- *         int w = src.shape[2]
- * 
- */
-  __pyx_v_h = (__pyx_v_src.shape[1]);
-
-  /* "minica/optimize/conv_func.pyx":66
- *         int c = src.shape[0]
- *         int h = src.shape[1]
- *         int w = src.shape[2]             # <<<<<<<<<<<<<<
- * 
- *         int result_h = h - kernel_h + 1
- */
-  __pyx_v_w = (__pyx_v_src.shape[2]);
-
-  /* "minica/optimize/conv_func.pyx":68
- *         int w = src.shape[2]
- * 
- *         int result_h = h - kernel_h + 1             # <<<<<<<<<<<<<<
- *         int result_w = w - kernel_w + 1
- * 
- */
-  __pyx_v_result_h = ((__pyx_v_h - __pyx_v_kernel_h) + 1);
-
-  /* "minica/optimize/conv_func.pyx":69
- * 
- *         int result_h = h - kernel_h + 1
- *         int result_w = w - kernel_w + 1             # <<<<<<<<<<<<<<
- * 
- *         int result_total = result_h * result_w
- */
-  __pyx_v_result_w = ((__pyx_v_w - __pyx_v_kernel_w) + 1);
-
-  /* "minica/optimize/conv_func.pyx":71
- *         int result_w = w - kernel_w + 1
- * 
- *         int result_total = result_h * result_w             # <<<<<<<<<<<<<<
- *         int filter_channel_total = kernel_h * kernel_w
- * 
- */
-  __pyx_v_result_total = (__pyx_v_result_h * __pyx_v_result_w);
-
-  /* "minica/optimize/conv_func.pyx":72
- * 
- *         int result_total = result_h * result_w
- *         int filter_channel_total = kernel_h * kernel_w             # <<<<<<<<<<<<<<
- * 
- *     if dst.shape[0] != filter_channel_total * c or \
- */
-  __pyx_v_filter_channel_total = (__pyx_v_kernel_h * __pyx_v_kernel_w);
-
-  /* "minica/optimize/conv_func.pyx":74
- *         int filter_channel_total = kernel_h * kernel_w
- * 
- *     if dst.shape[0] != filter_channel_total * c or \             # <<<<<<<<<<<<<<
- *        dst.shape[1] != result_total:
- *         # dst array has different shape
- */
-  __pyx_t_6 = (((__pyx_v_dst.shape[0]) != (__pyx_v_filter_channel_total * __pyx_v_c)) != 0);
-  if (!__pyx_t_6) {
-  } else {
-    __pyx_t_5 = __pyx_t_6;
-    goto __pyx_L4_bool_binop_done;
-  }
-
-  /* "minica/optimize/conv_func.pyx":75
- * 
- *     if dst.shape[0] != filter_channel_total * c or \
- *        dst.shape[1] != result_total:             # <<<<<<<<<<<<<<
- *         # dst array has different shape
- *         return -1
- */
-  __pyx_t_6 = (((__pyx_v_dst.shape[1]) != __pyx_v_result_total) != 0);
-  __pyx_t_5 = __pyx_t_6;
-  __pyx_L4_bool_binop_done:;
-
-  /* "minica/optimize/conv_func.pyx":74
- *         int filter_channel_total = kernel_h * kernel_w
- * 
- *     if dst.shape[0] != filter_channel_total * c or \             # <<<<<<<<<<<<<<
- *        dst.shape[1] != result_total:
- *         # dst array has different shape
- */
-  if (__pyx_t_5) {
-
-    /* "minica/optimize/conv_func.pyx":77
- *        dst.shape[1] != result_total:
- *         # dst array has different shape
- *         return -1             # <<<<<<<<<<<<<<
- * 
- *     # copy row by row
- */
-    __pyx_r = -1;
-    goto __pyx_L0;
-
-    /* "minica/optimize/conv_func.pyx":74
- *         int filter_channel_total = kernel_h * kernel_w
- * 
- *     if dst.shape[0] != filter_channel_total * c or \             # <<<<<<<<<<<<<<
- *        dst.shape[1] != result_total:
- *         # dst array has different shape
- */
-  }
-
-  /* "minica/optimize/conv_func.pyx":83
- *         int i, j, ch, n, r_index, img_offset
- *         float *current_row
- *         float *src_submatrix = src_ptr             # <<<<<<<<<<<<<<
- *     for ch in range(c):
- *         for i in range(kernel_h):
- */
-  __pyx_v_src_submatrix = __pyx_v_src_ptr;
-
-  /* "minica/optimize/conv_func.pyx":84
- *         float *current_row
- *         float *src_submatrix = src_ptr
- *     for ch in range(c):             # <<<<<<<<<<<<<<
- *         for i in range(kernel_h):
- *             for j in range(kernel_w):
- */
-  __pyx_t_7 = __pyx_v_c;
-  for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
-    __pyx_v_ch = __pyx_t_8;
-
-    /* "minica/optimize/conv_func.pyx":85
- *         float *src_submatrix = src_ptr
- *     for ch in range(c):
- *         for i in range(kernel_h):             # <<<<<<<<<<<<<<
- *             for j in range(kernel_w):
- *                 #  image range
- */
-    __pyx_t_9 = __pyx_v_kernel_h;
-    for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
-      __pyx_v_i = __pyx_t_10;
-
-      /* "minica/optimize/conv_func.pyx":86
- *     for ch in range(c):
- *         for i in range(kernel_h):
- *             for j in range(kernel_w):             # <<<<<<<<<<<<<<
- *                 #  image range
- *                 #
- */
-      __pyx_t_11 = __pyx_v_kernel_w;
-      for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
-        __pyx_v_j = __pyx_t_12;
-
-        /* "minica/optimize/conv_func.pyx":89
- *                 #  image range
- *                 #
- *                 r_index = ch * filter_channel_total + i * kernel_w + j             # <<<<<<<<<<<<<<
- *                 current_row = dst_ptr + r_index * result_total
- *                 src_submatrix = src_ptr + ch * w * h + i * w + j
- */
-        __pyx_v_r_index = (((__pyx_v_ch * __pyx_v_filter_channel_total) + (__pyx_v_i * __pyx_v_kernel_w)) + __pyx_v_j);
-
-        /* "minica/optimize/conv_func.pyx":90
- *                 #
- *                 r_index = ch * filter_channel_total + i * kernel_w + j
- *                 current_row = dst_ptr + r_index * result_total             # <<<<<<<<<<<<<<
- *                 src_submatrix = src_ptr + ch * w * h + i * w + j
- *                 #  slacpy  (~10%)
- */
-        __pyx_v_current_row = (__pyx_v_dst_ptr + (__pyx_v_r_index * __pyx_v_result_total));
-
-        /* "minica/optimize/conv_func.pyx":91
- *                 r_index = ch * filter_channel_total + i * kernel_w + j
- *                 current_row = dst_ptr + r_index * result_total
- *                 src_submatrix = src_ptr + ch * w * h + i * w + j             # <<<<<<<<<<<<<<
- *                 #  slacpy  (~10%)
- *                 lapack.slacpy('A', &result_w, &result_h,
- */
-        __pyx_v_src_submatrix = (((__pyx_v_src_ptr + ((__pyx_v_ch * __pyx_v_w) * __pyx_v_h)) + (__pyx_v_i * __pyx_v_w)) + __pyx_v_j);
-
-        /* "minica/optimize/conv_func.pyx":93
- *                 src_submatrix = src_ptr + ch * w * h + i * w + j
- *                 #  slacpy  (~10%)
- *                 lapack.slacpy('A', &result_w, &result_h,             # <<<<<<<<<<<<<<
- *                               src_submatrix, &h, current_row, &result_h)
- *     return 0
- */
-        __pyx_f_5scipy_6linalg_13cython_lapack_slacpy(((char *)"A"), (&__pyx_v_result_w), (&__pyx_v_result_h), __pyx_v_src_submatrix, (&__pyx_v_h), __pyx_v_current_row, (&__pyx_v_result_h));
-      }
-    }
-  }
-
-  /* "minica/optimize/conv_func.pyx":95
- *                 lapack.slacpy('A', &result_w, &result_h,
- *                               src_submatrix, &h, current_row, &result_h)
- *     return 0             # <<<<<<<<<<<<<<
- * 
- * #  3d array  im2col
- */
-  __pyx_r = 0;
-  goto __pyx_L0;
-
-  /* "minica/optimize/conv_func.pyx":58
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * cdef int im2col_core(float [:,:,:] src, float [:,:] dst,             # <<<<<<<<<<<<<<
- *                      int kernel_h, int kernel_w) nogil:
- *     cdef:
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
-  __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
-  __Pyx_WriteUnraisable("minica.optimize.conv_func.im2col_core", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 1);
-  __pyx_r = 0;
-  __pyx_L0:;
-  return __pyx_r;
-}
-
-/* "minica/optimize/conv_func.pyx":100
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * cdef int im2col_with_pad_core(float [:,:,:] src, float [:,:] dst,             # <<<<<<<<<<<<<<
- *                               int kernel_h, int kernel_w, int pad_h, int pad_w) nogil:
- *     cdef:
- */
-
-static int __pyx_f_6minica_8optimize_9conv_func_im2col_with_pad_core(__Pyx_memviewslice __pyx_v_src, __Pyx_memviewslice __pyx_v_dst, int __pyx_v_kernel_h, int __pyx_v_kernel_w, int __pyx_v_pad_h, int __pyx_v_pad_w) {
-  float *__pyx_v_src_ptr;
-  float *__pyx_v_dst_ptr;
-  int __pyx_v_c;
-  int __pyx_v_h;
-  int __pyx_v_w;
-  int __pyx_v_result_h;
-  int __pyx_v_result_w;
-  int __pyx_v_result_total;
-  int __pyx_v_filter_channel_total;
-  int __pyx_v_i;
-  int __pyx_v_j;
-  int __pyx_v_ch;
-  int __pyx_v_k;
-  int __pyx_v_l;
-  int __pyx_v_current_offset;
-  float *__pyx_v_current_dst;
-  CYTHON_UNUSED float *__pyx_v_current_src;
-  int __pyx_v_real_i;
-  int __pyx_v_real_j;
-  int __pyx_r;
-  __Pyx_memviewslice __pyx_t_1 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  __Pyx_memviewslice __pyx_t_2 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  Py_ssize_t __pyx_t_3;
-  Py_ssize_t __pyx_t_4;
-  int __pyx_t_5;
-  int __pyx_t_6;
-  int __pyx_t_7;
-  int __pyx_t_8;
-  int __pyx_t_9;
-  int __pyx_t_10;
-  int __pyx_t_11;
-  int __pyx_t_12;
-  int __pyx_t_13;
-  int __pyx_t_14;
-  int __pyx_t_15;
-  int __pyx_t_16;
-
-  /* "minica/optimize/conv_func.pyx":103
- *                               int kernel_h, int kernel_w, int pad_h, int pad_w) nogil:
- *     cdef:
- *         float *src_ptr = &src[0][0][0]             # <<<<<<<<<<<<<<
- *         float *dst_ptr = &dst[0][0]
- * 
- */
-  __pyx_t_1.data = __pyx_v_src.data;
-  __pyx_t_1.memview = __pyx_v_src.memview;
-  __PYX_INC_MEMVIEW(&__pyx_t_1, 0);
-  {
-    Py_ssize_t __pyx_tmp_idx = 0;
-    Py_ssize_t __pyx_tmp_shape = __pyx_v_src.shape[0];
-    Py_ssize_t __pyx_tmp_stride = __pyx_v_src.strides[0];
-    if (0 && (__pyx_tmp_idx < 0))
-        __pyx_tmp_idx += __pyx_tmp_shape;
-    if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
-            #ifdef WITH_THREAD
-            PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-            #endif
-        PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-            #ifdef WITH_THREAD
-            PyGILState_Release(__pyx_gilstate_save);
-            #endif
-        __PYX_ERR(0, 103, __pyx_L1_error)
-    }
-        __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
-}
-
-__pyx_t_1.shape[0] = __pyx_v_src.shape[1];
-__pyx_t_1.strides[0] = __pyx_v_src.strides[1];
-    __pyx_t_1.suboffsets[0] = -1;
-
-__pyx_t_1.shape[1] = __pyx_v_src.shape[2];
-__pyx_t_1.strides[1] = __pyx_v_src.strides[2];
-    __pyx_t_1.suboffsets[1] = -1;
-
-__pyx_t_2.data = __pyx_t_1.data;
-  __pyx_t_2.memview = __pyx_t_1.memview;
-  __PYX_INC_MEMVIEW(&__pyx_t_2, 0);
-  {
-    Py_ssize_t __pyx_tmp_idx = 0;
-    Py_ssize_t __pyx_tmp_shape = __pyx_t_1.shape[0];
-    Py_ssize_t __pyx_tmp_stride = __pyx_t_1.strides[0];
-    if (0 && (__pyx_tmp_idx < 0))
-        __pyx_tmp_idx += __pyx_tmp_shape;
-    if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
-            #ifdef WITH_THREAD
-            PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-            #endif
-        PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-            #ifdef WITH_THREAD
-            PyGILState_Release(__pyx_gilstate_save);
-            #endif
-        __PYX_ERR(0, 103, __pyx_L1_error)
-    }
-        __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
-}
-
-__pyx_t_2.shape[0] = __pyx_t_1.shape[1];
-__pyx_t_2.strides[0] = __pyx_t_1.strides[1];
-    __pyx_t_2.suboffsets[0] = -1;
-
-__PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
-  __pyx_t_3 = 0;
-  __pyx_v_src_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_3 * __pyx_t_2.strides[0]) ))));
-  __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
-
-  /* "minica/optimize/conv_func.pyx":104
- *     cdef:
- *         float *src_ptr = &src[0][0][0]
- *         float *dst_ptr = &dst[0][0]             # <<<<<<<<<<<<<<
- * 
- *         int c = src.shape[0]
- */
-  __pyx_t_2.data = __pyx_v_dst.data;
-  __pyx_t_2.memview = __pyx_v_dst.memview;
-  __PYX_INC_MEMVIEW(&__pyx_t_2, 0);
-  {
-    Py_ssize_t __pyx_tmp_idx = 0;
-    Py_ssize_t __pyx_tmp_shape = __pyx_v_dst.shape[0];
-    Py_ssize_t __pyx_tmp_stride = __pyx_v_dst.strides[0];
-    if (0 && (__pyx_tmp_idx < 0))
-        __pyx_tmp_idx += __pyx_tmp_shape;
-    if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
-            #ifdef WITH_THREAD
-            PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-            #endif
-        PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-            #ifdef WITH_THREAD
-            PyGILState_Release(__pyx_gilstate_save);
-            #endif
-        __PYX_ERR(0, 104, __pyx_L1_error)
-    }
-        __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
-}
-
-__pyx_t_2.shape[0] = __pyx_v_dst.shape[1];
-__pyx_t_2.strides[0] = __pyx_v_dst.strides[1];
-    __pyx_t_2.suboffsets[0] = -1;
-
-__pyx_t_4 = 0;
-  __pyx_v_dst_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_4 * __pyx_t_2.strides[0]) ))));
-  __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
-
-  /* "minica/optimize/conv_func.pyx":106
- *         float *dst_ptr = &dst[0][0]
- * 
- *         int c = src.shape[0]             # <<<<<<<<<<<<<<
- *         int h = src.shape[1]
- *         int w = src.shape[2]
- */
-  __pyx_v_c = (__pyx_v_src.shape[0]);
-
-  /* "minica/optimize/conv_func.pyx":107
- * 
- *         int c = src.shape[0]
- *         int h = src.shape[1]             # <<<<<<<<<<<<<<
- *         int w = src.shape[2]
- * 
- */
-  __pyx_v_h = (__pyx_v_src.shape[1]);
-
-  /* "minica/optimize/conv_func.pyx":108
- *         int c = src.shape[0]
- *         int h = src.shape[1]
- *         int w = src.shape[2]             # <<<<<<<<<<<<<<
- * 
- *         int result_h = h - kernel_h + 1 + 2 * pad_h
- */
-  __pyx_v_w = (__pyx_v_src.shape[2]);
-
-  /* "minica/optimize/conv_func.pyx":110
- *         int w = src.shape[2]
- * 
- *         int result_h = h - kernel_h + 1 + 2 * pad_h             # <<<<<<<<<<<<<<
- *         int result_w = w - kernel_w + 1 + 2 * pad_w
- * 
- */
-  __pyx_v_result_h = (((__pyx_v_h - __pyx_v_kernel_h) + 1) + (2 * __pyx_v_pad_h));
-
-  /* "minica/optimize/conv_func.pyx":111
- * 
- *         int result_h = h - kernel_h + 1 + 2 * pad_h
- *         int result_w = w - kernel_w + 1 + 2 * pad_w             # <<<<<<<<<<<<<<
- * 
- *         int result_total = result_h * result_w
- */
-  __pyx_v_result_w = (((__pyx_v_w - __pyx_v_kernel_w) + 1) + (2 * __pyx_v_pad_w));
-
-  /* "minica/optimize/conv_func.pyx":113
- *         int result_w = w - kernel_w + 1 + 2 * pad_w
- * 
- *         int result_total = result_h * result_w             # <<<<<<<<<<<<<<
- *         int filter_channel_total = kernel_h * kernel_w
- * 
- */
-  __pyx_v_result_total = (__pyx_v_result_h * __pyx_v_result_w);
-
-  /* "minica/optimize/conv_func.pyx":114
- * 
- *         int result_total = result_h * result_w
- *         int filter_channel_total = kernel_h * kernel_w             # <<<<<<<<<<<<<<
- * 
- *     if dst.shape[0] != filter_channel_total * c or \
- */
-  __pyx_v_filter_channel_total = (__pyx_v_kernel_h * __pyx_v_kernel_w);
-
-  /* "minica/optimize/conv_func.pyx":116
- *         int filter_channel_total = kernel_h * kernel_w
- * 
- *     if dst.shape[0] != filter_channel_total * c or \             # <<<<<<<<<<<<<<
- *        dst.shape[1] != result_total:
- *         # dst array has different shape
- */
-  __pyx_t_6 = (((__pyx_v_dst.shape[0]) != (__pyx_v_filter_channel_total * __pyx_v_c)) != 0);
-  if (!__pyx_t_6) {
-  } else {
-    __pyx_t_5 = __pyx_t_6;
-    goto __pyx_L4_bool_binop_done;
-  }
-
-  /* "minica/optimize/conv_func.pyx":117
- * 
- *     if dst.shape[0] != filter_channel_total * c or \
- *        dst.shape[1] != result_total:             # <<<<<<<<<<<<<<
- *         # dst array has different shape
- *         return -1
- */
-  __pyx_t_6 = (((__pyx_v_dst.shape[1]) != __pyx_v_result_total) != 0);
-  __pyx_t_5 = __pyx_t_6;
-  __pyx_L4_bool_binop_done:;
-
-  /* "minica/optimize/conv_func.pyx":116
- *         int filter_channel_total = kernel_h * kernel_w
- * 
- *     if dst.shape[0] != filter_channel_total * c or \             # <<<<<<<<<<<<<<
- *        dst.shape[1] != result_total:
- *         # dst array has different shape
- */
-  if (__pyx_t_5) {
-
-    /* "minica/optimize/conv_func.pyx":119
- *        dst.shape[1] != result_total:
- *         # dst array has different shape
- *         return -1             # <<<<<<<<<<<<<<
- * 
- *     # copy col by col
- */
-    __pyx_r = -1;
-    goto __pyx_L0;
-
-    /* "minica/optimize/conv_func.pyx":116
- *         int filter_channel_total = kernel_h * kernel_w
- * 
- *     if dst.shape[0] != filter_channel_total * c or \             # <<<<<<<<<<<<<<
- *        dst.shape[1] != result_total:
- *         # dst array has different shape
- */
-  }
-
-  /* "minica/optimize/conv_func.pyx":125
- *         int i, j, ch, k, l
- *         int current_offset
- *         float *current_dst = dst_ptr             # <<<<<<<<<<<<<<
- *         float *current_src = src_ptr
- *         int real_i, real_j
- */
-  __pyx_v_current_dst = __pyx_v_dst_ptr;
-
-  /* "minica/optimize/conv_func.pyx":126
- *         int current_offset
- *         float *current_dst = dst_ptr
- *         float *current_src = src_ptr             # <<<<<<<<<<<<<<
- *         int real_i, real_j
- * 
- */
-  __pyx_v_current_src = __pyx_v_src_ptr;
-
-  /* "minica/optimize/conv_func.pyx":129
- *         int real_i, real_j
- * 
- *     for i in range(result_h):             # <<<<<<<<<<<<<<
- *         real_i = i - pad_h
- *         for j in range(result_w):
- */
-  __pyx_t_7 = __pyx_v_result_h;
-  for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
-    __pyx_v_i = __pyx_t_8;
-
-    /* "minica/optimize/conv_func.pyx":130
- * 
- *     for i in range(result_h):
- *         real_i = i - pad_h             # <<<<<<<<<<<<<<
- *         for j in range(result_w):
- *             real_j = j - pad_w
- */
-    __pyx_v_real_i = (__pyx_v_i - __pyx_v_pad_h);
-
-    /* "minica/optimize/conv_func.pyx":131
- *     for i in range(result_h):
- *         real_i = i - pad_h
- *         for j in range(result_w):             # <<<<<<<<<<<<<<
- *             real_j = j - pad_w
- *             current_offset = 0
- */
-    __pyx_t_9 = __pyx_v_result_w;
-    for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
-      __pyx_v_j = __pyx_t_10;
-
-      /* "minica/optimize/conv_func.pyx":132
- *         real_i = i - pad_h
- *         for j in range(result_w):
- *             real_j = j - pad_w             # <<<<<<<<<<<<<<
- *             current_offset = 0
- *             for ch in range(c):
- */
-      __pyx_v_real_j = (__pyx_v_j - __pyx_v_pad_w);
-
-      /* "minica/optimize/conv_func.pyx":133
- *         for j in range(result_w):
- *             real_j = j - pad_w
- *             current_offset = 0             # <<<<<<<<<<<<<<
- *             for ch in range(c):
- *                 for k in range(kernel_h):
- */
-      __pyx_v_current_offset = 0;
-
-      /* "minica/optimize/conv_func.pyx":134
- *             real_j = j - pad_w
- *             current_offset = 0
- *             for ch in range(c):             # <<<<<<<<<<<<<<
- *                 for k in range(kernel_h):
- *                     for l in range(kernel_w):
- */
-      __pyx_t_11 = __pyx_v_c;
-      for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
-        __pyx_v_ch = __pyx_t_12;
-
-        /* "minica/optimize/conv_func.pyx":135
- *             current_offset = 0
- *             for ch in range(c):
- *                 for k in range(kernel_h):             # <<<<<<<<<<<<<<
- *                     for l in range(kernel_w):
- *                         if real_i + k < 0 or real_j + l < 0 or real_i + k >= h or real_j + l >=w:
- */
-        __pyx_t_13 = __pyx_v_kernel_h;
-        for (__pyx_t_14 = 0; __pyx_t_14 < __pyx_t_13; __pyx_t_14+=1) {
-          __pyx_v_k = __pyx_t_14;
-
-          /* "minica/optimize/conv_func.pyx":136
- *             for ch in range(c):
- *                 for k in range(kernel_h):
- *                     for l in range(kernel_w):             # <<<<<<<<<<<<<<
- *                         if real_i + k < 0 or real_j + l < 0 or real_i + k >= h or real_j + l >=w:
- *                             current_dst[current_offset] = 0
- */
-          __pyx_t_15 = __pyx_v_kernel_w;
-          for (__pyx_t_16 = 0; __pyx_t_16 < __pyx_t_15; __pyx_t_16+=1) {
-            __pyx_v_l = __pyx_t_16;
-
-            /* "minica/optimize/conv_func.pyx":137
- *                 for k in range(kernel_h):
- *                     for l in range(kernel_w):
- *                         if real_i + k < 0 or real_j + l < 0 or real_i + k >= h or real_j + l >=w:             # <<<<<<<<<<<<<<
- *                             current_dst[current_offset] = 0
- *                         else:
- */
-            __pyx_t_6 = (((__pyx_v_real_i + __pyx_v_k) < 0) != 0);
-            if (!__pyx_t_6) {
-            } else {
-              __pyx_t_5 = __pyx_t_6;
-              goto __pyx_L17_bool_binop_done;
-            }
-            __pyx_t_6 = (((__pyx_v_real_j + __pyx_v_l) < 0) != 0);
-            if (!__pyx_t_6) {
-            } else {
-              __pyx_t_5 = __pyx_t_6;
-              goto __pyx_L17_bool_binop_done;
-            }
-            __pyx_t_6 = (((__pyx_v_real_i + __pyx_v_k) >= __pyx_v_h) != 0);
-            if (!__pyx_t_6) {
-            } else {
-              __pyx_t_5 = __pyx_t_6;
-              goto __pyx_L17_bool_binop_done;
-            }
-            __pyx_t_6 = (((__pyx_v_real_j + __pyx_v_l) >= __pyx_v_w) != 0);
-            __pyx_t_5 = __pyx_t_6;
-            __pyx_L17_bool_binop_done:;
-            if (__pyx_t_5) {
-
-              /* "minica/optimize/conv_func.pyx":138
- *                     for l in range(kernel_w):
- *                         if real_i + k < 0 or real_j + l < 0 or real_i + k >= h or real_j + l >=w:
- *                             current_dst[current_offset] = 0             # <<<<<<<<<<<<<<
- *                         else:
- *                             current_dst[current_offset] = src_ptr[ch * w * h + (k + real_i) * w + (l + real_j)]
- */
-              (__pyx_v_current_dst[__pyx_v_current_offset]) = 0.0;
-
-              /* "minica/optimize/conv_func.pyx":137
- *                 for k in range(kernel_h):
- *                     for l in range(kernel_w):
- *                         if real_i + k < 0 or real_j + l < 0 or real_i + k >= h or real_j + l >=w:             # <<<<<<<<<<<<<<
- *                             current_dst[current_offset] = 0
- *                         else:
- */
-              goto __pyx_L16;
-            }
-
-            /* "minica/optimize/conv_func.pyx":140
- *                             current_dst[current_offset] = 0
- *                         else:
- *                             current_dst[current_offset] = src_ptr[ch * w * h + (k + real_i) * w + (l + real_j)]             # <<<<<<<<<<<<<<
- *                         current_offset += result_total
- *             current_dst += 1
- */
-            /*else*/ {
-              (__pyx_v_current_dst[__pyx_v_current_offset]) = (__pyx_v_src_ptr[((((__pyx_v_ch * __pyx_v_w) * __pyx_v_h) + ((__pyx_v_k + __pyx_v_real_i) * __pyx_v_w)) + (__pyx_v_l + __pyx_v_real_j))]);
-            }
-            __pyx_L16:;
-
-            /* "minica/optimize/conv_func.pyx":141
- *                         else:
- *                             current_dst[current_offset] = src_ptr[ch * w * h + (k + real_i) * w + (l + real_j)]
- *                         current_offset += result_total             # <<<<<<<<<<<<<<
- *             current_dst += 1
- *     return 0
- */
-            __pyx_v_current_offset = (__pyx_v_current_offset + __pyx_v_result_total);
-          }
-        }
-      }
-
-      /* "minica/optimize/conv_func.pyx":142
- *                             current_dst[current_offset] = src_ptr[ch * w * h + (k + real_i) * w + (l + real_j)]
- *                         current_offset += result_total
- *             current_dst += 1             # <<<<<<<<<<<<<<
- *     return 0
- * 
- */
-      __pyx_v_current_dst = (__pyx_v_current_dst + 1);
-    }
-  }
-
-  /* "minica/optimize/conv_func.pyx":143
- *                         current_offset += result_total
- *             current_dst += 1
- *     return 0             # <<<<<<<<<<<<<<
- * 
- * 
- */
-  __pyx_r = 0;
-  goto __pyx_L0;
-
-  /* "minica/optimize/conv_func.pyx":100
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * cdef int im2col_with_pad_core(float [:,:,:] src, float [:,:] dst,             # <<<<<<<<<<<<<<
- *                               int kernel_h, int kernel_w, int pad_h, int pad_w) nogil:
- *     cdef:
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
-  __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
-  __Pyx_WriteUnraisable("minica.optimize.conv_func.im2col_with_pad_core", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 1);
-  __pyx_r = 0;
-  __pyx_L0:;
-  return __pyx_r;
-}
-
-/* "minica/optimize/conv_func.pyx":148
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * cdef int im2col_n_to_one_core(float [:,:,:] src, float [:,:] dst,             # <<<<<<<<<<<<<<
- *                               int kernel_h, int kernel_w) nogil:
- *     cdef:
- */
-
-static int __pyx_f_6minica_8optimize_9conv_func_im2col_n_to_one_core(__Pyx_memviewslice __pyx_v_src, __Pyx_memviewslice __pyx_v_dst, int __pyx_v_kernel_h, int __pyx_v_kernel_w) {
-  float *__pyx_v_src_ptr;
-  float *__pyx_v_dst_ptr;
-  int __pyx_v_c;
-  int __pyx_v_h;
-  int __pyx_v_w;
-  int __pyx_v_result_h;
-  int __pyx_v_result_w;
-  int __pyx_v_result_total;
-  int __pyx_v_filter_channel_total;
-  int __pyx_v_i;
-  int __pyx_v_j;
-  CYTHON_UNUSED int __pyx_v_ch;
-  int __pyx_v_r_index;
-  float *__pyx_v_current_row;
-  float *__pyx_v_src_submatrix;
-  int __pyx_r;
-  __Pyx_memviewslice __pyx_t_1 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  __Pyx_memviewslice __pyx_t_2 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  Py_ssize_t __pyx_t_3;
-  Py_ssize_t __pyx_t_4;
-  int __pyx_t_5;
-  int __pyx_t_6;
-  int __pyx_t_7;
-  int __pyx_t_8;
-  int __pyx_t_9;
-  int __pyx_t_10;
-  int __pyx_t_11;
-  int __pyx_t_12;
-
-  /* "minica/optimize/conv_func.pyx":151
- *                               int kernel_h, int kernel_w) nogil:
- *     cdef:
- *         float *src_ptr = &src[0][0][0]             # <<<<<<<<<<<<<<
- *         float *dst_ptr = &dst[0][0]
- * 
- */
-  __pyx_t_1.data = __pyx_v_src.data;
-  __pyx_t_1.memview = __pyx_v_src.memview;
-  __PYX_INC_MEMVIEW(&__pyx_t_1, 0);
-  {
-    Py_ssize_t __pyx_tmp_idx = 0;
-    Py_ssize_t __pyx_tmp_shape = __pyx_v_src.shape[0];
-    Py_ssize_t __pyx_tmp_stride = __pyx_v_src.strides[0];
-    if (0 && (__pyx_tmp_idx < 0))
-        __pyx_tmp_idx += __pyx_tmp_shape;
-    if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
-            #ifdef WITH_THREAD
-            PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-            #endif
-        PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-            #ifdef WITH_THREAD
-            PyGILState_Release(__pyx_gilstate_save);
-            #endif
-        __PYX_ERR(0, 151, __pyx_L1_error)
-    }
-        __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
-}
-
-__pyx_t_1.shape[0] = __pyx_v_src.shape[1];
-__pyx_t_1.strides[0] = __pyx_v_src.strides[1];
-    __pyx_t_1.suboffsets[0] = -1;
-
-__pyx_t_1.shape[1] = __pyx_v_src.shape[2];
-__pyx_t_1.strides[1] = __pyx_v_src.strides[2];
-    __pyx_t_1.suboffsets[1] = -1;
-
-__pyx_t_2.data = __pyx_t_1.data;
-  __pyx_t_2.memview = __pyx_t_1.memview;
-  __PYX_INC_MEMVIEW(&__pyx_t_2, 0);
-  {
-    Py_ssize_t __pyx_tmp_idx = 0;
-    Py_ssize_t __pyx_tmp_shape = __pyx_t_1.shape[0];
-    Py_ssize_t __pyx_tmp_stride = __pyx_t_1.strides[0];
-    if (0 && (__pyx_tmp_idx < 0))
-        __pyx_tmp_idx += __pyx_tmp_shape;
-    if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
-            #ifdef WITH_THREAD
-            PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-            #endif
-        PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-            #ifdef WITH_THREAD
-            PyGILState_Release(__pyx_gilstate_save);
-            #endif
-        __PYX_ERR(0, 151, __pyx_L1_error)
-    }
-        __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
-}
-
-__pyx_t_2.shape[0] = __pyx_t_1.shape[1];
-__pyx_t_2.strides[0] = __pyx_t_1.strides[1];
-    __pyx_t_2.suboffsets[0] = -1;
-
-__PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
-  __pyx_t_3 = 0;
-  __pyx_v_src_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_3 * __pyx_t_2.strides[0]) ))));
-  __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
-
-  /* "minica/optimize/conv_func.pyx":152
- *     cdef:
- *         float *src_ptr = &src[0][0][0]
- *         float *dst_ptr = &dst[0][0]             # <<<<<<<<<<<<<<
- * 
- *         int c = src.shape[0]
- */
-  __pyx_t_2.data = __pyx_v_dst.data;
-  __pyx_t_2.memview = __pyx_v_dst.memview;
-  __PYX_INC_MEMVIEW(&__pyx_t_2, 0);
-  {
-    Py_ssize_t __pyx_tmp_idx = 0;
-    Py_ssize_t __pyx_tmp_shape = __pyx_v_dst.shape[0];
-    Py_ssize_t __pyx_tmp_stride = __pyx_v_dst.strides[0];
-    if (0 && (__pyx_tmp_idx < 0))
-        __pyx_tmp_idx += __pyx_tmp_shape;
-    if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
-            #ifdef WITH_THREAD
-            PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-            #endif
-        PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-            #ifdef WITH_THREAD
-            PyGILState_Release(__pyx_gilstate_save);
-            #endif
-        __PYX_ERR(0, 152, __pyx_L1_error)
-    }
-        __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
-}
-
-__pyx_t_2.shape[0] = __pyx_v_dst.shape[1];
-__pyx_t_2.strides[0] = __pyx_v_dst.strides[1];
-    __pyx_t_2.suboffsets[0] = -1;
-
-__pyx_t_4 = 0;
-  __pyx_v_dst_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_4 * __pyx_t_2.strides[0]) ))));
-  __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
-
-  /* "minica/optimize/conv_func.pyx":154
- *         float *dst_ptr = &dst[0][0]
- * 
- *         int c = src.shape[0]             # <<<<<<<<<<<<<<
- *         int h = src.shape[1]
- *         int w = src.shape[2]
- */
-  __pyx_v_c = (__pyx_v_src.shape[0]);
-
-  /* "minica/optimize/conv_func.pyx":155
- * 
- *         int c = src.shape[0]
- *         int h = src.shape[1]             # <<<<<<<<<<<<<<
- *         int w = src.shape[2]
- * 
- */
-  __pyx_v_h = (__pyx_v_src.shape[1]);
-
-  /* "minica/optimize/conv_func.pyx":156
- *         int c = src.shape[0]
- *         int h = src.shape[1]
- *         int w = src.shape[2]             # <<<<<<<<<<<<<<
- * 
- *         int result_h = h - kernel_h + 1
- */
-  __pyx_v_w = (__pyx_v_src.shape[2]);
-
-  /* "minica/optimize/conv_func.pyx":158
- *         int w = src.shape[2]
- * 
- *         int result_h = h - kernel_h + 1             # <<<<<<<<<<<<<<
- *         int result_w = w - kernel_w + 1
- * 
- */
-  __pyx_v_result_h = ((__pyx_v_h - __pyx_v_kernel_h) + 1);
-
-  /* "minica/optimize/conv_func.pyx":159
- * 
- *         int result_h = h - kernel_h + 1
- *         int result_w = w - kernel_w + 1             # <<<<<<<<<<<<<<
- * 
- *         int result_total = result_h * result_w
- */
-  __pyx_v_result_w = ((__pyx_v_w - __pyx_v_kernel_w) + 1);
-
-  /* "minica/optimize/conv_func.pyx":161
- *         int result_w = w - kernel_w + 1
- * 
- *         int result_total = result_h * result_w             # <<<<<<<<<<<<<<
- *         int filter_channel_total = kernel_h * kernel_w
- * 
- */
-  __pyx_v_result_total = (__pyx_v_result_h * __pyx_v_result_w);
-
-  /* "minica/optimize/conv_func.pyx":162
- * 
- *         int result_total = result_h * result_w
- *         int filter_channel_total = kernel_h * kernel_w             # <<<<<<<<<<<<<<
- * 
- *     if dst.shape[0] != filter_channel_total or \
- */
-  __pyx_v_filter_channel_total = (__pyx_v_kernel_h * __pyx_v_kernel_w);
-
-  /* "minica/optimize/conv_func.pyx":164
- *         int filter_channel_total = kernel_h * kernel_w
- * 
- *     if dst.shape[0] != filter_channel_total or \             # <<<<<<<<<<<<<<
- *        dst.shape[1] != result_total * c:
- *         # dst array has different shape
- */
-  __pyx_t_6 = (((__pyx_v_dst.shape[0]) != __pyx_v_filter_channel_total) != 0);
-  if (!__pyx_t_6) {
-  } else {
-    __pyx_t_5 = __pyx_t_6;
-    goto __pyx_L4_bool_binop_done;
-  }
-
-  /* "minica/optimize/conv_func.pyx":165
- * 
- *     if dst.shape[0] != filter_channel_total or \
- *        dst.shape[1] != result_total * c:             # <<<<<<<<<<<<<<
- *         # dst array has different shape
- *         return -1
- */
-  __pyx_t_6 = (((__pyx_v_dst.shape[1]) != (__pyx_v_result_total * __pyx_v_c)) != 0);
-  __pyx_t_5 = __pyx_t_6;
-  __pyx_L4_bool_binop_done:;
-
-  /* "minica/optimize/conv_func.pyx":164
- *         int filter_channel_total = kernel_h * kernel_w
- * 
- *     if dst.shape[0] != filter_channel_total or \             # <<<<<<<<<<<<<<
- *        dst.shape[1] != result_total * c:
- *         # dst array has different shape
- */
-  if (__pyx_t_5) {
-
-    /* "minica/optimize/conv_func.pyx":167
- *        dst.shape[1] != result_total * c:
- *         # dst array has different shape
- *         return -1             # <<<<<<<<<<<<<<
- * 
- *     # copy row by row
- */
-    __pyx_r = -1;
-    goto __pyx_L0;
-
-    /* "minica/optimize/conv_func.pyx":164
- *         int filter_channel_total = kernel_h * kernel_w
- * 
- *     if dst.shape[0] != filter_channel_total or \             # <<<<<<<<<<<<<<
- *        dst.shape[1] != result_total * c:
- *         # dst array has different shape
- */
-  }
-
-  /* "minica/optimize/conv_func.pyx":173
- *         int i, j, ch, n, r_index, img_offset
- *         float *current_row
- *         float *src_submatrix = src_ptr             # <<<<<<<<<<<<<<
- * 
- *     for i in range(kernel_h):
- */
-  __pyx_v_src_submatrix = __pyx_v_src_ptr;
-
-  /* "minica/optimize/conv_func.pyx":175
- *         float *src_submatrix = src_ptr
- * 
- *     for i in range(kernel_h):             # <<<<<<<<<<<<<<
- *         for j in range(kernel_w):
- *             #  image range
- */
-  __pyx_t_7 = __pyx_v_kernel_h;
-  for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
-    __pyx_v_i = __pyx_t_8;
-
-    /* "minica/optimize/conv_func.pyx":176
- * 
- *     for i in range(kernel_h):
- *         for j in range(kernel_w):             # <<<<<<<<<<<<<<
- *             #  image range
- *             #
- */
-    __pyx_t_9 = __pyx_v_kernel_w;
-    for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
-      __pyx_v_j = __pyx_t_10;
-
-      /* "minica/optimize/conv_func.pyx":179
- *             #  image range
- *             #
- *             r_index = i * kernel_w + j             # <<<<<<<<<<<<<<
- *             current_row = dst_ptr + r_index * result_total * c
- *             src_submatrix = src_ptr + i * w + j
- */
-      __pyx_v_r_index = ((__pyx_v_i * __pyx_v_kernel_w) + __pyx_v_j);
-
-      /* "minica/optimize/conv_func.pyx":180
- *             #
- *             r_index = i * kernel_w + j
- *             current_row = dst_ptr + r_index * result_total * c             # <<<<<<<<<<<<<<
- *             src_submatrix = src_ptr + i * w + j
- *             for ch in range(c):
- */
-      __pyx_v_current_row = (__pyx_v_dst_ptr + ((__pyx_v_r_index * __pyx_v_result_total) * __pyx_v_c));
-
-      /* "minica/optimize/conv_func.pyx":181
- *             r_index = i * kernel_w + j
- *             current_row = dst_ptr + r_index * result_total * c
- *             src_submatrix = src_ptr + i * w + j             # <<<<<<<<<<<<<<
- *             for ch in range(c):
- *                 #  slacpy  (~10%)
- */
-      __pyx_v_src_submatrix = ((__pyx_v_src_ptr + (__pyx_v_i * __pyx_v_w)) + __pyx_v_j);
-
-      /* "minica/optimize/conv_func.pyx":182
- *             current_row = dst_ptr + r_index * result_total * c
- *             src_submatrix = src_ptr + i * w + j
- *             for ch in range(c):             # <<<<<<<<<<<<<<
- *                 #  slacpy  (~10%)
- *                 lapack.slacpy('A', &result_w, &result_h,
- */
-      __pyx_t_11 = __pyx_v_c;
-      for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
-        __pyx_v_ch = __pyx_t_12;
-
-        /* "minica/optimize/conv_func.pyx":184
- *             for ch in range(c):
- *                 #  slacpy  (~10%)
- *                 lapack.slacpy('A', &result_w, &result_h,             # <<<<<<<<<<<<<<
- *                               src_submatrix, &h, current_row, &result_h)
- *                 src_submatrix += w * h
- */
-        __pyx_f_5scipy_6linalg_13cython_lapack_slacpy(((char *)"A"), (&__pyx_v_result_w), (&__pyx_v_result_h), __pyx_v_src_submatrix, (&__pyx_v_h), __pyx_v_current_row, (&__pyx_v_result_h));
-
-        /* "minica/optimize/conv_func.pyx":186
- *                 lapack.slacpy('A', &result_w, &result_h,
- *                               src_submatrix, &h, current_row, &result_h)
- *                 src_submatrix += w * h             # <<<<<<<<<<<<<<
- *                 current_row += result_w * result_h
- *     return 0
- */
-        __pyx_v_src_submatrix = (__pyx_v_src_submatrix + (__pyx_v_w * __pyx_v_h));
-
-        /* "minica/optimize/conv_func.pyx":187
- *                               src_submatrix, &h, current_row, &result_h)
- *                 src_submatrix += w * h
- *                 current_row += result_w * result_h             # <<<<<<<<<<<<<<
- *     return 0
- * 
- */
-        __pyx_v_current_row = (__pyx_v_current_row + (__pyx_v_result_w * __pyx_v_result_h));
-      }
-    }
-  }
-
-  /* "minica/optimize/conv_func.pyx":188
- *                 src_submatrix += w * h
- *                 current_row += result_w * result_h
- *     return 0             # <<<<<<<<<<<<<<
- * 
- * @cython.boundscheck(False)
- */
-  __pyx_r = 0;
-  goto __pyx_L0;
-
-  /* "minica/optimize/conv_func.pyx":148
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * cdef int im2col_n_to_one_core(float [:,:,:] src, float [:,:] dst,             # <<<<<<<<<<<<<<
- *                               int kernel_h, int kernel_w) nogil:
- *     cdef:
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
-  __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
-  __Pyx_WriteUnraisable("minica.optimize.conv_func.im2col_n_to_one_core", __pyx_clineno, __pyx_lineno, __pyx_filename, 0, 1);
-  __pyx_r = 0;
-  __pyx_L0:;
-  return __pyx_r;
-}
-
-/* "minica/optimize/conv_func.pyx":192
+/* "minica/optimize/conv_func.pyx":72
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef int conv_batch(float [:,:,:,:] src, float[:,:,:,:] dst,             # <<<<<<<<<<<<<<
@@ -3563,7 +2519,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_conv_batch(__Pyx_memviewslice __
   int __pyx_t_8;
   Py_ssize_t __pyx_t_9;
 
-  /* "minica/optimize/conv_func.pyx":196
+  /* "minica/optimize/conv_func.pyx":76
  * 
  *     cdef int i
  *     cdef int num = src.shape[0]             # <<<<<<<<<<<<<<
@@ -3572,7 +2528,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_conv_batch(__Pyx_memviewslice __
  */
   __pyx_v_num = (__pyx_v_src.shape[0]);
 
-  /* "minica/optimize/conv_func.pyx":197
+  /* "minica/optimize/conv_func.pyx":77
  *     cdef int i
  *     cdef int num = src.shape[0]
  *     cdef int kn = kernel.shape[0]             # <<<<<<<<<<<<<<
@@ -3581,7 +2537,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_conv_batch(__Pyx_memviewslice __
  */
   __pyx_v_kn = (__pyx_v_kernel.shape[0]);
 
-  /* "minica/optimize/conv_func.pyx":198
+  /* "minica/optimize/conv_func.pyx":78
  *     cdef int num = src.shape[0]
  *     cdef int kn = kernel.shape[0]
  *     cdef int kh = kernel.shape[2]             # <<<<<<<<<<<<<<
@@ -3590,7 +2546,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_conv_batch(__Pyx_memviewslice __
  */
   __pyx_v_kh = (__pyx_v_kernel.shape[2]);
 
-  /* "minica/optimize/conv_func.pyx":199
+  /* "minica/optimize/conv_func.pyx":79
  *     cdef int kn = kernel.shape[0]
  *     cdef int kh = kernel.shape[2]
  *     cdef int kw = kernel.shape[3]             # <<<<<<<<<<<<<<
@@ -3599,7 +2555,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_conv_batch(__Pyx_memviewslice __
  */
   __pyx_v_kw = (__pyx_v_kernel.shape[3]);
 
-  /* "minica/optimize/conv_func.pyx":200
+  /* "minica/optimize/conv_func.pyx":80
  *     cdef int kh = kernel.shape[2]
  *     cdef int kw = kernel.shape[3]
  *     cdef int dst_single_size = dst.shape[1] * dst.shape[2] * dst.shape[3]             # <<<<<<<<<<<<<<
@@ -3608,7 +2564,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_conv_batch(__Pyx_memviewslice __
  */
   __pyx_v_dst_single_size = (((__pyx_v_dst.shape[1]) * (__pyx_v_dst.shape[2])) * (__pyx_v_dst.shape[3]));
 
-  /* "minica/optimize/conv_func.pyx":202
+  /* "minica/optimize/conv_func.pyx":82
  *     cdef int dst_single_size = dst.shape[1] * dst.shape[2] * dst.shape[3]
  * 
  *     cdef float *kernel_ptr = &kernel[0][0][0][0]             # <<<<<<<<<<<<<<
@@ -3632,7 +2588,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_conv_batch(__Pyx_memviewslice __
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 202, __pyx_L1_error)
+        __PYX_ERR(0, 82, __pyx_L1_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -3666,7 +2622,7 @@ __pyx_t_2.data = __pyx_t_1.data;
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 202, __pyx_L1_error)
+        __PYX_ERR(0, 82, __pyx_L1_error)
     }
         __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -3697,7 +2653,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 202, __pyx_L1_error)
+        __PYX_ERR(0, 82, __pyx_L1_error)
     }
         __pyx_t_3.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -3711,7 +2667,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
   __pyx_v_kernel_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_4 * __pyx_t_3.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_3, 0);
 
-  /* "minica/optimize/conv_func.pyx":203
+  /* "minica/optimize/conv_func.pyx":83
  * 
  *     cdef float *kernel_ptr = &kernel[0][0][0][0]
  *     cdef float *dst_ptr = &dst[0][0][0][0]             # <<<<<<<<<<<<<<
@@ -3735,7 +2691,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 203, __pyx_L1_error)
+        __PYX_ERR(0, 83, __pyx_L1_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -3769,7 +2725,7 @@ __pyx_t_2.data = __pyx_t_1.data;
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 203, __pyx_L1_error)
+        __PYX_ERR(0, 83, __pyx_L1_error)
     }
         __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -3800,7 +2756,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 203, __pyx_L1_error)
+        __PYX_ERR(0, 83, __pyx_L1_error)
     }
         __pyx_t_3.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -3814,7 +2770,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
   __pyx_v_dst_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_5 * __pyx_t_3.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_3, 0);
 
-  /* "minica/optimize/conv_func.pyx":206
+  /* "minica/optimize/conv_func.pyx":86
  *     cdef int h_buf, w_buf, h_vec, w_vec
  *     # fortran
  *     h_buf = buf.shape[1]             # <<<<<<<<<<<<<<
@@ -3823,7 +2779,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
   __pyx_v_h_buf = (__pyx_v_buf.shape[1]);
 
-  /* "minica/optimize/conv_func.pyx":207
+  /* "minica/optimize/conv_func.pyx":87
  *     # fortran
  *     h_buf = buf.shape[1]
  *     w_buf = buf.shape[0]             # <<<<<<<<<<<<<<
@@ -3832,7 +2788,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
   __pyx_v_w_buf = (__pyx_v_buf.shape[0]);
 
-  /* "minica/optimize/conv_func.pyx":208
+  /* "minica/optimize/conv_func.pyx":88
  *     h_buf = buf.shape[1]
  *     w_buf = buf.shape[0]
  *     h_vec = w_buf             # <<<<<<<<<<<<<<
@@ -3841,7 +2797,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
   __pyx_v_h_vec = __pyx_v_w_buf;
 
-  /* "minica/optimize/conv_func.pyx":209
+  /* "minica/optimize/conv_func.pyx":89
  *     w_buf = buf.shape[0]
  *     h_vec = w_buf
  *     w_vec = kn             # <<<<<<<<<<<<<<
@@ -3850,7 +2806,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
   __pyx_v_w_vec = __pyx_v_kn;
 
-  /* "minica/optimize/conv_func.pyx":211
+  /* "minica/optimize/conv_func.pyx":91
  *     w_vec = kn
  *     #  stride
  *     cdef int ld_buf = h_buf             # <<<<<<<<<<<<<<
@@ -3859,7 +2815,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
   __pyx_v_ld_buf = __pyx_v_h_buf;
 
-  /* "minica/optimize/conv_func.pyx":212
+  /* "minica/optimize/conv_func.pyx":92
  *     #  stride
  *     cdef int ld_buf = h_buf
  *     cdef int ld_vec = h_vec             # <<<<<<<<<<<<<<
@@ -3868,7 +2824,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
   __pyx_v_ld_vec = __pyx_v_h_vec;
 
-  /* "minica/optimize/conv_func.pyx":213
+  /* "minica/optimize/conv_func.pyx":93
  *     cdef int ld_buf = h_buf
  *     cdef int ld_vec = h_vec
  *     cdef int ld_out = buf.shape[1]             # <<<<<<<<<<<<<<
@@ -3877,7 +2833,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
   __pyx_v_ld_out = (__pyx_v_buf.shape[1]);
 
-  /* "minica/optimize/conv_func.pyx":214
+  /* "minica/optimize/conv_func.pyx":94
  *     cdef int ld_vec = h_vec
  *     cdef int ld_out = buf.shape[1]
  *     cdef float alpha = 1.0, beta = 0.0             # <<<<<<<<<<<<<<
@@ -3887,21 +2843,21 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
   __pyx_v_alpha = 1.0;
   __pyx_v_beta = 0.0;
 
-  /* "minica/optimize/conv_func.pyx":217
+  /* "minica/optimize/conv_func.pyx":97
  * 
  *     # ()
  *     for i in range(num):             # <<<<<<<<<<<<<<
- *         if im2col2_core(src[i], buf, indices) != 0:
+ *         if im2col(src[i], buf, indices) != 0:
  *             return -1
  */
   __pyx_t_6 = __pyx_v_num;
   for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
     __pyx_v_i = __pyx_t_7;
 
-    /* "minica/optimize/conv_func.pyx":218
+    /* "minica/optimize/conv_func.pyx":98
  *     # ()
  *     for i in range(num):
- *         if im2col2_core(src[i], buf, indices) != 0:             # <<<<<<<<<<<<<<
+ *         if im2col(src[i], buf, indices) != 0:             # <<<<<<<<<<<<<<
  *             return -1
  *         #  blas  routine
  */
@@ -3922,7 +2878,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 218, __pyx_L1_error)
+        __PYX_ERR(0, 98, __pyx_L1_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -3939,13 +2895,13 @@ __pyx_t_1.shape[2] = __pyx_v_src.shape[3];
 __pyx_t_1.strides[2] = __pyx_v_src.strides[3];
     __pyx_t_1.suboffsets[2] = -1;
 
-__pyx_t_8 = ((__pyx_f_6minica_8optimize_9conv_func_im2col2_core(__pyx_t_1, __pyx_v_buf, __pyx_v_indices) != 0) != 0);
+__pyx_t_8 = ((__pyx_f_6minica_8optimize_9conv_func_im2col(__pyx_t_1, __pyx_v_buf, __pyx_v_indices) != 0) != 0);
     __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
     if (__pyx_t_8) {
 
-      /* "minica/optimize/conv_func.pyx":219
+      /* "minica/optimize/conv_func.pyx":99
  *     for i in range(num):
- *         if im2col2_core(src[i], buf, indices) != 0:
+ *         if im2col(src[i], buf, indices) != 0:
  *             return -1             # <<<<<<<<<<<<<<
  *         #  blas  routine
  *         blas.sgemm("N", "N", &h_buf, &w_vec, &w_buf, &alpha,
@@ -3953,16 +2909,16 @@ __pyx_t_8 = ((__pyx_f_6minica_8optimize_9conv_func_im2col2_core(__pyx_t_1, __pyx
       __pyx_r = -1;
       goto __pyx_L0;
 
-      /* "minica/optimize/conv_func.pyx":218
+      /* "minica/optimize/conv_func.pyx":98
  *     # ()
  *     for i in range(num):
- *         if im2col2_core(src[i], buf, indices) != 0:             # <<<<<<<<<<<<<<
+ *         if im2col(src[i], buf, indices) != 0:             # <<<<<<<<<<<<<<
  *             return -1
  *         #  blas  routine
  */
     }
 
-    /* "minica/optimize/conv_func.pyx":222
+    /* "minica/optimize/conv_func.pyx":102
  *         #  blas  routine
  *         blas.sgemm("N", "N", &h_buf, &w_vec, &w_buf, &alpha,
  *                    &buf[0][0], &ld_buf, kernel_ptr, &ld_vec,             # <<<<<<<<<<<<<<
@@ -3986,7 +2942,7 @@ __pyx_t_8 = ((__pyx_f_6minica_8optimize_9conv_func_im2col2_core(__pyx_t_1, __pyx
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 222, __pyx_L1_error)
+        __PYX_ERR(0, 102, __pyx_L1_error)
     }
         __pyx_t_3.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -3997,7 +2953,7 @@ __pyx_t_3.strides[0] = __pyx_v_buf.strides[1];
 
 __pyx_t_9 = 0;
 
-    /* "minica/optimize/conv_func.pyx":221
+    /* "minica/optimize/conv_func.pyx":101
  *             return -1
  *         #  blas  routine
  *         blas.sgemm("N", "N", &h_buf, &w_vec, &w_buf, &alpha,             # <<<<<<<<<<<<<<
@@ -4007,7 +2963,7 @@ __pyx_t_9 = 0;
     __pyx_f_5scipy_6linalg_11cython_blas_sgemm(((char *)"N"), ((char *)"N"), (&__pyx_v_h_buf), (&__pyx_v_w_vec), (&__pyx_v_w_buf), (&__pyx_v_alpha), (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_9 * __pyx_t_3.strides[0]) )))), (&__pyx_v_ld_buf), __pyx_v_kernel_ptr, (&__pyx_v_ld_vec), (&__pyx_v_beta), __pyx_v_dst_ptr, (&__pyx_v_ld_out));
     __PYX_XDEC_MEMVIEW(&__pyx_t_3, 0);
 
-    /* "minica/optimize/conv_func.pyx":224
+    /* "minica/optimize/conv_func.pyx":104
  *                    &buf[0][0], &ld_buf, kernel_ptr, &ld_vec,
  *                    &beta, dst_ptr, &ld_out)
  *         dst_ptr += dst_single_size             # <<<<<<<<<<<<<<
@@ -4017,7 +2973,7 @@ __pyx_t_9 = 0;
     __pyx_v_dst_ptr = (__pyx_v_dst_ptr + __pyx_v_dst_single_size);
   }
 
-  /* "minica/optimize/conv_func.pyx":225
+  /* "minica/optimize/conv_func.pyx":105
  *                    &beta, dst_ptr, &ld_out)
  *         dst_ptr += dst_single_size
  *     return 0             # <<<<<<<<<<<<<<
@@ -4027,7 +2983,7 @@ __pyx_t_9 = 0;
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "minica/optimize/conv_func.pyx":192
+  /* "minica/optimize/conv_func.pyx":72
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef int conv_batch(float [:,:,:,:] src, float[:,:,:,:] dst,             # <<<<<<<<<<<<<<
@@ -4080,26 +3036,26 @@ static PyObject *__pyx_pw_6minica_8optimize_9conv_func_3conv_batch(PyObject *__p
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_dst)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("conv_batch", 1, 5, 5, 1); __PYX_ERR(0, 192, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("conv_batch", 1, 5, 5, 1); __PYX_ERR(0, 72, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_kernel)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("conv_batch", 1, 5, 5, 2); __PYX_ERR(0, 192, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("conv_batch", 1, 5, 5, 2); __PYX_ERR(0, 72, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_buf)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("conv_batch", 1, 5, 5, 3); __PYX_ERR(0, 192, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("conv_batch", 1, 5, 5, 3); __PYX_ERR(0, 72, __pyx_L3_error)
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_indices)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("conv_batch", 1, 5, 5, 4); __PYX_ERR(0, 192, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("conv_batch", 1, 5, 5, 4); __PYX_ERR(0, 72, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "conv_batch") < 0)) __PYX_ERR(0, 192, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "conv_batch") < 0)) __PYX_ERR(0, 72, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
@@ -4110,15 +3066,15 @@ static PyObject *__pyx_pw_6minica_8optimize_9conv_func_3conv_batch(PyObject *__p
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
     }
-    __pyx_v_src = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[0]); if (unlikely(!__pyx_v_src.memview)) __PYX_ERR(0, 192, __pyx_L3_error)
-    __pyx_v_dst = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[1]); if (unlikely(!__pyx_v_dst.memview)) __PYX_ERR(0, 192, __pyx_L3_error)
-    __pyx_v_kernel = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[2]); if (unlikely(!__pyx_v_kernel.memview)) __PYX_ERR(0, 193, __pyx_L3_error)
-    __pyx_v_buf = __Pyx_PyObject_to_MemoryviewSlice_dsds_float(values[3]); if (unlikely(!__pyx_v_buf.memview)) __PYX_ERR(0, 193, __pyx_L3_error)
-    __pyx_v_indices = __Pyx_PyObject_to_MemoryviewSlice_ds_int(values[4]); if (unlikely(!__pyx_v_indices.memview)) __PYX_ERR(0, 193, __pyx_L3_error)
+    __pyx_v_src = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[0]); if (unlikely(!__pyx_v_src.memview)) __PYX_ERR(0, 72, __pyx_L3_error)
+    __pyx_v_dst = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[1]); if (unlikely(!__pyx_v_dst.memview)) __PYX_ERR(0, 72, __pyx_L3_error)
+    __pyx_v_kernel = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[2]); if (unlikely(!__pyx_v_kernel.memview)) __PYX_ERR(0, 73, __pyx_L3_error)
+    __pyx_v_buf = __Pyx_PyObject_to_MemoryviewSlice_dsds_float(values[3]); if (unlikely(!__pyx_v_buf.memview)) __PYX_ERR(0, 73, __pyx_L3_error)
+    __pyx_v_indices = __Pyx_PyObject_to_MemoryviewSlice_ds_int(values[4]); if (unlikely(!__pyx_v_indices.memview)) __PYX_ERR(0, 73, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("conv_batch", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 192, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("conv_batch", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 72, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("minica.optimize.conv_func.conv_batch", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -4137,12 +3093,12 @@ static PyObject *__pyx_pf_6minica_8optimize_9conv_func_2conv_batch(CYTHON_UNUSED
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("conv_batch", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_src.memview)) { __Pyx_RaiseUnboundLocalError("src"); __PYX_ERR(0, 192, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_dst.memview)) { __Pyx_RaiseUnboundLocalError("dst"); __PYX_ERR(0, 192, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_kernel.memview)) { __Pyx_RaiseUnboundLocalError("kernel"); __PYX_ERR(0, 192, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_buf.memview)) { __Pyx_RaiseUnboundLocalError("buf"); __PYX_ERR(0, 192, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_indices.memview)) { __Pyx_RaiseUnboundLocalError("indices"); __PYX_ERR(0, 192, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_6minica_8optimize_9conv_func_conv_batch(__pyx_v_src, __pyx_v_dst, __pyx_v_kernel, __pyx_v_buf, __pyx_v_indices, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 192, __pyx_L1_error)
+  if (unlikely(!__pyx_v_src.memview)) { __Pyx_RaiseUnboundLocalError("src"); __PYX_ERR(0, 72, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_dst.memview)) { __Pyx_RaiseUnboundLocalError("dst"); __PYX_ERR(0, 72, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_kernel.memview)) { __Pyx_RaiseUnboundLocalError("kernel"); __PYX_ERR(0, 72, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_buf.memview)) { __Pyx_RaiseUnboundLocalError("buf"); __PYX_ERR(0, 72, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_indices.memview)) { __Pyx_RaiseUnboundLocalError("indices"); __PYX_ERR(0, 72, __pyx_L1_error) }
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_6minica_8optimize_9conv_func_conv_batch(__pyx_v_src, __pyx_v_dst, __pyx_v_kernel, __pyx_v_buf, __pyx_v_indices, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4164,7 +3120,7 @@ static PyObject *__pyx_pf_6minica_8optimize_9conv_func_2conv_batch(CYTHON_UNUSED
   return __pyx_r;
 }
 
-/* "minica/optimize/conv_func.pyx":229
+/* "minica/optimize/conv_func.pyx":109
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void copy_and_pad(float [:,:,:] src, float [:,:,:] dst, int pad_h, int pad_w) nogil:             # <<<<<<<<<<<<<<
@@ -4188,7 +3144,7 @@ static void __pyx_f_6minica_8optimize_9conv_func_copy_and_pad(__Pyx_memviewslice
   int __pyx_t_5;
   int __pyx_t_6;
 
-  /* "minica/optimize/conv_func.pyx":232
+  /* "minica/optimize/conv_func.pyx":112
  * 
  *     cdef:
  *         float *src_ptr = &src[0][0][0]             # <<<<<<<<<<<<<<
@@ -4212,7 +3168,7 @@ static void __pyx_f_6minica_8optimize_9conv_func_copy_and_pad(__Pyx_memviewslice
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 232, __pyx_L1_error)
+        __PYX_ERR(0, 112, __pyx_L1_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -4242,7 +3198,7 @@ __pyx_t_2.data = __pyx_t_1.data;
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 232, __pyx_L1_error)
+        __PYX_ERR(0, 112, __pyx_L1_error)
     }
         __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -4256,7 +3212,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
   __pyx_v_src_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_3 * __pyx_t_2.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
 
-  /* "minica/optimize/conv_func.pyx":233
+  /* "minica/optimize/conv_func.pyx":113
  *     cdef:
  *         float *src_ptr = &src[0][0][0]
  *         float *dst_ptr = &dst[0][pad_h][pad_w]             # <<<<<<<<<<<<<<
@@ -4280,7 +3236,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 233, __pyx_L1_error)
+        __PYX_ERR(0, 113, __pyx_L1_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -4310,7 +3266,7 @@ __pyx_t_2.data = __pyx_t_1.data;
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 233, __pyx_L1_error)
+        __PYX_ERR(0, 113, __pyx_L1_error)
     }
         __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -4324,7 +3280,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
   __pyx_v_dst_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_2.data + __pyx_t_4 * __pyx_t_2.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
 
-  /* "minica/optimize/conv_func.pyx":235
+  /* "minica/optimize/conv_func.pyx":115
  *         float *dst_ptr = &dst[0][pad_h][pad_w]
  *         int ch
  *         int c = src.shape[0]             # <<<<<<<<<<<<<<
@@ -4333,7 +3289,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
  */
   __pyx_v_c = (__pyx_v_src.shape[0]);
 
-  /* "minica/optimize/conv_func.pyx":236
+  /* "minica/optimize/conv_func.pyx":116
  *         int ch
  *         int c = src.shape[0]
  *         int h_src = src.shape[1], w_src = src.shape[2]             # <<<<<<<<<<<<<<
@@ -4343,7 +3299,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
   __pyx_v_h_src = (__pyx_v_src.shape[1]);
   __pyx_v_w_src = (__pyx_v_src.shape[2]);
 
-  /* "minica/optimize/conv_func.pyx":237
+  /* "minica/optimize/conv_func.pyx":117
  *         int c = src.shape[0]
  *         int h_src = src.shape[1], w_src = src.shape[2]
  *         int h_dst = dst.shape[1], w_dst = dst.shape[2]             # <<<<<<<<<<<<<<
@@ -4353,7 +3309,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
   __pyx_v_h_dst = (__pyx_v_dst.shape[1]);
   __pyx_v_w_dst = (__pyx_v_dst.shape[2]);
 
-  /* "minica/optimize/conv_func.pyx":239
+  /* "minica/optimize/conv_func.pyx":119
  *         int h_dst = dst.shape[1], w_dst = dst.shape[2]
  * 
  *     for ch in range(c):             # <<<<<<<<<<<<<<
@@ -4364,7 +3320,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
   for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_5; __pyx_t_6+=1) {
     __pyx_v_ch = __pyx_t_6;
 
-    /* "minica/optimize/conv_func.pyx":240
+    /* "minica/optimize/conv_func.pyx":120
  * 
  *     for ch in range(c):
  *         lapack.slacpy('A', &w_src, &h_src,             # <<<<<<<<<<<<<<
@@ -4373,7 +3329,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
  */
     __pyx_f_5scipy_6linalg_13cython_lapack_slacpy(((char *)"A"), (&__pyx_v_w_src), (&__pyx_v_h_src), __pyx_v_src_ptr, (&__pyx_v_h_src), __pyx_v_dst_ptr, (&__pyx_v_h_dst));
 
-    /* "minica/optimize/conv_func.pyx":242
+    /* "minica/optimize/conv_func.pyx":122
  *         lapack.slacpy('A', &w_src, &h_src,
  *                       src_ptr, &h_src, dst_ptr, &h_dst)
  *         dst_ptr += h_dst * w_dst             # <<<<<<<<<<<<<<
@@ -4382,7 +3338,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
  */
     __pyx_v_dst_ptr = (__pyx_v_dst_ptr + (__pyx_v_h_dst * __pyx_v_w_dst));
 
-    /* "minica/optimize/conv_func.pyx":243
+    /* "minica/optimize/conv_func.pyx":123
  *                       src_ptr, &h_src, dst_ptr, &h_dst)
  *         dst_ptr += h_dst * w_dst
  *         src_ptr += h_src * w_src             # <<<<<<<<<<<<<<
@@ -4392,7 +3348,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
     __pyx_v_src_ptr = (__pyx_v_src_ptr + (__pyx_v_h_src * __pyx_v_w_src));
   }
 
-  /* "minica/optimize/conv_func.pyx":245
+  /* "minica/optimize/conv_func.pyx":125
  *         src_ptr += h_src * w_src
  * 
  *     return             # <<<<<<<<<<<<<<
@@ -4401,7 +3357,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
  */
   goto __pyx_L0;
 
-  /* "minica/optimize/conv_func.pyx":229
+  /* "minica/optimize/conv_func.pyx":109
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void copy_and_pad(float [:,:,:] src, float [:,:,:] dst, int pad_h, int pad_w) nogil:             # <<<<<<<<<<<<<<
@@ -4417,12 +3373,12 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
   __pyx_L0:;
 }
 
-/* "minica/optimize/conv_func.pyx":249
+/* "minica/optimize/conv_func.pyx":129
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void flip(float [:,:,:,:] kernel, float [:,:,:,:] kernel_t) nogil:             # <<<<<<<<<<<<<<
- *     #  channel copy
  *     cdef:
+ *         float *src_ptr = &kernel[0][0][0][0]
  */
 
 static void __pyx_f_6minica_8optimize_9conv_func_flip(__Pyx_memviewslice __pyx_v_kernel, __Pyx_memviewslice __pyx_v_kernel_t) {
@@ -4453,8 +3409,8 @@ static void __pyx_f_6minica_8optimize_9conv_func_flip(__Pyx_memviewslice __pyx_v
   int __pyx_t_12;
   int __pyx_t_13;
 
-  /* "minica/optimize/conv_func.pyx":252
- *     #  channel copy
+  /* "minica/optimize/conv_func.pyx":131
+ * cdef void flip(float [:,:,:,:] kernel, float [:,:,:,:] kernel_t) nogil:
  *     cdef:
  *         float *src_ptr = &kernel[0][0][0][0]             # <<<<<<<<<<<<<<
  *         float *dst_ptr = &kernel_t[0][0][0][0]
@@ -4477,7 +3433,7 @@ static void __pyx_f_6minica_8optimize_9conv_func_flip(__Pyx_memviewslice __pyx_v
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 252, __pyx_L1_error)
+        __PYX_ERR(0, 131, __pyx_L1_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -4511,7 +3467,7 @@ __pyx_t_2.data = __pyx_t_1.data;
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 252, __pyx_L1_error)
+        __PYX_ERR(0, 131, __pyx_L1_error)
     }
         __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -4542,7 +3498,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 252, __pyx_L1_error)
+        __PYX_ERR(0, 131, __pyx_L1_error)
     }
         __pyx_t_3.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -4556,7 +3512,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
   __pyx_v_src_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_4 * __pyx_t_3.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_3, 0);
 
-  /* "minica/optimize/conv_func.pyx":253
+  /* "minica/optimize/conv_func.pyx":132
  *     cdef:
  *         float *src_ptr = &kernel[0][0][0][0]
  *         float *dst_ptr = &kernel_t[0][0][0][0]             # <<<<<<<<<<<<<<
@@ -4580,7 +3536,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 253, __pyx_L1_error)
+        __PYX_ERR(0, 132, __pyx_L1_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -4614,7 +3570,7 @@ __pyx_t_2.data = __pyx_t_1.data;
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 253, __pyx_L1_error)
+        __PYX_ERR(0, 132, __pyx_L1_error)
     }
         __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -4645,7 +3601,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 253, __pyx_L1_error)
+        __PYX_ERR(0, 132, __pyx_L1_error)
     }
         __pyx_t_3.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -4659,7 +3615,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
   __pyx_v_dst_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_5 * __pyx_t_3.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_3, 0);
 
-  /* "minica/optimize/conv_func.pyx":255
+  /* "minica/optimize/conv_func.pyx":134
  *         float *dst_ptr = &kernel_t[0][0][0][0]
  *         float *current_dst
  *         int num_src = kernel.shape[0]             # <<<<<<<<<<<<<<
@@ -4668,7 +3624,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
   __pyx_v_num_src = (__pyx_v_kernel.shape[0]);
 
-  /* "minica/optimize/conv_func.pyx":256
+  /* "minica/optimize/conv_func.pyx":135
  *         float *current_dst
  *         int num_src = kernel.shape[0]
  *         int c_src = kernel.shape[1]             # <<<<<<<<<<<<<<
@@ -4677,7 +3633,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
   __pyx_v_c_src = (__pyx_v_kernel.shape[1]);
 
-  /* "minica/optimize/conv_func.pyx":257
+  /* "minica/optimize/conv_func.pyx":136
  *         int num_src = kernel.shape[0]
  *         int c_src = kernel.shape[1]
  *         int num_dst = c_src             # <<<<<<<<<<<<<<
@@ -4686,7 +3642,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
   __pyx_v_num_dst = __pyx_v_c_src;
 
-  /* "minica/optimize/conv_func.pyx":258
+  /* "minica/optimize/conv_func.pyx":137
  *         int c_src = kernel.shape[1]
  *         int num_dst = c_src
  *         int c_dst = num_src             # <<<<<<<<<<<<<<
@@ -4695,7 +3651,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
   __pyx_v_c_dst = __pyx_v_num_src;
 
-  /* "minica/optimize/conv_func.pyx":259
+  /* "minica/optimize/conv_func.pyx":138
  *         int num_dst = c_src
  *         int c_dst = num_src
  *         int h = kernel.shape[2]             # <<<<<<<<<<<<<<
@@ -4704,7 +3660,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
   __pyx_v_h = (__pyx_v_kernel.shape[2]);
 
-  /* "minica/optimize/conv_func.pyx":260
+  /* "minica/optimize/conv_func.pyx":139
  *         int c_dst = num_src
  *         int h = kernel.shape[2]
  *         int w = kernel.shape[3]             # <<<<<<<<<<<<<<
@@ -4713,7 +3669,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
   __pyx_v_w = (__pyx_v_kernel.shape[3]);
 
-  /* "minica/optimize/conv_func.pyx":263
+  /* "minica/optimize/conv_func.pyx":142
  *         int i, j, k, l
  * 
  *     for i in range(num_src):             # <<<<<<<<<<<<<<
@@ -4724,7 +3680,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
   for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
     __pyx_v_i = __pyx_t_7;
 
-    /* "minica/optimize/conv_func.pyx":264
+    /* "minica/optimize/conv_func.pyx":143
  * 
  *     for i in range(num_src):
  *         for j in range(c_src):             # <<<<<<<<<<<<<<
@@ -4735,7 +3691,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
     for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
       __pyx_v_j = __pyx_t_9;
 
-      /* "minica/optimize/conv_func.pyx":265
+      /* "minica/optimize/conv_func.pyx":144
  *     for i in range(num_src):
  *         for j in range(c_src):
  *             current_dst = dst_ptr + j * c_dst * h * w + i * h * w             # <<<<<<<<<<<<<<
@@ -4744,7 +3700,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
       __pyx_v_current_dst = ((__pyx_v_dst_ptr + (((__pyx_v_j * __pyx_v_c_dst) * __pyx_v_h) * __pyx_v_w)) + ((__pyx_v_i * __pyx_v_h) * __pyx_v_w));
 
-      /* "minica/optimize/conv_func.pyx":266
+      /* "minica/optimize/conv_func.pyx":145
  *         for j in range(c_src):
  *             current_dst = dst_ptr + j * c_dst * h * w + i * h * w
  *             for k in range(h):             # <<<<<<<<<<<<<<
@@ -4755,7 +3711,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
       for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
         __pyx_v_k = __pyx_t_11;
 
-        /* "minica/optimize/conv_func.pyx":267
+        /* "minica/optimize/conv_func.pyx":146
  *             current_dst = dst_ptr + j * c_dst * h * w + i * h * w
  *             for k in range(h):
  *                 for l in range(w):             # <<<<<<<<<<<<<<
@@ -4766,7 +3722,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
         for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
           __pyx_v_l = __pyx_t_13;
 
-          /* "minica/optimize/conv_func.pyx":268
+          /* "minica/optimize/conv_func.pyx":147
  *             for k in range(h):
  *                 for l in range(w):
  *                     current_dst[(h - k - 1) * w + (w - l - 1)] = src_ptr[k * w + l]             # <<<<<<<<<<<<<<
@@ -4777,7 +3733,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
         }
       }
 
-      /* "minica/optimize/conv_func.pyx":269
+      /* "minica/optimize/conv_func.pyx":148
  *                 for l in range(w):
  *                     current_dst[(h - k - 1) * w + (w - l - 1)] = src_ptr[k * w + l]
  *             src_ptr += h * w             # <<<<<<<<<<<<<<
@@ -4788,7 +3744,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
     }
   }
 
-  /* "minica/optimize/conv_func.pyx":270
+  /* "minica/optimize/conv_func.pyx":149
  *                     current_dst[(h - k - 1) * w + (w - l - 1)] = src_ptr[k * w + l]
  *             src_ptr += h * w
  *     return             # <<<<<<<<<<<<<<
@@ -4797,12 +3753,12 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
  */
   goto __pyx_L0;
 
-  /* "minica/optimize/conv_func.pyx":249
+  /* "minica/optimize/conv_func.pyx":129
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cdef void flip(float [:,:,:,:] kernel, float [:,:,:,:] kernel_t) nogil:             # <<<<<<<<<<<<<<
- *     #  channel copy
  *     cdef:
+ *         float *src_ptr = &kernel[0][0][0][0]
  */
 
   /* function exit code */
@@ -4814,7 +3770,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
   __pyx_L0:;
 }
 
-/* "minica/optimize/conv_func.pyx":274
+/* "minica/optimize/conv_func.pyx":153
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef int backward_for_conv_batch(float [:,:,:,:] src, float[:,:,:,:] dst,             # <<<<<<<<<<<<<<
@@ -4858,7 +3814,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
   Py_ssize_t __pyx_t_9;
   __Pyx_RefNannySetupContext("backward_for_conv_batch", 0);
 
-  /* "minica/optimize/conv_func.pyx":284
+  /* "minica/optimize/conv_func.pyx":163
  *     """
  *     cdef:
  *         int num = src.shape[0]             # <<<<<<<<<<<<<<
@@ -4867,7 +3823,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_num = (__pyx_v_src.shape[0]);
 
-  /* "minica/optimize/conv_func.pyx":286
+  /* "minica/optimize/conv_func.pyx":165
  *         int num = src.shape[0]
  * 
  *         int c_src = src.shape[1]             # <<<<<<<<<<<<<<
@@ -4876,7 +3832,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_c_src = (__pyx_v_src.shape[1]);
 
-  /* "minica/optimize/conv_func.pyx":287
+  /* "minica/optimize/conv_func.pyx":166
  * 
  *         int c_src = src.shape[1]
  *         int h_src = src.shape[2]             # <<<<<<<<<<<<<<
@@ -4885,7 +3841,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_h_src = (__pyx_v_src.shape[2]);
 
-  /* "minica/optimize/conv_func.pyx":288
+  /* "minica/optimize/conv_func.pyx":167
  *         int c_src = src.shape[1]
  *         int h_src = src.shape[2]
  *         int w_src = src.shape[3]             # <<<<<<<<<<<<<<
@@ -4894,7 +3850,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_w_src = (__pyx_v_src.shape[3]);
 
-  /* "minica/optimize/conv_func.pyx":290
+  /* "minica/optimize/conv_func.pyx":169
  *         int w_src = src.shape[3]
  * 
  *         int c_dst = dst.shape[1]             # <<<<<<<<<<<<<<
@@ -4903,7 +3859,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_c_dst = (__pyx_v_dst.shape[1]);
 
-  /* "minica/optimize/conv_func.pyx":291
+  /* "minica/optimize/conv_func.pyx":170
  * 
  *         int c_dst = dst.shape[1]
  *         int h_dst = dst.shape[2]             # <<<<<<<<<<<<<<
@@ -4912,7 +3868,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_h_dst = (__pyx_v_dst.shape[2]);
 
-  /* "minica/optimize/conv_func.pyx":292
+  /* "minica/optimize/conv_func.pyx":171
  *         int c_dst = dst.shape[1]
  *         int h_dst = dst.shape[2]
  *         int w_dst = dst.shape[3]             # <<<<<<<<<<<<<<
@@ -4921,7 +3877,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_w_dst = (__pyx_v_dst.shape[3]);
 
-  /* "minica/optimize/conv_func.pyx":294
+  /* "minica/optimize/conv_func.pyx":173
  *         int w_dst = dst.shape[3]
  * 
  *         int kh_t = kernel.shape[3]             # <<<<<<<<<<<<<<
@@ -4930,7 +3886,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_kh_t = (__pyx_v_kernel.shape[3]);
 
-  /* "minica/optimize/conv_func.pyx":295
+  /* "minica/optimize/conv_func.pyx":174
  * 
  *         int kh_t = kernel.shape[3]
  *         int kw_t = kernel.shape[2]             # <<<<<<<<<<<<<<
@@ -4939,7 +3895,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_kw_t = (__pyx_v_kernel.shape[2]);
 
-  /* "minica/optimize/conv_func.pyx":300
+  /* "minica/optimize/conv_func.pyx":179
  * 
  *         # fortran
  *         int h_buf = conv_buf.shape[1]             # <<<<<<<<<<<<<<
@@ -4948,7 +3904,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_h_buf = (__pyx_v_conv_buf.shape[1]);
 
-  /* "minica/optimize/conv_func.pyx":301
+  /* "minica/optimize/conv_func.pyx":180
  *         # fortran
  *         int h_buf = conv_buf.shape[1]
  *         int w_buf = conv_buf.shape[0]             # <<<<<<<<<<<<<<
@@ -4957,7 +3913,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_w_buf = (__pyx_v_conv_buf.shape[0]);
 
-  /* "minica/optimize/conv_func.pyx":302
+  /* "minica/optimize/conv_func.pyx":181
  *         int h_buf = conv_buf.shape[1]
  *         int w_buf = conv_buf.shape[0]
  *         int h_vec = w_buf             # <<<<<<<<<<<<<<
@@ -4966,7 +3922,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_h_vec = __pyx_v_w_buf;
 
-  /* "minica/optimize/conv_func.pyx":303
+  /* "minica/optimize/conv_func.pyx":182
  *         int w_buf = conv_buf.shape[0]
  *         int h_vec = w_buf
  *         int w_vec = kernel.shape[1]             # <<<<<<<<<<<<<<
@@ -4975,7 +3931,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_w_vec = (__pyx_v_kernel.shape[1]);
 
-  /* "minica/optimize/conv_func.pyx":305
+  /* "minica/optimize/conv_func.pyx":184
  *         int w_vec = kernel.shape[1]
  *         #  stride
  *         int ld_buf = h_buf             # <<<<<<<<<<<<<<
@@ -4984,7 +3940,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_ld_buf = __pyx_v_h_buf;
 
-  /* "minica/optimize/conv_func.pyx":306
+  /* "minica/optimize/conv_func.pyx":185
  *         #  stride
  *         int ld_buf = h_buf
  *         int ld_vec = h_vec             # <<<<<<<<<<<<<<
@@ -4993,7 +3949,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_ld_vec = __pyx_v_h_vec;
 
-  /* "minica/optimize/conv_func.pyx":307
+  /* "minica/optimize/conv_func.pyx":186
  *         int ld_buf = h_buf
  *         int ld_vec = h_vec
  *         int ld_out = conv_buf.shape[1]             # <<<<<<<<<<<<<<
@@ -5002,7 +3958,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_ld_out = (__pyx_v_conv_buf.shape[1]);
 
-  /* "minica/optimize/conv_func.pyx":308
+  /* "minica/optimize/conv_func.pyx":187
  *         int ld_vec = h_vec
  *         int ld_out = conv_buf.shape[1]
  *         float alpha = 1.0             # <<<<<<<<<<<<<<
@@ -5011,7 +3967,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_alpha = 1.0;
 
-  /* "minica/optimize/conv_func.pyx":310
+  /* "minica/optimize/conv_func.pyx":189
  *         float alpha = 1.0
  *         # beta  1  src  0
  *         float beta = 1.0             # <<<<<<<<<<<<<<
@@ -5020,7 +3976,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
  */
   __pyx_v_beta = 1.0;
 
-  /* "minica/optimize/conv_func.pyx":311
+  /* "minica/optimize/conv_func.pyx":190
  *         # beta  1  src  0
  *         float beta = 1.0
  *         float *kernel_ptr = &kernel_t[0][0][0][0]             # <<<<<<<<<<<<<<
@@ -5038,7 +3994,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__Pyx_me
         __pyx_tmp_idx += __pyx_tmp_shape;
     if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
         PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-        __PYX_ERR(0, 311, __pyx_L1_error)
+        __PYX_ERR(0, 190, __pyx_L1_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -5066,7 +4022,7 @@ __pyx_t_2.data = __pyx_t_1.data;
         __pyx_tmp_idx += __pyx_tmp_shape;
     if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
         PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-        __PYX_ERR(0, 311, __pyx_L1_error)
+        __PYX_ERR(0, 190, __pyx_L1_error)
     }
         __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -5091,7 +4047,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 1);
         __pyx_tmp_idx += __pyx_tmp_shape;
     if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
         PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-        __PYX_ERR(0, 311, __pyx_L1_error)
+        __PYX_ERR(0, 190, __pyx_L1_error)
     }
         __pyx_t_3.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -5105,7 +4061,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
   __pyx_v_kernel_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_4 * __pyx_t_3.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_3, 1);
 
-  /* "minica/optimize/conv_func.pyx":312
+  /* "minica/optimize/conv_func.pyx":191
  *         float beta = 1.0
  *         float *kernel_ptr = &kernel_t[0][0][0][0]
  *         float *src_ptr = &src[0][0][0][0]             # <<<<<<<<<<<<<<
@@ -5123,7 +4079,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
         __pyx_tmp_idx += __pyx_tmp_shape;
     if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
         PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-        __PYX_ERR(0, 312, __pyx_L1_error)
+        __PYX_ERR(0, 191, __pyx_L1_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -5151,7 +4107,7 @@ __pyx_t_2.data = __pyx_t_1.data;
         __pyx_tmp_idx += __pyx_tmp_shape;
     if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
         PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-        __PYX_ERR(0, 312, __pyx_L1_error)
+        __PYX_ERR(0, 191, __pyx_L1_error)
     }
         __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -5176,7 +4132,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 1);
         __pyx_tmp_idx += __pyx_tmp_shape;
     if (0 && (__pyx_tmp_idx < 0 || __pyx_tmp_idx >= __pyx_tmp_shape)) {
         PyErr_SetString(PyExc_IndexError, "Index out of bounds (axis 0)");
-        __PYX_ERR(0, 312, __pyx_L1_error)
+        __PYX_ERR(0, 191, __pyx_L1_error)
     }
         __pyx_t_3.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -5190,7 +4146,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
   __pyx_v_src_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_5 * __pyx_t_3.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_3, 1);
 
-  /* "minica/optimize/conv_func.pyx":314
+  /* "minica/optimize/conv_func.pyx":193
  *         float *src_ptr = &src[0][0][0][0]
  * 
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -5204,7 +4160,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
       #endif
       /*try:*/ {
 
-        /* "minica/optimize/conv_func.pyx":317
+        /* "minica/optimize/conv_func.pyx":196
  * 
  *         #  kernel
  *         flip(kernel, kernel_t)             # <<<<<<<<<<<<<<
@@ -5213,7 +4169,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
  */
         __pyx_f_6minica_8optimize_9conv_func_flip(__pyx_v_kernel, __pyx_v_kernel_t);
 
-        /* "minica/optimize/conv_func.pyx":320
+        /* "minica/optimize/conv_func.pyx":199
  * 
  *         #
  *         for i in range(num):             # <<<<<<<<<<<<<<
@@ -5224,11 +4180,11 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
         for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
           __pyx_v_i = __pyx_t_7;
 
-          /* "minica/optimize/conv_func.pyx":322
+          /* "minica/optimize/conv_func.pyx":201
  *         for i in range(num):
  * 
  *             copy_and_pad(dst[i], pad_buf, kh_t - 1, kw_t - 1)             # <<<<<<<<<<<<<<
- *             if im2col2_core(pad_buf, conv_buf, indices) != 0:
+ *             if im2col(pad_buf, conv_buf, indices) != 0:
  *                return -1
  */
           __pyx_t_1.data = __pyx_v_dst.data;
@@ -5248,7 +4204,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 322, __pyx_L4_error)
+        __PYX_ERR(0, 201, __pyx_L4_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -5268,19 +4224,19 @@ __pyx_t_1.strides[2] = __pyx_v_dst.strides[3];
 __pyx_f_6minica_8optimize_9conv_func_copy_and_pad(__pyx_t_1, __pyx_v_pad_buf, (__pyx_v_kh_t - 1), (__pyx_v_kw_t - 1));
           __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
 
-          /* "minica/optimize/conv_func.pyx":323
+          /* "minica/optimize/conv_func.pyx":202
  * 
  *             copy_and_pad(dst[i], pad_buf, kh_t - 1, kw_t - 1)
- *             if im2col2_core(pad_buf, conv_buf, indices) != 0:             # <<<<<<<<<<<<<<
+ *             if im2col(pad_buf, conv_buf, indices) != 0:             # <<<<<<<<<<<<<<
  *                return -1
  *             #  blas  routine
  */
-          __pyx_t_8 = ((__pyx_f_6minica_8optimize_9conv_func_im2col2_core(__pyx_v_pad_buf, __pyx_v_conv_buf, __pyx_v_indices) != 0) != 0);
+          __pyx_t_8 = ((__pyx_f_6minica_8optimize_9conv_func_im2col(__pyx_v_pad_buf, __pyx_v_conv_buf, __pyx_v_indices) != 0) != 0);
           if (__pyx_t_8) {
 
-            /* "minica/optimize/conv_func.pyx":324
+            /* "minica/optimize/conv_func.pyx":203
  *             copy_and_pad(dst[i], pad_buf, kh_t - 1, kw_t - 1)
- *             if im2col2_core(pad_buf, conv_buf, indices) != 0:
+ *             if im2col(pad_buf, conv_buf, indices) != 0:
  *                return -1             # <<<<<<<<<<<<<<
  *             #  blas  routine
  *             blas.sgemm("N", "N", &h_buf, &w_vec, &w_buf, &alpha,
@@ -5288,16 +4244,16 @@ __pyx_f_6minica_8optimize_9conv_func_copy_and_pad(__pyx_t_1, __pyx_v_pad_buf, (_
             __pyx_r = -1;
             goto __pyx_L3_return;
 
-            /* "minica/optimize/conv_func.pyx":323
+            /* "minica/optimize/conv_func.pyx":202
  * 
  *             copy_and_pad(dst[i], pad_buf, kh_t - 1, kw_t - 1)
- *             if im2col2_core(pad_buf, conv_buf, indices) != 0:             # <<<<<<<<<<<<<<
+ *             if im2col(pad_buf, conv_buf, indices) != 0:             # <<<<<<<<<<<<<<
  *                return -1
  *             #  blas  routine
  */
           }
 
-          /* "minica/optimize/conv_func.pyx":327
+          /* "minica/optimize/conv_func.pyx":206
  *             #  blas  routine
  *             blas.sgemm("N", "N", &h_buf, &w_vec, &w_buf, &alpha,
  *                        &conv_buf[0][0], &ld_buf, kernel_ptr, &ld_vec,             # <<<<<<<<<<<<<<
@@ -5321,7 +4277,7 @@ __pyx_f_6minica_8optimize_9conv_func_copy_and_pad(__pyx_t_1, __pyx_v_pad_buf, (_
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 327, __pyx_L4_error)
+        __PYX_ERR(0, 206, __pyx_L4_error)
     }
         __pyx_t_3.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -5332,7 +4288,7 @@ __pyx_t_3.strides[0] = __pyx_v_conv_buf.strides[1];
 
 __pyx_t_9 = 0;
 
-          /* "minica/optimize/conv_func.pyx":326
+          /* "minica/optimize/conv_func.pyx":205
  *                return -1
  *             #  blas  routine
  *             blas.sgemm("N", "N", &h_buf, &w_vec, &w_buf, &alpha,             # <<<<<<<<<<<<<<
@@ -5342,7 +4298,7 @@ __pyx_t_9 = 0;
           __pyx_f_5scipy_6linalg_11cython_blas_sgemm(((char *)"N"), ((char *)"N"), (&__pyx_v_h_buf), (&__pyx_v_w_vec), (&__pyx_v_w_buf), (&__pyx_v_alpha), (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_9 * __pyx_t_3.strides[0]) )))), (&__pyx_v_ld_buf), __pyx_v_kernel_ptr, (&__pyx_v_ld_vec), (&__pyx_v_beta), __pyx_v_src_ptr, (&__pyx_v_ld_out));
           __PYX_XDEC_MEMVIEW(&__pyx_t_3, 0);
 
-          /* "minica/optimize/conv_func.pyx":330
+          /* "minica/optimize/conv_func.pyx":209
  *                        &beta, src_ptr, &ld_out)
  * 
  *             src_ptr += c_src * h_src * w_src             # <<<<<<<<<<<<<<
@@ -5353,7 +4309,7 @@ __pyx_t_9 = 0;
         }
       }
 
-      /* "minica/optimize/conv_func.pyx":314
+      /* "minica/optimize/conv_func.pyx":193
  *         float *src_ptr = &src[0][0][0][0]
  * 
  *     with nogil:             # <<<<<<<<<<<<<<
@@ -5383,7 +4339,7 @@ __pyx_t_9 = 0;
       }
   }
 
-  /* "minica/optimize/conv_func.pyx":332
+  /* "minica/optimize/conv_func.pyx":211
  *             src_ptr += c_src * h_src * w_src
  * 
  *     return 0             # <<<<<<<<<<<<<<
@@ -5393,7 +4349,7 @@ __pyx_t_9 = 0;
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "minica/optimize/conv_func.pyx":274
+  /* "minica/optimize/conv_func.pyx":153
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef int backward_for_conv_batch(float [:,:,:,:] src, float[:,:,:,:] dst,             # <<<<<<<<<<<<<<
@@ -5452,36 +4408,36 @@ static PyObject *__pyx_pw_6minica_8optimize_9conv_func_5backward_for_conv_batch(
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_dst)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("backward_for_conv_batch", 1, 7, 7, 1); __PYX_ERR(0, 274, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("backward_for_conv_batch", 1, 7, 7, 1); __PYX_ERR(0, 153, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_kernel)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("backward_for_conv_batch", 1, 7, 7, 2); __PYX_ERR(0, 274, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("backward_for_conv_batch", 1, 7, 7, 2); __PYX_ERR(0, 153, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_pad_buf)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("backward_for_conv_batch", 1, 7, 7, 3); __PYX_ERR(0, 274, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("backward_for_conv_batch", 1, 7, 7, 3); __PYX_ERR(0, 153, __pyx_L3_error)
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_conv_buf)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("backward_for_conv_batch", 1, 7, 7, 4); __PYX_ERR(0, 274, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("backward_for_conv_batch", 1, 7, 7, 4); __PYX_ERR(0, 153, __pyx_L3_error)
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_kernel_t)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("backward_for_conv_batch", 1, 7, 7, 5); __PYX_ERR(0, 274, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("backward_for_conv_batch", 1, 7, 7, 5); __PYX_ERR(0, 153, __pyx_L3_error)
         }
         case  6:
         if (likely((values[6] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_indices)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("backward_for_conv_batch", 1, 7, 7, 6); __PYX_ERR(0, 274, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("backward_for_conv_batch", 1, 7, 7, 6); __PYX_ERR(0, 153, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "backward_for_conv_batch") < 0)) __PYX_ERR(0, 274, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "backward_for_conv_batch") < 0)) __PYX_ERR(0, 153, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 7) {
       goto __pyx_L5_argtuple_error;
@@ -5494,17 +4450,17 @@ static PyObject *__pyx_pw_6minica_8optimize_9conv_func_5backward_for_conv_batch(
       values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
       values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
     }
-    __pyx_v_src = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[0]); if (unlikely(!__pyx_v_src.memview)) __PYX_ERR(0, 274, __pyx_L3_error)
-    __pyx_v_dst = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[1]); if (unlikely(!__pyx_v_dst.memview)) __PYX_ERR(0, 274, __pyx_L3_error)
-    __pyx_v_kernel = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[2]); if (unlikely(!__pyx_v_kernel.memview)) __PYX_ERR(0, 275, __pyx_L3_error)
-    __pyx_v_pad_buf = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_float(values[3]); if (unlikely(!__pyx_v_pad_buf.memview)) __PYX_ERR(0, 276, __pyx_L3_error)
-    __pyx_v_conv_buf = __Pyx_PyObject_to_MemoryviewSlice_dsds_float(values[4]); if (unlikely(!__pyx_v_conv_buf.memview)) __PYX_ERR(0, 277, __pyx_L3_error)
-    __pyx_v_kernel_t = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[5]); if (unlikely(!__pyx_v_kernel_t.memview)) __PYX_ERR(0, 278, __pyx_L3_error)
-    __pyx_v_indices = __Pyx_PyObject_to_MemoryviewSlice_ds_int(values[6]); if (unlikely(!__pyx_v_indices.memview)) __PYX_ERR(0, 278, __pyx_L3_error)
+    __pyx_v_src = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[0]); if (unlikely(!__pyx_v_src.memview)) __PYX_ERR(0, 153, __pyx_L3_error)
+    __pyx_v_dst = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[1]); if (unlikely(!__pyx_v_dst.memview)) __PYX_ERR(0, 153, __pyx_L3_error)
+    __pyx_v_kernel = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[2]); if (unlikely(!__pyx_v_kernel.memview)) __PYX_ERR(0, 154, __pyx_L3_error)
+    __pyx_v_pad_buf = __Pyx_PyObject_to_MemoryviewSlice_dsdsds_float(values[3]); if (unlikely(!__pyx_v_pad_buf.memview)) __PYX_ERR(0, 155, __pyx_L3_error)
+    __pyx_v_conv_buf = __Pyx_PyObject_to_MemoryviewSlice_dsds_float(values[4]); if (unlikely(!__pyx_v_conv_buf.memview)) __PYX_ERR(0, 156, __pyx_L3_error)
+    __pyx_v_kernel_t = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[5]); if (unlikely(!__pyx_v_kernel_t.memview)) __PYX_ERR(0, 157, __pyx_L3_error)
+    __pyx_v_indices = __Pyx_PyObject_to_MemoryviewSlice_ds_int(values[6]); if (unlikely(!__pyx_v_indices.memview)) __PYX_ERR(0, 157, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("backward_for_conv_batch", 1, 7, 7, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 274, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("backward_for_conv_batch", 1, 7, 7, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 153, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("minica.optimize.conv_func.backward_for_conv_batch", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -5523,14 +4479,14 @@ static PyObject *__pyx_pf_6minica_8optimize_9conv_func_4backward_for_conv_batch(
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("backward_for_conv_batch", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_src.memview)) { __Pyx_RaiseUnboundLocalError("src"); __PYX_ERR(0, 274, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_dst.memview)) { __Pyx_RaiseUnboundLocalError("dst"); __PYX_ERR(0, 274, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_kernel.memview)) { __Pyx_RaiseUnboundLocalError("kernel"); __PYX_ERR(0, 274, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_pad_buf.memview)) { __Pyx_RaiseUnboundLocalError("pad_buf"); __PYX_ERR(0, 274, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_conv_buf.memview)) { __Pyx_RaiseUnboundLocalError("conv_buf"); __PYX_ERR(0, 274, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_kernel_t.memview)) { __Pyx_RaiseUnboundLocalError("kernel_t"); __PYX_ERR(0, 274, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_indices.memview)) { __Pyx_RaiseUnboundLocalError("indices"); __PYX_ERR(0, 274, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__pyx_v_src, __pyx_v_dst, __pyx_v_kernel, __pyx_v_pad_buf, __pyx_v_conv_buf, __pyx_v_kernel_t, __pyx_v_indices, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 274, __pyx_L1_error)
+  if (unlikely(!__pyx_v_src.memview)) { __Pyx_RaiseUnboundLocalError("src"); __PYX_ERR(0, 153, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_dst.memview)) { __Pyx_RaiseUnboundLocalError("dst"); __PYX_ERR(0, 153, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_kernel.memview)) { __Pyx_RaiseUnboundLocalError("kernel"); __PYX_ERR(0, 153, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_pad_buf.memview)) { __Pyx_RaiseUnboundLocalError("pad_buf"); __PYX_ERR(0, 153, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_conv_buf.memview)) { __Pyx_RaiseUnboundLocalError("conv_buf"); __PYX_ERR(0, 153, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_kernel_t.memview)) { __Pyx_RaiseUnboundLocalError("kernel_t"); __PYX_ERR(0, 153, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_indices.memview)) { __Pyx_RaiseUnboundLocalError("indices"); __PYX_ERR(0, 153, __pyx_L1_error) }
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_6minica_8optimize_9conv_func_backward_for_conv_batch(__pyx_v_src, __pyx_v_dst, __pyx_v_kernel, __pyx_v_pad_buf, __pyx_v_conv_buf, __pyx_v_kernel_t, __pyx_v_indices, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5554,16 +4510,16 @@ static PyObject *__pyx_pf_6minica_8optimize_9conv_func_4backward_for_conv_batch(
   return __pyx_r;
 }
 
-/* "minica/optimize/conv_func.pyx":336
+/* "minica/optimize/conv_func.pyx":215
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef int backward_kernel_for_conv_batch(float [:,:,:,:] src, float[:,:,:,:] dst,             # <<<<<<<<<<<<<<
- *                                          float [:,:,:,:] kernel, float [:,:] buf) nogil:
- *     """
+ *                                          float [:,:,:,:] kernel, float [:,:] buf,
+ *                                          int [:] indices) nogil:
  */
 
 static PyObject *__pyx_pw_6minica_8optimize_9conv_func_7backward_kernel_for_conv_batch(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(__Pyx_memviewslice __pyx_v_src, __Pyx_memviewslice __pyx_v_dst, __Pyx_memviewslice __pyx_v_kernel, __Pyx_memviewslice __pyx_v_buf, CYTHON_UNUSED int __pyx_skip_dispatch) {
+static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(__Pyx_memviewslice __pyx_v_src, __Pyx_memviewslice __pyx_v_dst, __Pyx_memviewslice __pyx_v_kernel, __Pyx_memviewslice __pyx_v_buf, __Pyx_memviewslice __pyx_v_indices, CYTHON_UNUSED int __pyx_skip_dispatch) {
   int __pyx_v_num;
   CYTHON_UNUSED int __pyx_v_c_src;
   CYTHON_UNUSED int __pyx_v_h_src;
@@ -5598,7 +4554,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
   int __pyx_t_9;
   Py_ssize_t __pyx_t_10;
 
-  /* "minica/optimize/conv_func.pyx":342
+  /* "minica/optimize/conv_func.pyx":222
  *     """
  *     cdef:
  *         int num = src.shape[0]             # <<<<<<<<<<<<<<
@@ -5607,7 +4563,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_num = (__pyx_v_src.shape[0]);
 
-  /* "minica/optimize/conv_func.pyx":343
+  /* "minica/optimize/conv_func.pyx":223
  *     cdef:
  *         int num = src.shape[0]
  *         int c_src = src.shape[1]             # <<<<<<<<<<<<<<
@@ -5616,7 +4572,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_c_src = (__pyx_v_src.shape[1]);
 
-  /* "minica/optimize/conv_func.pyx":344
+  /* "minica/optimize/conv_func.pyx":224
  *         int num = src.shape[0]
  *         int c_src = src.shape[1]
  *         int h_src = src.shape[2]             # <<<<<<<<<<<<<<
@@ -5625,7 +4581,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_h_src = (__pyx_v_src.shape[2]);
 
-  /* "minica/optimize/conv_func.pyx":345
+  /* "minica/optimize/conv_func.pyx":225
  *         int c_src = src.shape[1]
  *         int h_src = src.shape[2]
  *         int w_src = src.shape[3]             # <<<<<<<<<<<<<<
@@ -5634,7 +4590,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_w_src = (__pyx_v_src.shape[3]);
 
-  /* "minica/optimize/conv_func.pyx":347
+  /* "minica/optimize/conv_func.pyx":227
  *         int w_src = src.shape[3]
  * 
  *         int c_dst = dst.shape[1]             # <<<<<<<<<<<<<<
@@ -5643,7 +4599,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_c_dst = (__pyx_v_dst.shape[1]);
 
-  /* "minica/optimize/conv_func.pyx":348
+  /* "minica/optimize/conv_func.pyx":228
  * 
  *         int c_dst = dst.shape[1]
  *         int h_dst = dst.shape[2]             # <<<<<<<<<<<<<<
@@ -5652,7 +4608,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_h_dst = (__pyx_v_dst.shape[2]);
 
-  /* "minica/optimize/conv_func.pyx":349
+  /* "minica/optimize/conv_func.pyx":229
  *         int c_dst = dst.shape[1]
  *         int h_dst = dst.shape[2]
  *         int w_dst = dst.shape[3]             # <<<<<<<<<<<<<<
@@ -5661,7 +4617,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_w_dst = (__pyx_v_dst.shape[3]);
 
-  /* "minica/optimize/conv_func.pyx":351
+  /* "minica/optimize/conv_func.pyx":231
  *         int w_dst = dst.shape[3]
  * 
  *         int h_kernel = kernel.shape[2]             # <<<<<<<<<<<<<<
@@ -5670,7 +4626,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_h_kernel = (__pyx_v_kernel.shape[2]);
 
-  /* "minica/optimize/conv_func.pyx":352
+  /* "minica/optimize/conv_func.pyx":232
  * 
  *         int h_kernel = kernel.shape[2]
  *         int w_kernel = kernel.shape[3]             # <<<<<<<<<<<<<<
@@ -5679,7 +4635,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_w_kernel = (__pyx_v_kernel.shape[3]);
 
-  /* "minica/optimize/conv_func.pyx":357
+  /* "minica/optimize/conv_func.pyx":237
  * 
  *         # fortran
  *         int h_buf = buf.shape[1]             # <<<<<<<<<<<<<<
@@ -5688,7 +4644,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_h_buf = (__pyx_v_buf.shape[1]);
 
-  /* "minica/optimize/conv_func.pyx":358
+  /* "minica/optimize/conv_func.pyx":238
  *         # fortran
  *         int h_buf = buf.shape[1]
  *         int w_buf = buf.shape[0]             # <<<<<<<<<<<<<<
@@ -5697,7 +4653,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_w_buf = (__pyx_v_buf.shape[0]);
 
-  /* "minica/optimize/conv_func.pyx":359
+  /* "minica/optimize/conv_func.pyx":239
  *         int h_buf = buf.shape[1]
  *         int w_buf = buf.shape[0]
  *         int h_vec = w_buf             # <<<<<<<<<<<<<<
@@ -5706,7 +4662,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_h_vec = __pyx_v_w_buf;
 
-  /* "minica/optimize/conv_func.pyx":361
+  /* "minica/optimize/conv_func.pyx":241
  *         int h_vec = w_buf
  * 
  *         int w_vec = c_dst             # <<<<<<<<<<<<<<
@@ -5715,7 +4671,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_w_vec = __pyx_v_c_dst;
 
-  /* "minica/optimize/conv_func.pyx":363
+  /* "minica/optimize/conv_func.pyx":243
  *         int w_vec = c_dst
  *         #  stride
  *         int ld_buf = h_buf             # <<<<<<<<<<<<<<
@@ -5724,7 +4680,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_ld_buf = __pyx_v_h_buf;
 
-  /* "minica/optimize/conv_func.pyx":364
+  /* "minica/optimize/conv_func.pyx":244
  *         #  stride
  *         int ld_buf = h_buf
  *         int ld_vec = h_vec             # <<<<<<<<<<<<<<
@@ -5733,7 +4689,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_ld_vec = __pyx_v_h_vec;
 
-  /* "minica/optimize/conv_func.pyx":365
+  /* "minica/optimize/conv_func.pyx":245
  *         int ld_buf = h_buf
  *         int ld_vec = h_vec
  *         int ld_out = buf.shape[1]             # <<<<<<<<<<<<<<
@@ -5742,7 +4698,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_ld_out = (__pyx_v_buf.shape[1]);
 
-  /* "minica/optimize/conv_func.pyx":366
+  /* "minica/optimize/conv_func.pyx":246
  *         int ld_vec = h_vec
  *         int ld_out = buf.shape[1]
  *         float alpha = 1.0             # <<<<<<<<<<<<<<
@@ -5751,7 +4707,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_alpha = 1.0;
 
-  /* "minica/optimize/conv_func.pyx":368
+  /* "minica/optimize/conv_func.pyx":248
  *         float alpha = 1.0
  *         # beta  1  kernel  0
  *         float beta = 1.0             # <<<<<<<<<<<<<<
@@ -5760,7 +4716,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
  */
   __pyx_v_beta = 1.0;
 
-  /* "minica/optimize/conv_func.pyx":370
+  /* "minica/optimize/conv_func.pyx":250
  *         float beta = 1.0
  * 
  *         float *kernel_ptr = &kernel[0][0][0][0]             # <<<<<<<<<<<<<<
@@ -5784,7 +4740,7 @@ static int __pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(_
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 370, __pyx_L1_error)
+        __PYX_ERR(0, 250, __pyx_L1_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -5818,7 +4774,7 @@ __pyx_t_2.data = __pyx_t_1.data;
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 370, __pyx_L1_error)
+        __PYX_ERR(0, 250, __pyx_L1_error)
     }
         __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -5849,7 +4805,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 370, __pyx_L1_error)
+        __PYX_ERR(0, 250, __pyx_L1_error)
     }
         __pyx_t_3.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -5863,7 +4819,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
   __pyx_v_kernel_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_4 * __pyx_t_3.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_3, 0);
 
-  /* "minica/optimize/conv_func.pyx":371
+  /* "minica/optimize/conv_func.pyx":251
  * 
  *         float *kernel_ptr = &kernel[0][0][0][0]
  *         float *src_ptr = &src[0][0][0][0]             # <<<<<<<<<<<<<<
@@ -5887,7 +4843,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 371, __pyx_L1_error)
+        __PYX_ERR(0, 251, __pyx_L1_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -5921,7 +4877,7 @@ __pyx_t_2.data = __pyx_t_1.data;
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 371, __pyx_L1_error)
+        __PYX_ERR(0, 251, __pyx_L1_error)
     }
         __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -5952,7 +4908,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 371, __pyx_L1_error)
+        __PYX_ERR(0, 251, __pyx_L1_error)
     }
         __pyx_t_3.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -5966,7 +4922,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
   __pyx_v_src_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_5 * __pyx_t_3.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_3, 0);
 
-  /* "minica/optimize/conv_func.pyx":372
+  /* "minica/optimize/conv_func.pyx":252
  *         float *kernel_ptr = &kernel[0][0][0][0]
  *         float *src_ptr = &src[0][0][0][0]
  *         float *dst_ptr = &dst[0][0][0][0]             # <<<<<<<<<<<<<<
@@ -5990,7 +4946,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 372, __pyx_L1_error)
+        __PYX_ERR(0, 252, __pyx_L1_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -6024,7 +4980,7 @@ __pyx_t_2.data = __pyx_t_1.data;
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 372, __pyx_L1_error)
+        __PYX_ERR(0, 252, __pyx_L1_error)
     }
         __pyx_t_2.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -6055,7 +5011,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 372, __pyx_L1_error)
+        __PYX_ERR(0, 252, __pyx_L1_error)
     }
         __pyx_t_3.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -6069,21 +5025,21 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
   __pyx_v_dst_ptr = (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_6 * __pyx_t_3.strides[0]) ))));
   __PYX_XDEC_MEMVIEW(&__pyx_t_3, 0);
 
-  /* "minica/optimize/conv_func.pyx":374
+  /* "minica/optimize/conv_func.pyx":254
  *         float *dst_ptr = &dst[0][0][0][0]
  * 
  *     for i in range(num):             # <<<<<<<<<<<<<<
  * 
- *         if im2col_n_to_one_core(src[i], buf, h_dst, w_dst) != 0:
+ *         if im2col(src[i], buf, indices) != 0:
  */
   __pyx_t_7 = __pyx_v_num;
   for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
     __pyx_v_i = __pyx_t_8;
 
-    /* "minica/optimize/conv_func.pyx":376
+    /* "minica/optimize/conv_func.pyx":256
  *     for i in range(num):
  * 
- *         if im2col_n_to_one_core(src[i], buf, h_dst, w_dst) != 0:             # <<<<<<<<<<<<<<
+ *         if im2col(src[i], buf, indices) != 0:             # <<<<<<<<<<<<<<
  *             return -1
  * 
  */
@@ -6104,7 +5060,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_2, 0);
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 376, __pyx_L1_error)
+        __PYX_ERR(0, 256, __pyx_L1_error)
     }
         __pyx_t_1.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -6121,13 +5077,13 @@ __pyx_t_1.shape[2] = __pyx_v_src.shape[3];
 __pyx_t_1.strides[2] = __pyx_v_src.strides[3];
     __pyx_t_1.suboffsets[2] = -1;
 
-__pyx_t_9 = ((__pyx_f_6minica_8optimize_9conv_func_im2col_n_to_one_core(__pyx_t_1, __pyx_v_buf, __pyx_v_h_dst, __pyx_v_w_dst) != 0) != 0);
+__pyx_t_9 = ((__pyx_f_6minica_8optimize_9conv_func_im2col(__pyx_t_1, __pyx_v_buf, __pyx_v_indices) != 0) != 0);
     __PYX_XDEC_MEMVIEW(&__pyx_t_1, 0);
     if (__pyx_t_9) {
 
-      /* "minica/optimize/conv_func.pyx":377
+      /* "minica/optimize/conv_func.pyx":257
  * 
- *         if im2col_n_to_one_core(src[i], buf, h_dst, w_dst) != 0:
+ *         if im2col(src[i], buf, indices) != 0:
  *             return -1             # <<<<<<<<<<<<<<
  * 
  *         #  blas  routine
@@ -6135,16 +5091,16 @@ __pyx_t_9 = ((__pyx_f_6minica_8optimize_9conv_func_im2col_n_to_one_core(__pyx_t_
       __pyx_r = -1;
       goto __pyx_L0;
 
-      /* "minica/optimize/conv_func.pyx":376
+      /* "minica/optimize/conv_func.pyx":256
  *     for i in range(num):
  * 
- *         if im2col_n_to_one_core(src[i], buf, h_dst, w_dst) != 0:             # <<<<<<<<<<<<<<
+ *         if im2col(src[i], buf, indices) != 0:             # <<<<<<<<<<<<<<
  *             return -1
  * 
  */
     }
 
-    /* "minica/optimize/conv_func.pyx":381
+    /* "minica/optimize/conv_func.pyx":261
  *         #  blas  routine
  *         blas.sgemm("N", "N", &h_buf, &w_vec, &w_buf, &alpha,
  *                    &buf[0][0], &ld_buf, dst_ptr, &ld_vec,             # <<<<<<<<<<<<<<
@@ -6168,7 +5124,7 @@ __pyx_t_9 = ((__pyx_f_6minica_8optimize_9conv_func_im2col_n_to_one_core(__pyx_t_
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-        __PYX_ERR(0, 381, __pyx_L1_error)
+        __PYX_ERR(0, 261, __pyx_L1_error)
     }
         __pyx_t_3.data += __pyx_tmp_idx * __pyx_tmp_stride;
 }
@@ -6179,7 +5135,7 @@ __pyx_t_3.strides[0] = __pyx_v_buf.strides[1];
 
 __pyx_t_10 = 0;
 
-    /* "minica/optimize/conv_func.pyx":380
+    /* "minica/optimize/conv_func.pyx":260
  * 
  *         #  blas  routine
  *         blas.sgemm("N", "N", &h_buf, &w_vec, &w_buf, &alpha,             # <<<<<<<<<<<<<<
@@ -6189,7 +5145,7 @@ __pyx_t_10 = 0;
     __pyx_f_5scipy_6linalg_11cython_blas_sgemm(((char *)"N"), ((char *)"N"), (&__pyx_v_h_buf), (&__pyx_v_w_vec), (&__pyx_v_w_buf), (&__pyx_v_alpha), (&(*((float *) ( /* dim=0 */ (__pyx_t_3.data + __pyx_t_10 * __pyx_t_3.strides[0]) )))), (&__pyx_v_ld_buf), __pyx_v_dst_ptr, (&__pyx_v_ld_vec), (&__pyx_v_beta), __pyx_v_kernel_ptr, (&__pyx_v_ld_out));
     __PYX_XDEC_MEMVIEW(&__pyx_t_3, 0);
 
-    /* "minica/optimize/conv_func.pyx":384
+    /* "minica/optimize/conv_func.pyx":264
  *                    &beta, kernel_ptr, &ld_out)
  * 
  *         dst_ptr += w_dst * h_dst * c_dst             # <<<<<<<<<<<<<<
@@ -6199,7 +5155,7 @@ __pyx_t_10 = 0;
     __pyx_v_dst_ptr = (__pyx_v_dst_ptr + ((__pyx_v_w_dst * __pyx_v_h_dst) * __pyx_v_c_dst));
   }
 
-  /* "minica/optimize/conv_func.pyx":386
+  /* "minica/optimize/conv_func.pyx":266
  *         dst_ptr += w_dst * h_dst * c_dst
  * 
  *     return 0             # <<<<<<<<<<<<<<
@@ -6207,12 +5163,12 @@ __pyx_t_10 = 0;
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "minica/optimize/conv_func.pyx":336
+  /* "minica/optimize/conv_func.pyx":215
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef int backward_kernel_for_conv_batch(float [:,:,:,:] src, float[:,:,:,:] dst,             # <<<<<<<<<<<<<<
- *                                          float [:,:,:,:] kernel, float [:,:] buf) nogil:
- *     """
+ *                                          float [:,:,:,:] kernel, float [:,:] buf,
+ *                                          int [:] indices) nogil:
  */
 
   /* function exit code */
@@ -6234,16 +5190,18 @@ static PyObject *__pyx_pw_6minica_8optimize_9conv_func_7backward_kernel_for_conv
   __Pyx_memviewslice __pyx_v_dst = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_kernel = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_buf = { 0, 0, { 0 }, { 0 }, { 0 } };
+  __Pyx_memviewslice __pyx_v_indices = { 0, 0, { 0 }, { 0 }, { 0 } };
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("backward_kernel_for_conv_batch (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_src,&__pyx_n_s_dst,&__pyx_n_s_kernel,&__pyx_n_s_buf,0};
-    PyObject* values[4] = {0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_src,&__pyx_n_s_dst,&__pyx_n_s_kernel,&__pyx_n_s_buf,&__pyx_n_s_indices,0};
+    PyObject* values[5] = {0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
@@ -6259,61 +5217,69 @@ static PyObject *__pyx_pw_6minica_8optimize_9conv_func_7backward_kernel_for_conv
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_dst)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("backward_kernel_for_conv_batch", 1, 4, 4, 1); __PYX_ERR(0, 336, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("backward_kernel_for_conv_batch", 1, 5, 5, 1); __PYX_ERR(0, 215, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_kernel)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("backward_kernel_for_conv_batch", 1, 4, 4, 2); __PYX_ERR(0, 336, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("backward_kernel_for_conv_batch", 1, 5, 5, 2); __PYX_ERR(0, 215, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_buf)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("backward_kernel_for_conv_batch", 1, 4, 4, 3); __PYX_ERR(0, 336, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("backward_kernel_for_conv_batch", 1, 5, 5, 3); __PYX_ERR(0, 215, __pyx_L3_error)
+        }
+        case  4:
+        if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_indices)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("backward_kernel_for_conv_batch", 1, 5, 5, 4); __PYX_ERR(0, 215, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "backward_kernel_for_conv_batch") < 0)) __PYX_ERR(0, 336, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "backward_kernel_for_conv_batch") < 0)) __PYX_ERR(0, 215, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+      values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
     }
-    __pyx_v_src = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[0]); if (unlikely(!__pyx_v_src.memview)) __PYX_ERR(0, 336, __pyx_L3_error)
-    __pyx_v_dst = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[1]); if (unlikely(!__pyx_v_dst.memview)) __PYX_ERR(0, 336, __pyx_L3_error)
-    __pyx_v_kernel = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[2]); if (unlikely(!__pyx_v_kernel.memview)) __PYX_ERR(0, 337, __pyx_L3_error)
-    __pyx_v_buf = __Pyx_PyObject_to_MemoryviewSlice_dsds_float(values[3]); if (unlikely(!__pyx_v_buf.memview)) __PYX_ERR(0, 337, __pyx_L3_error)
+    __pyx_v_src = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[0]); if (unlikely(!__pyx_v_src.memview)) __PYX_ERR(0, 215, __pyx_L3_error)
+    __pyx_v_dst = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[1]); if (unlikely(!__pyx_v_dst.memview)) __PYX_ERR(0, 215, __pyx_L3_error)
+    __pyx_v_kernel = __Pyx_PyObject_to_MemoryviewSlice_dsdsdsds_float(values[2]); if (unlikely(!__pyx_v_kernel.memview)) __PYX_ERR(0, 216, __pyx_L3_error)
+    __pyx_v_buf = __Pyx_PyObject_to_MemoryviewSlice_dsds_float(values[3]); if (unlikely(!__pyx_v_buf.memview)) __PYX_ERR(0, 216, __pyx_L3_error)
+    __pyx_v_indices = __Pyx_PyObject_to_MemoryviewSlice_ds_int(values[4]); if (unlikely(!__pyx_v_indices.memview)) __PYX_ERR(0, 217, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("backward_kernel_for_conv_batch", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 336, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("backward_kernel_for_conv_batch", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 215, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("minica.optimize.conv_func.backward_kernel_for_conv_batch", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6minica_8optimize_9conv_func_6backward_kernel_for_conv_batch(__pyx_self, __pyx_v_src, __pyx_v_dst, __pyx_v_kernel, __pyx_v_buf);
+  __pyx_r = __pyx_pf_6minica_8optimize_9conv_func_6backward_kernel_for_conv_batch(__pyx_self, __pyx_v_src, __pyx_v_dst, __pyx_v_kernel, __pyx_v_buf, __pyx_v_indices);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6minica_8optimize_9conv_func_6backward_kernel_for_conv_batch(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_src, __Pyx_memviewslice __pyx_v_dst, __Pyx_memviewslice __pyx_v_kernel, __Pyx_memviewslice __pyx_v_buf) {
+static PyObject *__pyx_pf_6minica_8optimize_9conv_func_6backward_kernel_for_conv_batch(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_src, __Pyx_memviewslice __pyx_v_dst, __Pyx_memviewslice __pyx_v_kernel, __Pyx_memviewslice __pyx_v_buf, __Pyx_memviewslice __pyx_v_indices) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   __Pyx_RefNannySetupContext("backward_kernel_for_conv_batch", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_src.memview)) { __Pyx_RaiseUnboundLocalError("src"); __PYX_ERR(0, 336, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_dst.memview)) { __Pyx_RaiseUnboundLocalError("dst"); __PYX_ERR(0, 336, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_kernel.memview)) { __Pyx_RaiseUnboundLocalError("kernel"); __PYX_ERR(0, 336, __pyx_L1_error) }
-  if (unlikely(!__pyx_v_buf.memview)) { __Pyx_RaiseUnboundLocalError("buf"); __PYX_ERR(0, 336, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(__pyx_v_src, __pyx_v_dst, __pyx_v_kernel, __pyx_v_buf, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 336, __pyx_L1_error)
+  if (unlikely(!__pyx_v_src.memview)) { __Pyx_RaiseUnboundLocalError("src"); __PYX_ERR(0, 215, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_dst.memview)) { __Pyx_RaiseUnboundLocalError("dst"); __PYX_ERR(0, 215, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_kernel.memview)) { __Pyx_RaiseUnboundLocalError("kernel"); __PYX_ERR(0, 215, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_buf.memview)) { __Pyx_RaiseUnboundLocalError("buf"); __PYX_ERR(0, 215, __pyx_L1_error) }
+  if (unlikely(!__pyx_v_indices.memview)) { __Pyx_RaiseUnboundLocalError("indices"); __PYX_ERR(0, 215, __pyx_L1_error) }
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_6minica_8optimize_9conv_func_backward_kernel_for_conv_batch(__pyx_v_src, __pyx_v_dst, __pyx_v_kernel, __pyx_v_buf, __pyx_v_indices, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6329,6 +5295,7 @@ static PyObject *__pyx_pf_6minica_8optimize_9conv_func_6backward_kernel_for_conv
   __PYX_XDEC_MEMVIEW(&__pyx_v_dst, 1);
   __PYX_XDEC_MEMVIEW(&__pyx_v_kernel, 1);
   __PYX_XDEC_MEMVIEW(&__pyx_v_buf, 1);
+  __PYX_XDEC_MEMVIEW(&__pyx_v_indices, 1);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -18618,6 +17585,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_ValueError, __pyx_k_ValueError, sizeof(__pyx_k_ValueError), 0, 0, 1, 1},
   {&__pyx_n_s_allocate_buffer, __pyx_k_allocate_buffer, sizeof(__pyx_k_allocate_buffer), 0, 0, 1, 1},
   {&__pyx_n_s_base, __pyx_k_base, sizeof(__pyx_k_base), 0, 0, 1, 1},
+  {&__pyx_n_s_broadcast_filter, __pyx_k_broadcast_filter, sizeof(__pyx_k_broadcast_filter), 0, 0, 1, 1},
   {&__pyx_n_s_buf, __pyx_k_buf, sizeof(__pyx_k_buf), 0, 0, 1, 1},
   {&__pyx_n_s_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 0, 1, 1},
   {&__pyx_n_u_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 1, 0, 1},
@@ -18675,7 +17643,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 23, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(1, 131, __pyx_L1_error)
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(1, 146, __pyx_L1_error)
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(1, 149, __pyx_L1_error)
