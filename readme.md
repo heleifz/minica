@@ -1,15 +1,24 @@
 # Intro
 
-mini caffe 是用 numpy 实现的类似 caffe 的神经网络库
+minica 是用 Python 实现的深度学习库，本人 learning deep learning 的产出。
+目前只有 CPU 版本，用 Cython 加速了卷积和 pooling。
 
 # TODO
 
-* 卷积层实现错了，每个 channel 需要有一个 2d * filter（cython优化？）
-* sgd solver，模型序列化，统一 logging 机制
-* 测试机制：
-  * perf test
-  * net gradient checker
-  * load test data
-* pooling 层 cython 优化
-* 支持 dropout 层
-* 支持 word2vec 训练（embedding 层，h softmax，negsamp）
+* 框架
+  * 模型序列化 cPickle
+  * 统一 logging 机制 (??)
+  * 测试机制：
+    * perf test (??)
+    * net gradient checker
+    * data driven test
+
+* 功能
+  * 支持 concate 层
+  * 支持 dropout 层
+  * 支持 word2vec 训练（embedding 层，h softmax，negsamp）
+
+* 应用 example：
+  1. 分类(MNIST, CIFAR)
+  2. word2vec
+  3. style transfer

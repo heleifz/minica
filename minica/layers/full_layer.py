@@ -27,13 +27,11 @@ class FullLayer(object):
         # TODO: 其它初始化策略
         # 不初始化 W, 根据第一次遇到的数据来确定 input_size
         self.W = tensor.Tensor()
-        data = np.random.random((1, 1)).astype('float32')
-        self.b = tensor.Tensor()
-        self.b.set_data(data)
+        self.b = tensor.Tensor(np.random.random(1, 1))
 
     def init_weights(self, input_size, output_size):
         var = 2.0 / float(input_size)
-        W = np.random.normal(0, np.sqrt(var), (input_size, output_size)).astype('float32')
+        W = np.random.normal(0, np.sqrt(var), (input_size, output_size))
         self.input_size = input_size
         self.W.set_data(W)
 
