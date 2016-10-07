@@ -21,7 +21,9 @@ import json
 import importlib
 import logging
 import sys
+import cPickle
 from collections import defaultdict
+import minica.tensor
 
 logger = logging.Logger(__name__)
 logger.addHandler(logging.StreamHandler(sys.stdout))
@@ -104,8 +106,16 @@ class Net(object):
     神经网络
     """
 
+    def save(self, path):
+        cPickle.dump(self, open(path, 'w'), 1)
+
+    @staticmethod
+    def load(path):
+        return cPickle.load(open(path))
+
     def __init__(self, config):
         self.rebuild(config)
+        self.config = config
 
     def mutable_params(self):
         """
@@ -114,26 +124,36 @@ class Net(object):
         return self.params
 
     def mutable_learning_rate_multiplier(self):
-        """
-
-        """
         return self.learning_rate_multiplier
 
-    def rebuild(self, config):
+    def __setstate__(self, state):
+        self.rebuild(state['config'], state['layers'])
+        self.iter = state['iter']
+        self.config = state['config']
+
+    def __getstate__(self):
+        return {
+            "config" : self.config,
+            "layers" : self.layer_table,
+            "iter" : self.iter
+        }
+
+    def rebuild(self, config, layer_table=None):
         """
         输入网络配置，构建网络
         检查网络结构，确定计算顺序
         """
-        parsed = json.loads(config)
-
         self.iter = 0
-        self.name = parsed['name'] if 'name' in parsed else 'default'
-        self.description = parsed['description'] if 'description' in parsed else ''
+        self.name = config['name'] if 'name' in config else 'default'
+        self.description = config['description'] if 'description' in config else ''
 
         # 保存 graph node 的表： phase : name: GraphNode
         self.node_table = defaultdict(dict)
         # 保存 layer 的表： name(_phase) : Layer
-        self.layer_table = dict()
+        if layer_table is None:
+            self.layer_table = dict()
+        else:
+            self.layer_table = layer_table
 
         # 训练和测试用的 input/output 配置, phase : (name, shape)
         self.variables = defaultdict(list)
@@ -146,7 +166,7 @@ class Net(object):
         self.params = defaultdict(list)
         self.learning_rate_multiplier = defaultdict(list)
 
-        structure = parsed['structure']
+        structure = config['structure']
         # 创建所有 graph node 和 layer 对象, 填充 layer_table 和 node_table
         all_phases = ('train', 'test')
         for layer_config in structure:
@@ -176,13 +196,19 @@ class Net(object):
                 if 'param' in layer_config:
                     param = layer_config['param']
 
-                # 初始化 layer
-                param['propagate_mask_for_input'] = propagate_mask_for_input
-                layer = module.__dict__[class_name](param)
-                layer_params = layer.mutable_params()
                 if 'phase' in layer_config:
                     name = name + "|" + layer_config['phase']
-                self.layer_table[name] = layer
+
+                # 如果没有提供初始化好的 layer, 就重新初始化
+                if layer_table is None:
+                    param['propagate_mask_for_input'] = propagate_mask_for_input
+                    layer = module.__dict__[class_name](param)
+                    self.layer_table[name] = layer
+                # 否则就 load 外部提供的 layer
+                else:
+                    layer = self.layer_table[name]
+
+                layer_params = layer.mutable_params()
 
                 if "learning_rate_multiplier" not in layer_config:
                     learning_rate_multiplier = [1] * len(layer_params)

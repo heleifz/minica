@@ -12,7 +12,7 @@ import minica.solvers.sgd_solver as sgd_solver
 
 # 载入 net
 print "Loading MNIST dataset..."
-n = net.Net(open("example_mnist.json").read())
+n = net.Net(json.load(open("example_mnist.json")))
 train_image = idx2numpy.convert_from_file(open("/Users/helei/Desktop/train-images-idx3-ubyte")).astype(float) / 255.0
 train_label = idx2numpy.convert_from_file(open("/Users/helei/Desktop/train-labels-idx1-ubyte")).astype(int)
 test_image = idx2numpy.convert_from_file(open("/Users/helei/Desktop/t10k-images-idx3-ubyte")).astype(float) / 255.0

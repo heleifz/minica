@@ -34,11 +34,17 @@ class ConvLayer(object):
         # self.filters.set_data(data)
         if self.has_bias:
             self.b = tensor.Tensor(np.random.random((1, 1)).astype('float32'))
+        else:
+            self.b = None
 
     def init_weights(self, channel_num, height, width):
         """
         初始化 filter 参数
         """
+        self.height = height
+        self.width = width
+        self.channel_num = channel_num
+
         var = 2.0 / ((self.filter_size ** 2) * channel_num * 100)
         data = np.random.normal(0, np.sqrt(var),
                                  (self.filter_num, channel_num,
@@ -70,7 +76,64 @@ class ConvLayer(object):
         conv_func.im2col_indices(channel_num, height, width, self.backward_ind2,
                                  height - self.filter_size + 1,
                                  width - self.filter_size + 1, 1)
-                                 
+
+
+    def __setstate__(self, state):
+        self.filters = state['filters']
+        self.b = state['b']
+        self.filter_size = state['filter_size']
+        self.filter_num = state['filter_num']
+        self.has_bias = state['has_bias']
+        self.propagate_mask_for_input = state['propagate_mask_for_input']
+        for buffer_name in state['float_buffers']:
+            setattr(self, buffer_name,
+                    np.zeros(shape=state['float_buffers'][buffer_name], dtype='float32'))
+        for buffer_name in state['int_buffers']:
+            setattr(self, buffer_name,
+                    np.zeros(shape=state['int_buffers'][buffer_name], dtype='int32'))
+
+        if 'height' in state:
+            self.height = state['height']
+            self.width = state['width']
+            self.channel_num = state['channel_num']
+
+            conv_func.im2col_indices(self.channel_num, self.height, self.width, self.forward_ind,
+                                     self.filter_size, self.filter_size)
+            conv_func.im2col_indices(self.filter_num, self.height + self.filter_size - 1,
+                                     self.width + self.filter_size - 1, self.backward_ind1,
+                                     self.filter_size, self.filter_size)
+            conv_func.im2col_indices(self.channel_num, self.height, self.width, self.backward_ind2,
+                                     self.height - self.filter_size + 1,
+                                     self.width - self.filter_size + 1, 1)
+
+    def __getstate__(self):
+        state = {
+            "filters" : self.filters,
+            "b" : self.b,
+            "filter_size" : self.filter_size,
+            "filter_num" : self.filter_num,
+            "has_bias" : self.has_bias,
+            "propagate_mask_for_input" : self.propagate_mask_for_input,
+            "float_buffers" : dict(),
+            "int_buffers" : dict()
+        }
+        float_buffer_names = ['forward_buf', 'backward_kernel_buf',
+                              'backward_pad_buf', 'backward_conv_buf1', 'backward_conv_buf2']
+        int_buffer_names = [
+            "forward_ind", "backward_ind1", "backward_ind2"
+        ]
+        if self.filters.mutable_data() is not None:
+            state['height'] = self.height
+            state['width'] = self.width
+            state['channel_num'] = self.channel_num
+
+            for b in float_buffer_names:
+                state['float_buffers'][b] = getattr(self, b).shape
+            for b in int_buffer_names:
+                state['int_buffers'][b] = getattr(self, b).shape
+
+        return state
+
     def forward(self, prev_tensors, next_tensors):
         """
         前向传播操作

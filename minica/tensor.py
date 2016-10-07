@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-import cPickle
 
 class Tensor(object):
     """
@@ -58,11 +57,12 @@ class Tensor(object):
         """
         return self._diff
 
-    def serialize_to_stream(self, stream):
-        """
-        序列化到一个流中
-        """
-        cPicke.dump({"data" : self._data, "diff" : self._diff}, stream)
+    def __getstate__(self):
+        return {"data" : self._data, "diff" : self._diff}
+
+    def __setstate__(self, state):
+        self._data = state['data']
+        self._diff = state['diff']
 
     def deserialize_from_stream(self, stream):
         """

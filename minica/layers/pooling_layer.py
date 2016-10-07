@@ -24,7 +24,18 @@ class PoolingLayer(object):
             Exception ("Illegal pooling type:" + self.type)
         self.window_size = tuple(params['window_size'])
         self.stride = tuple(params['stride'])
+        self.pooling_buf = None
 
+    def __getstate__(self):
+        return {
+            "type" : self.type,
+            "window_size" : self.window_size,
+            "stride" : self.stride
+        }
+    def __setstate__(self, state):
+        self.type = state['type']
+        self.window_size = state['window_size']
+        self.stride = state['stride']
         self.pooling_buf = None
 
     def forward(self, prev_tensors, next_tensors):

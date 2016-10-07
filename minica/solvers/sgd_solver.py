@@ -5,6 +5,7 @@
 
 import numpy as np
 import logging
+import minica.net
 
 class SGDSolver(object):
     """
@@ -34,6 +35,7 @@ class SGDSolver(object):
         self.validate_batch_size = int(config['validate_batch_size'])
         # 校验的结果所在的 tensor 名称
         self.validate_result_name = config['validate_result_name']
+        self.validate_phase_name = config['validate_phase_name']
         self.base_lr = float(config['base_learning_rate'])
         self.momentum = float(config['momentum'])
         # 最大的迭代次数
@@ -74,7 +76,7 @@ class SGDSolver(object):
         result = 0.0
         print "validating model..."
         for batch in validation_source(self.validate_batch_size):
-            current = net.forward(batch, 'test')
+            current = net.forward(batch, self.validate_phase_name)
             total += self.validate_batch_size
             result += current[self.validate_result_name].mutable_data()[0] * self.validate_batch_size
         print "validation result: ", result / float(total)
@@ -137,7 +139,11 @@ class SGDSolver(object):
                     self.validate(net, validation_source)
                 if current_iter % self.snapshot_interval == 0:
                     # TODO : model 序列化
-                    print "save snapshot...."
+                    print "saving snapshot...."
+                    full_path = self.snapshot_prefix + "_" + str(current_iter)
+                    net.save(full_path)
+                    print "done."
+
                 if current_iter == self.max_iter:
                     done = True
                     break
