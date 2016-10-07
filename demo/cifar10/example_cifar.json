@@ -1,0 +1,118 @@
+{
+  "name" : "test_net",
+  "description" : "template for a neural network",
+  "structure" : [
+    {
+      "type" : "variable",
+      "name" : "x"
+    },
+    {
+      "type" : "variable",
+      "name" : "label"
+    },
+    {
+      "type" : "conv",
+      "name" : "conv1",
+      "param" : {
+        "filter_size" : 5,
+        "filter_num" : 20,
+        "has_bias" : 1
+      },
+      "learning_rate_multiplier" : [2, 1],
+      "propagate_mask_for_input" : [false],
+      "input" : ["x"],
+      "output" : ["conv1_out"]
+    },
+    {
+      "type" : "pooling",
+      "name" : "pooling1",
+      "param" : {
+        "type" : "max",
+        "window_size" : [2,2],
+        "stride" : [2,2]
+      },
+      "input" : ["conv1_out"],
+      "output" : ["pooling1_out"]
+    },
+    {
+      "type" : "conv",
+      "name" : "conv2",
+      "param" : {
+        "filter_size" : 5,
+        "filter_num" : 50,
+        "has_bias" : 0
+      },
+      "input" : ["pooling1_out"],
+      "output" : ["conv2_out"]
+    },
+    {
+      "type" : "pooling",
+      "name" : "pooling2",
+      "param" : {
+        "type" : "max",
+        "window_size" : [2,2],
+        "stride" : [2,2]
+      },
+      "input" : ["conv2_out"],
+      "output" : ["pooling2_out"]
+    },
+    {
+      "type" : "full",
+      "name" : "full1",
+      "param" : {
+        "output_size" : 500
+      },
+      "input" : ["pooling2_out"],
+      "output" : ["full1_out"]
+    },
+    {
+      "type" : "relu",
+      "name" : "relu1",
+      "param" : {
+      },
+      "input" : ["full1_out"],
+      "output" : ["relu1_out"]
+    },
+    {
+      "type" : "full",
+      "name" : "full2",
+      "param" : {
+        "output_size" : 10
+      },
+      "input" : ["relu1_out"],
+      "output" : ["result"]
+    },
+    {
+      "type" : "softmax",
+      "name" : "softmax",
+      "description" : "output_layer",
+      "phase" : "test",
+      "input" : ["result"],
+      "output" : ["softmax_out"]
+    },
+    {
+      "type" : "argmax",
+      "phase" : "test",
+      "name" : "predict_result",
+      "description" : "get predict result",
+      "input" : ["softmax_out"],
+      "output" : ["predict_result"]
+    },
+    {
+      "type" : "accuracy",
+      "phase" : "test",
+      "name" : "accu",
+      "description" : "get predict accu",
+      "input" : ["predict_result", "label"],
+      "output" : ["accu_out"]
+    },
+    {
+      "type" : "softmax_cross_entropy",
+      "phase" : "train",
+      "name" : "cross_entropy_error",
+      "description" : "cross entropy error",
+      "input" : ["result", "label"],
+      "output" : ["loss"]
+    }
+  ]
+}

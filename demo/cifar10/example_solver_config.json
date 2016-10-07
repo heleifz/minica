@@ -1,0 +1,26 @@
+{
+  "name" : "test_solver",
+  "description" : "template for a neural network solver",
+  "type" : "sgd",
+  "params" : {
+    "snapshot_interval" : 3000,
+    "snapshot_prefix" : "foobar",
+    "validate_interval" : 100,
+    "print_log_interval" : 10,
+    "epoch" : 30,
+    "batch_size" : 64,
+    "regularize_policy" : "L2",
+    "weight_decay" : "0.0005",
+    "validate_phase_name" : "test",
+    "validate_batch_size" : 10000,
+    "validate_result_name" : "accu_out",
+    "base_learning_rate" : 0.01,
+    "momentum" : 0.9,
+    "max_iteration" : 10000,
+    "learning_rate_policy" : "inv",
+    "learning_rate_policy_params" : {
+        "gamma" : 0.0001,
+        "power" : 0.75
+    }
+  }
+}
