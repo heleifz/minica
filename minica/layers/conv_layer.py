@@ -143,7 +143,7 @@ class ConvLayer(object):
         (n, height, width)
         """
         if len(prev_tensors) != 1:
-            raise Exception("Number of input must be 1 for ConvLayer.")
+            raise ValueError("Number of input must be 1 for ConvLayer.")
 
         prev_data = prev_tensors[0].mutable_data()
         if len(prev_data.shape) == 2:
@@ -155,7 +155,7 @@ class ConvLayer(object):
             # do nothing
             pass
         else:
-            raise Exception ("Input for ConvLayer must have shape (n, channel, height, width) or (n, height, width)")
+            raise ValueError("Input for ConvLayer must have shape (n, channel, height, width) or (n, height, width)")
 
         if self.filters.mutable_data() is None:
             # 根据首次输入的数据的 channel 数来初始化卷积层

@@ -61,9 +61,7 @@ class SoftmaxCrossEntropyLayer(object):
         diff.reshape(prev_predictions.shape)
         prev_tensors[0].set_diff(diff)
 
-        # 不传播到 label (diff 设为 0)
-        label_diff = prev_tensors[1].mutable_diff()
-        label_diff.fill(0)
+        # 不传播到 label
 
     def mutable_params(self):
         # 本层无参数

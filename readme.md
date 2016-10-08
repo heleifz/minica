@@ -6,7 +6,6 @@ minica 是用 Python 实现的深度学习库，本人 learning deep learning �
 # TODO
 
 * 框架
-  * 统一 logging 机制 (??)
   * 测试机制：
     * perf test (??)
     * net gradient checker

@@ -22,12 +22,12 @@ class MeanSquaredErrorLayer(object):
         前向传播操作
         """
         if len(prev_tensors) != 2:
-            raise Exception("Number of input must be 2 for MeanSquaredErrorLayer.")
+            raise ValueError("Number of input must be 2 for MeanSquaredErrorLayer.")
         # 兼容 mini-batch 的数据
         prev_predictions = prev_tensors[0].mutable_data()
         prev_labels = prev_tensors[1].mutable_data()
         if len(prev_predictions.shape) == 1:
-            raise Exception("Number of dimension must >= 2")
+            raise ValueError("Number of dimension must >= 2")
         size_of_first_dim = prev_predictions.shape[0]
         # 变换成行向量
         reshaped_predictions = prev_predictions.reshape(size_of_first_dim, -1)
@@ -52,7 +52,6 @@ class MeanSquaredErrorLayer(object):
         diff = (prev_predictions - prev_labels) * next_tensors[0].mutable_diff() \
                 / float(size_of_first_dim)
         prev_tensors[0].set_diff(diff.reshape(prev_tensors[0].mutable_data().shape))
-        prev_tensors[1].mutable_diff().fill(0)
 
     def mutable_params(self):
         # 无参数

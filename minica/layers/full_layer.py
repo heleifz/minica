@@ -40,11 +40,10 @@ class FullLayer(object):
         前向传播操作
         """
         if len(prev_tensors) != 1:
-            raise Exception("Number of input must be 1 for FullLayer.")
-
+            raise ValueError("Number of input must be 1 for FullLayer.")
         prev_data = prev_tensors[0].mutable_data()
         if len(prev_data.shape) == 1:
-            raise Exception("Number of dimension must >= 2")
+            raise ValueError("Number of dimension must >= 2")
         size_of_first_dim = prev_data.shape[0]
         reshaped_input = np.reshape(prev_data, (size_of_first_dim, -1))
         if self.W.mutable_data() is None:

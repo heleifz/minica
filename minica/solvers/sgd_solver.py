@@ -7,6 +7,9 @@ import numpy as np
 import logging
 import minica.net
 
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
+
 class SGDSolver(object):
     """
     随机梯度下降
@@ -74,12 +77,12 @@ class SGDSolver(object):
         """
         total = 0
         result = 0.0
-        print "validating model..."
+        logger.info("validating model...")
         for batch in validation_source(self.validate_batch_size):
             current = net.forward(batch, self.validate_phase_name)
             total += self.validate_batch_size
             result += current[self.validate_result_name].mutable_data()[0] * self.validate_batch_size
-        print "validation result: ", result / float(total)
+        logger.info("validation result: %f" % (result / float(total)))
 
     def update(self, net, batch, current_iter):
         """
@@ -87,7 +90,7 @@ class SGDSolver(object):
         """
         result = net.forward(batch, 'train')
         net.backward(result, 'train')
-        print "loss:", result['loss'].mutable_data()
+        logger.info("loss: %f" % result['loss'].mutable_data())
         # 获取当前迭代的学习率
         lr = self.get_learning_rate(current_iter)
         idx = 0
@@ -118,7 +121,7 @@ class SGDSolver(object):
             elif self.regularize_policy == "L1":
                 diff += self.weight_decay * np.sign(param.mutable_data())
             else:
-                raise Exception("Unknown regularization policy:" + self.regularize_policy)
+                raise ValueError("Unknown regularization policy:" + self.regularize_policy)
 
     def solve(self, training_source, validation_source, net):
         """
@@ -128,26 +131,48 @@ class SGDSolver(object):
         """
         current_iter = net.iter + 1
         done = False
+        # 在训练开始前，打开 logging 开关
+        library_logger = logging.getLogger('minica')
+        print_handler = logging.StreamHandler()
+        null_handler = logging.NullHandler()
+        print_handler.setFormatter(logging.Formatter(
+            '[%(asctime)s-%(name)s-%(levelname)s] %(message)s'))
+        library_logger.addHandler(logging.NullHandler())
         # 保存上一轮的梯度
         self.last_diff = [None for i in xrange(len(net.mutable_params()['train']))]
-        for epoch in range(self.epoch):
-            for batch in training_source(self.batch_size):
-                self.update(net, batch, current_iter)
-                if current_iter % self.print_log_interval == 0:
-                    print "current iter:", current_iter
-                if current_iter % self.validate_interval == 0:
-                    self.validate(net, validation_source)
-                if current_iter % self.snapshot_interval == 0:
-                    # TODO : model 序列化
-                    print "saving snapshot...."
-                    full_path = self.snapshot_prefix + "_" + str(current_iter)
-                    net.save(full_path)
-                    print "done."
 
-                if current_iter == self.max_iter:
-                    done = True
+        try:
+            for epoch in range(self.epoch):
+                for batch in training_source(self.batch_size):
+
+                    # 控制打印日志的频率
+                    if current_iter % self.print_log_interval == 0 or \
+                       current_iter % self.validate_interval == 0:
+                        logger.removeHandler(null_handler)
+                        logger.addHandler(print_handler)
+                        logger.info("current iter: %d" % current_iter)
+                    else:
+                        logger.removeHandler(print_handler)
+                        logger.addHandler(null_handler)
+
+                    self.update(net, batch, current_iter)
+                    if current_iter % self.validate_interval == 0:
+                        self.validate(net, validation_source)
+                    if current_iter % self.snapshot_interval == 0:
+                        logger.info("saving snapshot....")
+                        full_path = self.snapshot_prefix + "_" + str(current_iter)
+                        net.save(full_path)
+                        logger.info("done.")
+
+                    if current_iter == self.max_iter:
+                        done = True
+                        break
+                    current_iter += 1
+                if done:
                     break
-                current_iter += 1
-            if done:
-                break
-            print "====== Finish epoch %d ======" % epoch
+
+                logger.info("====== Finish epoch %d ======" % epoch)
+        except:
+            library_logger.removeHandler(print_handler)
+            library_logger.removeHandler(null_handler)
+            raise

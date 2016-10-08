@@ -23,10 +23,11 @@ import logging
 import sys
 import cPickle
 from collections import defaultdict
+
 import minica.tensor
 
 logger = logging.Logger(__name__)
-logger.addHandler(logging.StreamHandler(sys.stdout))
+logger.addHandler(logging.NullHandler())
 
 class GraphNode(object):
     """
@@ -37,59 +38,64 @@ class GraphNode(object):
         """
         初始化图节点
         """
-        self.name = name
-        self.n_type = n_type
-        self.prev_nodes = []
-        self.next_nodes = []
-        self.data = data
+        self._name = name
+        self._n_type = n_type
+        self._prev_nodes = []
+        self._next_nodes = []
+        self._data = data
 
     def set_data(self, data):
-        self.data = data
+        self._data = data
 
     def data(self):
-        return self.data
+        return self._data
 
     def node_type(self):
         """
         节点类型：operation, tensor
         """
-        return self.n_type
+        return self._n_type
 
     def node_name(self):
         """
         节点名称
         """
-        return self.name
+        return self._name
 
     def mutable_prev_node_names(self):
         """
         前驱节点
         """
-        return self.prev_nodes
+        return self._prev_nodes
 
     def mutable_next_node_names(self):
         """
         后继节点
         """
-        return self.next_nodes
+        return self._next_nodes
 
 def tensor_order_topological(start_node_names, node_table):
     """
     拓扑排序，用于确定运算图的计算顺序
+    如果有圈则报错
     """
-    # TODO 圈检查
 
     result = []
     visited = set()
+    current_stack = set()
     def dfs(start_node):
         node_name = start_node.node_name()
         node_type = start_node.node_type()
         visited.add(node_name)
+        current_stack.add(node_name)
         for next_node_name in start_node.mutable_next_node_names():
+            if next_node_name in current_stack:
+                raise ValueError('Computation graph cannot have loop.')
             if next_node_name not in visited:
                 dfs(node_table[next_node_name])
+        current_stack.remove(node_name)
         if node_type == 'layer':
-            """只保留 layer 节点"""
+            # 只关心 layer 节点的拓扑顺序
             result.append(node_name)
 
     for name in start_node_names:
@@ -97,7 +103,7 @@ def tensor_order_topological(start_node_names, node_table):
             dfs(node_table[name])
 
     result.reverse()
-    logger.debug("Topological order:" + str(result))
+    logger.debug("Topological order for net:" + str(result))
 
     return result
 
@@ -183,7 +189,8 @@ class Net(object):
                 # 处理输入节点
                 for p in phases:
                     self.variables[p].append(name)
-                    # TODO 检查重名节点
+                    if name in self.node_table[p]:
+                        raise ValueError("Variable cannot have same name: %s" % name)
                     self.node_table[p][name] = GraphNode('variable', name)
             else:
                 # 创建 layer 对象，layer 文件命名规则: 层名 + _layer
@@ -199,8 +206,11 @@ class Net(object):
                 if 'phase' in layer_config:
                     name = name + "|" + layer_config['phase']
 
+
                 # 如果没有提供初始化好的 layer, 就重新初始化
                 if layer_table is None:
+                    if name in self.layer_table:
+                        raise ValueError("Layers have same name: %s" % name)
                     param['propagate_mask_for_input'] = propagate_mask_for_input
                     layer = module.__dict__[class_name](param)
                     self.layer_table[name] = layer
@@ -215,8 +225,8 @@ class Net(object):
                 else:
                     learning_rate_multiplier = \
                         layer_config['learning_rate_multiplier']
-
-                # TODO check learning rate multiplier len
+                    if len(learning_rate_multiplier) != len(layer_params):
+                        raise ValueError("Learning rate multiplier and layer params have different length.")
 
                 # 连接前驱和后继节点
                 inputs = layer_config['input']
@@ -286,6 +296,8 @@ class Net(object):
             output_node_names = layer_node.mutable_next_node_names()
             output_tensors = []
             # 由 layer 的 forward 接口填充 output tensor
+            # 每个 layer 可以在内部使用同一个 ndarray 输出到结果中
+            # 避免重复的内存分配
             layer_object.forward(input_tensors, output_tensors)
             # 将结果填入 result
             for idx in xrange(len(output_node_names)):

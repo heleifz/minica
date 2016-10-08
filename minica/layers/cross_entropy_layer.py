@@ -22,12 +22,12 @@ class CrossEntropyLayer(object):
         前向传播操作
         """
         if len(prev_tensors) != 2:
-            raise Exception("Number of input must be 2 for CrossEntropyLayer.")
+            raise ValueError("Number of input must be 2 for CrossEntropyLayer.")
         # 兼容 mini-batch 的数据
         prev_predictions = prev_tensors[0].mutable_data()
         prev_labels = prev_tensors[1].mutable_data()
         if len(prev_predictions.shape) == 1:
-            raise Exception("Number of dimension must >= 2")
+            raise ValueError("Number of dimension must >= 2")
         size_of_first_dim = prev_predictions.shape[0]
         # 变换成行向量
         reshaped_predictions = np.reshape(prev_predictions, (size_of_first_dim, -1))
@@ -58,9 +58,7 @@ class CrossEntropyLayer(object):
             -1.0 / reshaped_predictions[np.arange(size_of_first_dim), reshaped_labels] * \
             next_tensors[0].mutable_diff() / size_of_first_dim
 
-        # 不传播到 label (diff 设为 0)
-        label_diff = prev_tensors[1].mutable_diff()
-        label_diff.fill(0)
+        # 不传播到 label
 
     def mutable_params(self):
         # 无参数

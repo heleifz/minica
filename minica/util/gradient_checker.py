@@ -25,10 +25,17 @@ class GradientChecker(object):
             np.copyto(diff, data / np.array(data_count, dtype='float32'))
         return total_loss / 2.0 / float(data_count)
 
-    def check(self, layer, input_tensors,
-              input_check_mask=None, param_check_mask=None):
+    def check_net(self, net, input_tensors,
+                  input_check_mask=None, param_check_mask=None):
         """
-        梯度检查, 通过返回 True, 否则返回 False
+        TODO 整个网络的梯度检查, 通过返回 True, 否则返回 False
+        """
+        pass
+
+    def check_layer(self, layer, input_tensors,
+                    input_check_mask=None, param_check_mask=None):
+        """
+        单层梯度检查, 通过返回 True, 否则返回 False
         假定 layer 已经初始化完毕
         """
         # 需要做梯度检查的 tensor

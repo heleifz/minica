@@ -5,7 +5,7 @@
   "params" : {
     "snapshot_interval" : 3000,
     "snapshot_prefix" : "foobar",
-    "validate_interval" : 100,
+    "validate_interval" : 500,
     "print_log_interval" : 10,
     "epoch" : 30,
     "batch_size" : 64,

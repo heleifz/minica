@@ -22,7 +22,7 @@ class AccuracyLayer(object):
         前向传播操作
         """
         if len(prev_tensors) != 2:
-            raise Exception("Number of input must be 2 for AccuracyLayer.")
+            raise ValueError("Number of input must be 2 for AccuracyLayer.")
         # 兼容 mini-batch 的数据
         prev_predictions = prev_tensors[0].mutable_data()
         prev_labels = prev_tensors[1].mutable_data()
@@ -40,11 +40,8 @@ class AccuracyLayer(object):
         """
         反向传播操作
         """
-        # 准确度无法 backprop 传播
-        prediction_diff = prev_tensors[0].mutable_diff()
-        label_diff = prev_tensors[1].mutable_diff()
-        label_diff.fill(0)
-        prediction_diff.fill(0)
+        # 准确度无法反向传播
+        pass
 
     def mutable_params(self):
         # 无参数

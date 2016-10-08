@@ -22,7 +22,7 @@ class ArgmaxLayer(object):
         前向传播操作
         """
         if len(prev_tensors) != 1:
-            raise Exception("Number of input must be 1 for ArgmaxLayer.")
+            raise ValueError("Number of input must be 1 for ArgmaxLayer.")
         prev_data = prev_tensors[0].mutable_data()
         if len(prev_data.shape) == 1:
             prev_data = prev_data.reshape((1, -1))
@@ -38,8 +38,7 @@ class ArgmaxLayer(object):
         反向传播操作
         """
         # 无法反向传播
-        prev_diff = prev_tensors[0].mutable_diff()
-        prev_diff.fill(0.0)
+        pass
 
     def mutable_params(self):
         # 无参数
