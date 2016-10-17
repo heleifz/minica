@@ -1,0 +1,26 @@
+{
+    "layer" : {
+        "type" : "pooling",
+        "param" : {
+            "type" : "mean",
+            "window_size" : [3, 3],
+            "stride" : [2, 2]
+        }
+    },
+    "checker" : {
+        "step_size" : 1e-4,
+        "threshold" : 1e-2
+    },
+    "testcases" : [
+        {
+            "inputs" : [
+                "np.random.random((2, 2, 5, 4))"
+            ]
+        },
+        {
+            "inputs" : [
+                "np.random.random((2, 6, 6))"
+            ]
+        }
+    ]
+}

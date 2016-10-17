@@ -123,13 +123,16 @@ class SGDSolver(object):
             else:
                 raise ValueError("Unknown regularization policy:" + self.regularize_policy)
 
-    def solve(self, training_source, validation_source, net):
+    def solve(self, training_source, validation_source, net, restart=True):
         """
         训练网络
         training_source 和 validation_source 接受一个 batch_size 参数
         返回一个数据迭代器
         """
-        current_iter = net.iter + 1
+        if restart:
+            current_iter = 1
+        else:
+            current_iter = net.iter + 1
         done = False
         # 在训练开始前，打开 logging 开关
         library_logger = logging.getLogger('minica')
@@ -172,7 +175,6 @@ class SGDSolver(object):
                     break
 
                 logger.info("====== Finish epoch %d ======" % epoch)
-        except:
+        finally:
             library_logger.removeHandler(print_handler)
             library_logger.removeHandler(null_handler)
-            raise

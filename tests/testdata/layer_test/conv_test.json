@@ -1,0 +1,26 @@
+{
+    "layer" : {
+        "type" : "conv",
+        "param" : {
+            "filter_num" : 3,
+            "filter_size" : 3,
+            "has_bias" : 1
+        }
+    },
+    "checker" : {
+        "step_size" : 1e-3,
+        "threshold" : 1e-2
+    },
+    "testcases" : [
+        {
+            "inputs" : [
+                "np.random.random((2, 2, 5, 4))"
+            ]
+        },
+        {
+            "inputs" : [
+                "np.random.random((2, 6, 6))"
+            ]
+        }
+    ]
+}

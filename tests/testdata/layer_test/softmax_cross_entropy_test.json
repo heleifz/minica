@@ -1,0 +1,19 @@
+{
+    "layer" : {
+        "type" : "softmax_cross_entropy",
+        "param" : null
+    },
+    "checker" : {
+        "step_size" : 1e-4,
+        "threshold" : 1e-2,
+        "input_check_mask" : [true, false]
+    },
+    "testcases" : [
+        {
+            "inputs" : [
+                "np.array([[0.1, 0.2, 0.3, 0.4], [0.22, 0.26, 0.28, 0.24]])",
+                "np.random.randint(0, 4, (2, 1))"
+            ]
+        }
+    ]
+}

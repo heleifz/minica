@@ -101,6 +101,14 @@ class PoolingLayer(object):
         next_diff = next_tensors[0].mutable_diff()
         prev_diff = prev_tensors[0].mutable_diff()
 
+        # 将 prev_diff reshape 成正确形状
+        prev_diff = prev_tensors[0].mutable_diff()
+        if len(prev_diff.shape) == 2:
+            prev_diff = prev_diff.reshape(1, 1, prev_diff.shape[0], prev_diff[1])
+        elif len(prev_diff.shape) == 3:
+            prev_diff = prev_diff.reshape((prev_diff.shape[0], 1,
+                                           prev_diff.shape[1], prev_diff.shape[2]))
+
         if self.type == "max":
             # 使用 forward 保存的 index 来赋值
             pooling_func.backprop_for_max_pooling(prev_diff, next_diff, self.pooling_buf)

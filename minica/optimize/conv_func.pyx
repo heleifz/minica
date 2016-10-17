@@ -118,7 +118,7 @@ cdef void copy_and_pad(float [:,:,:] src, float [:,:,:] dst, int pad_h, int pad_
 
     for ch in range(c):
         lapack.slacpy('A', &w_src, &h_src,
-                      src_ptr, &h_src, dst_ptr, &h_dst)
+                      src_ptr, &w_src, dst_ptr, &w_dst)
         dst_ptr += h_dst * w_dst
         src_ptr += h_src * w_src
 
@@ -191,7 +191,6 @@ cpdef int backward_for_conv_batch(float [:,:,:,:] src, float[:,:,:,:] dst,
         float *src_ptr = &src[0][0][0][0]
 
     with nogil:
-
         # 先转置 kernel
         flip(kernel, kernel_t)
 

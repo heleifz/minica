@@ -160,6 +160,7 @@ class ConvLayer(object):
         if self.filters.mutable_data() is None:
             # 根据首次输入的数据的 channel 数来初始化卷积层
             self.init_weights(prev_data.shape[1], prev_data.shape[2], prev_data.shape[3])
+
         result = np.zeros((prev_data.shape[0], self.filter_num,
                            prev_data.shape[2] - self.filter_size + 1,
                            prev_data.shape[3] - self.filter_size + 1), dtype='float32')
@@ -203,6 +204,8 @@ class ConvLayer(object):
         conv_func.backward_kernel_for_conv_batch(prev_data, next_diff,
                                                  self.filters.mutable_diff(),
                                                  self.backward_conv_buf2, self.backward_ind2)
+        # print self.filters.mutable_diff()
+
         # 计算 bias term 的梯度
         if self.has_bias:
             b_diff = self.b.mutable_diff()

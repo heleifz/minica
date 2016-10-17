@@ -59,7 +59,6 @@ class GradientChecker(object):
         for t in check_tensors:
             data = t.mutable_data()
             diff = t.mutable_diff()
-            print t
             for i in xrange(data.size):
                 data.flat[i] -= self.step_size
                 current_out = []
